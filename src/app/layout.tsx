@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang='en'>
-      <body className={manrope.variable}>{children}</body>
+    <html lang='en' className={manrope.variable}>
+      <body>{children}</body>
     </html>
   );
 };
