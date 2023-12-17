@@ -1,12 +1,5 @@
-import { Button } from '@/components/ui/button';
-
 const Home = () => {
-  return (
-    <main>
-      App
-      <Button>Useless button!</Button>
-    </main>
-  );
+  return <p>If you can see this, you are probably authenticated.</p>;
 };
 
 export default Home;
