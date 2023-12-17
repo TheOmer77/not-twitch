@@ -40,7 +40,7 @@ export const POST = async (req: Request) => {
   }
 
   switch (evt.type) {
-    case 'user.created':
+    case 'user.created': {
       await db.user.create({
         data: {
           externalUserId: payload.data.id,
@@ -48,6 +48,24 @@ export const POST = async (req: Request) => {
           imageUrl: payload.data.image_url,
         },
       });
+      break;
+    }
+
+    case 'user.updated': {
+      await db.user.update({
+        where: { externalUserId: payload.data.id },
+        data: {
+          username: payload.data.username,
+          imageUrl: payload.data.image_url,
+        },
+      });
+      break;
+    }
+
+    case 'user.deleted': {
+      await db.user.delete({ where: { externalUserId: payload.data.id } });
+      break;
+    }
   }
 
   return new Response('', { status: 200 });
