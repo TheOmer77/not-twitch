@@ -9,6 +9,12 @@ const clerkTheme: Theme = {
       'text-2xl text-center font-bold tracking-tight text-foreground',
     headerSubtitle: 'hidden',
     socialButtonsBlockButton: cn(buttonVariants({ variant: 'outline' })),
+    socialButtonsBlockButtonText: 'text-foreground',
+    formFieldLabel: 'text-muted-foreground',
+    formFieldInput: 'bg-background text-inherit',
+    formButtonPrimary: cn(buttonVariants({ variant: 'default' })),
+    footerActionText: 'text-foreground',
+    footerActionLink: 'text-primary font-medium hover:text-primary',
   },
 };
 
