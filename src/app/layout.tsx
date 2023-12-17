@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
+
 import './styles/index.css';
 
 const manrope = Manrope({
@@ -15,9 +17,11 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang='en' className={manrope.variable}>
-      <body>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang='en' className={manrope.variable}>
+        <body>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 };
 
