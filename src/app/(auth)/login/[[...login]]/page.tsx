@@ -1,8 +1,7 @@
 import { SignIn } from '@clerk/nextjs';
-import clerkTheme from '../../clerkTheme';
 
 const LoginPage = () => {
-  return <SignIn appearance={clerkTheme} />;
+  return <SignIn />;
 };
 
 export default LoginPage;
