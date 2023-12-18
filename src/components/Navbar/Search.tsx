@@ -29,7 +29,7 @@ export const Search = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit} className='relative w-full md:w-64'>
+    <form onSubmit={handleSubmit} className='relative w-full md:w-96'>
       <SearchIcon
         className='absolute start-3 text-base text-muted-foreground'
         width='1em'

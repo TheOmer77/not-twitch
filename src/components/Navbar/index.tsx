@@ -15,10 +15,8 @@ export const Navbar = () => (
           Home
         </h1>
       </div>
-      <div className='flex grow flex-row items-center justify-end gap-4'>
-        <Search />
-        <Actions />
-      </div>
+      <Search />
+      <Actions />
     </nav>
     <div className='h-16 w-full' />
   </>
