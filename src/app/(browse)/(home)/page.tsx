@@ -1,5 +1,5 @@
 const Home = () => (
-  <div className='mx-auto max-w-3xl [&>p]:my-6'>
+  <div className='mx-auto max-w-3xl px-4 [&>p]:my-6'>
     <p>
       Elit culpa eu adipisicing occaecat minim. Qui ea est nostrud occaecat
       laborum ex voluptate irure eu pariatur aliqua in. Reprehenderit tempor
