@@ -15,7 +15,7 @@ export const Navbar = () => (
           Home
         </h1>
       </div>
-      <div className='flex flex-row items-center gap-4'>
+      <div className='flex grow flex-row items-center justify-end gap-4'>
         <Search />
         <UserButton afterSignOutUrl='/' />
       </div>
