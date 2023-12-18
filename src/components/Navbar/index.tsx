@@ -1,8 +1,8 @@
-import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 import Logo from '@/components/Logo';
 import { Search } from './Search';
+import { Actions } from './Actions';
 
 export const Navbar = () => (
   <>
@@ -17,7 +17,7 @@ export const Navbar = () => (
       </div>
       <div className='flex grow flex-row items-center justify-end gap-4'>
         <Search />
-        <UserButton afterSignOutUrl='/' />
+        <Actions />
       </div>
     </nav>
     <div className='h-16 w-full' />
