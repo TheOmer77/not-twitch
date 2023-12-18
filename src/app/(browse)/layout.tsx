@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from 'react';
-import { Navbar, Sidebar } from '@/components/layout';
+import { Main, Navbar, Sidebar } from '@/components/layout';
 
 const BrowseLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Navbar />
       <Sidebar />
-      {children}
+      <Main>{children}</Main>
     </>
   );
 };
