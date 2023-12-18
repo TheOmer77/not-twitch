@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { Navbar } from '@/components/Navbar';
+import { Navbar } from '@/components/layout';
 
 const BrowseLayout = ({ children }: PropsWithChildren) => {
   return (
