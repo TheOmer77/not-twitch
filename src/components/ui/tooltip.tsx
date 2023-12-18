@@ -11,14 +11,14 @@ import {
 
 import { cn } from '@/lib/utils';
 
-export type TooltipProps = Omit<TooltipContentProps, 'title'> & {
-  title: ReactNode;
+export type TooltipProps = TooltipContentProps & {
+  label: ReactNode;
 };
 
 export const Tooltip = forwardRef<
   ElementRef<typeof TooltipContent>,
   TooltipProps
->(({ title, sideOffset = 4, className, children, ...props }, ref) => (
+>(({ label, sideOffset = 4, className, children, ...props }, ref) => (
   <TooltipProvider>
     <TooltipRoot>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
@@ -36,7 +36,7 @@ data-[side=top]:slide-in-from-bottom-2`,
           className
         )}
       >
-        {title}
+        {label}
       </TooltipContent>
     </TooltipRoot>
   </TooltipProvider>
