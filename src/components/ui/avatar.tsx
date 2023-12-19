@@ -8,21 +8,35 @@ import {
   type AvatarImageProps,
   type AvatarProps as AvatarRootProps,
 } from '@radix-ui/react-avatar';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
+export const avatarVariants = cva(
+  'relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full',
+  {
+    variants: {
+      size: {
+        md: 'h-8 w-8',
+        lg: 'h-14 w-14',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  }
+);
+
 export type AvatarProps = AvatarRootProps &
-  AvatarImageProps & { fallback?: string };
+  AvatarImageProps &
+  VariantProps<typeof avatarVariants> & { fallback?: string };
 
 export const Avatar = forwardRef<ElementRef<typeof AvatarRoot>, AvatarProps>(
-  ({ src, alt, fallback, className, ...props }, ref) => (
+  ({ src, alt, fallback, size, className, ...props }, ref) => (
     <AvatarRoot
       {...props}
       ref={ref}
-      className={cn(
-        'relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full',
-        className
-      )}
+      className={cn(avatarVariants({ size, className }))}
     >
       <AvatarImage
         src={src}
