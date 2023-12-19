@@ -7,11 +7,13 @@ import { useToast } from '@/hooks/useToast';
 import { onFollow, onUnfollow } from '@/actions/follow';
 
 export type UserHeaderActionsProps = {
+  currentUserId: string;
   userId: string;
   isFollowing: boolean;
 };
 
 export const UserHeaderActions = ({
+  currentUserId,
   userId,
   isFollowing,
 }: UserHeaderActionsProps) => {
@@ -58,13 +60,15 @@ export const UserHeaderActions = ({
 
   return (
     <div className='ms-auto'>
-      <Button
-        variant={isFollowing ? 'secondary' : 'default'}
-        onClick={isFollowing ? handleUnfollowClick : handleFollowClick}
-        disabled={isPending}
-      >
-        {isFollowing ? 'Unfollow' : 'Follow'}
-      </Button>
+      {currentUserId !== userId && (
+        <Button
+          variant={isFollowing ? 'secondary' : 'default'}
+          onClick={isFollowing ? handleUnfollowClick : handleFollowClick}
+          disabled={isPending}
+        >
+          {isFollowing ? 'Unfollow' : 'Follow'}
+        </Button>
+      )}
     </div>
   );
 };
