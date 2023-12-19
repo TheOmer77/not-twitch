@@ -9,7 +9,7 @@ import { Tooltip } from '@/components/ui/tooltip';
 export const DashboardButton = ({ username }: { username: string }) => (
   <Tooltip label='Dashboard'>
     <Button variant='secondary' size='icon' asChild>
-      <Link href={`/user/${username}`}>
+      <Link href={`/${username}`}>
         <ClapperboardIcon className='h-4 w-4' />
       </Link>
     </Button>
