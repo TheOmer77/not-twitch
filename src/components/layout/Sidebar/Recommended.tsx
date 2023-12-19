@@ -2,7 +2,7 @@
 
 import type { User } from '@prisma/client';
 
-import { UserItem } from './UserItem';
+import { UserItem, UserItemSkeleton } from './UserItem';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
@@ -31,3 +31,11 @@ export const Recommended = ({ data }: RecommendedProps) => {
     </div>
   );
 };
+
+export const RecommendedSkeleton = () => (
+  <ul className='px-2'>
+    {[...Array(5).keys()].map(key => (
+      <UserItemSkeleton key={key} />
+    ))}
+  </ul>
+);

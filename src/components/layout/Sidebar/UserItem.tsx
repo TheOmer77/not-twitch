@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { UserAvatar } from './UserAvatar';
 import { LiveBadge } from './LiveBadge';
 import { Button } from '@/components/ui/button';
+import { AvatarSkeleton, Skeleton } from '@/components/ui/skeleton';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
@@ -37,5 +38,16 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
         {!sidebarCollapsed && isLive && <LiveBadge />}
       </Link>
     </Button>
+  );
+};
+
+export const UserItemSkeleton = () => {
+  const sidebarCollapsed = useSidebar(state => state.collapsed);
+
+  return (
+    <li className='inline-flex h-10 flex-row items-center justify-start gap-2 px-4 py-2'>
+      <AvatarSkeleton />
+      {!sidebarCollapsed && <Skeleton className='h-5 grow' />}
+    </li>
   );
 };
