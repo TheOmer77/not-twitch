@@ -1,6 +1,6 @@
 'use client';
 
-import type { ComponentPropsWithoutRef } from 'react';
+import { useEffect, type ComponentPropsWithoutRef } from 'react';
 
 import { useMediaQuery } from '@/hooks';
 import { useSidebar } from '@/store/useSidebar';
@@ -12,7 +12,11 @@ export const SidebarContent = ({
   ...props
 }: ComponentPropsWithoutRef<'aside'>) => {
   const matchesLg = useMediaQuery('(min-width: 1024px)');
-  const collapsed = useSidebar(state => state.collapsed);
+  const { collapsed, setCollapsed } = useSidebar();
+
+  useEffect(() => {
+    setCollapsed(!matchesLg);
+  }, [matchesLg, setCollapsed]);
 
   return (
     <aside
@@ -20,7 +24,7 @@ export const SidebarContent = ({
       className={cn(
         `fixed start-0 z-20 flex h-full w-80 flex-col items-center gap-1
 border-e bg-background p-2 shadow`,
-        (collapsed || !matchesLg) && 'w-20',
+        collapsed && 'w-20',
         className
       )}
     >
