@@ -1,4 +1,5 @@
-import type { User } from '@prisma/client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -12,19 +13,30 @@ export type UserItemProps = {
 };
 
 export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
-  const collapsed = useSidebar(state => state.collapsed);
+  const pathname = usePathname();
+  const sidebarCollapsed = useSidebar(state => state.collapsed);
+
+  const href = `/user/${username}`;
+  const isActive = pathname === href;
 
   return (
     <Button
+      asChild
       variant='ghost'
-      size={collapsed ? 'icon' : 'default'}
-      className={cn('gap-2', !collapsed && 'justify-start')}
+      size={sidebarCollapsed ? 'icon' : 'default'}
+      className={cn(
+        'gap-2',
+        isActive && 'bg-accent',
+        !sidebarCollapsed && 'justify-start'
+      )}
     >
-      <Avatar className='h-8 w-8'>
-        <AvatarImage src={imageUrl} alt={username} />
-        <AvatarFallback>{username[0]}</AvatarFallback>
-      </Avatar>
-      {!collapsed && <span>{username}</span>}
+      <Link href={href}>
+        <Avatar className='h-8 w-8'>
+          <AvatarImage src={imageUrl} alt={username} />
+          <AvatarFallback>{username[0]}</AvatarFallback>
+        </Avatar>
+        {!sidebarCollapsed && <span>{username}</span>}
+      </Link>
     </Button>
   );
 };
