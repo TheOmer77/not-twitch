@@ -33,7 +33,7 @@ export const Recommended = ({ data }: RecommendedProps) => {
 };
 
 export const RecommendedSkeleton = () => (
-  <ul className='px-2'>
+  <ul className='flex w-full flex-col'>
     {[...Array(5).keys()].map(key => (
       <UserItemSkeleton key={key} />
     ))}

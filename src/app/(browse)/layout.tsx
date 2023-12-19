@@ -1,11 +1,13 @@
-import type { PropsWithChildren } from 'react';
-import { Main, Navbar, Sidebar } from '@/components/layout';
+import { Suspense, type PropsWithChildren } from 'react';
+import { Main, Navbar, Sidebar, SidebarSkeleton } from '@/components/layout';
 
 const BrowseLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Navbar />
-      <Sidebar />
+      <Suspense fallback={<SidebarSkeleton />}>
+        <Sidebar />
+      </Suspense>
       <Main>{children}</Main>
     </>
   );
