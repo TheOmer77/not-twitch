@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { UserAvatar } from './UserAvatar';
+import { LiveBadge } from './LiveBadge';
 import { Button } from '@/components/ui/button';
-import { Avatar } from '@/components/ui/avatar';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
@@ -31,8 +32,9 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
       )}
     >
       <Link href={href}>
-        <Avatar src={imageUrl} alt={username} fallback={username[0]} />
-        {!sidebarCollapsed && <span>{username}</span>}
+        <UserAvatar username={username} imageUrl={imageUrl} isLive={isLive} />
+        {!sidebarCollapsed && <span className='grow'>{username}</span>}
+        {!sidebarCollapsed && isLive && <LiveBadge />}
       </Link>
     </Button>
   );
