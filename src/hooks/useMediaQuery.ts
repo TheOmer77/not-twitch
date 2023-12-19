@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 const getMatches = (query: string): boolean => {
   // Prevents SSR issues
-  if (typeof window !== 'undefined') return window.matchMedia(query).matches;
-  return false;
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia(query).matches;
 };
 
 export const useMediaQuery = (query: string) => {
