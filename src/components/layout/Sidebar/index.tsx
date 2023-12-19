@@ -1,16 +1,16 @@
 import { CollapseToggle } from './CollapseToggle';
 import { Recommended, RecommendedSkeleton } from './Recommended';
-import { SidebarWrapper } from './SidebarWrapper';
+import { SidebarContent } from './SidebarContent';
 import { getRecommended } from '@/services/recommended';
 
 export const Sidebar = async () => {
   const recommended = await getRecommended();
 
   return (
-    <SidebarWrapper>
+    <SidebarContent>
       <CollapseToggle />
       <Recommended data={recommended} />
-    </SidebarWrapper>
+    </SidebarContent>
   );
 };
 
