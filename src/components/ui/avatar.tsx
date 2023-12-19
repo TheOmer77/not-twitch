@@ -2,55 +2,37 @@
 
 import { forwardRef, type ElementRef } from 'react';
 import {
-  Fallback,
-  Image,
-  Root,
-  type AvatarFallbackProps,
+  Avatar as AvatarRoot,
+  AvatarFallback,
+  AvatarImage,
   type AvatarImageProps,
-  type AvatarProps,
+  type AvatarProps as AvatarRootProps,
 } from '@radix-ui/react-avatar';
 
 import { cn } from '@/lib/utils';
 
-export const Avatar = forwardRef<ElementRef<typeof Root>, AvatarProps>(
-  ({ className, ...props }, ref) => (
-    <Root
+export type AvatarProps = AvatarRootProps &
+  AvatarImageProps & { fallback?: string };
+
+export const Avatar = forwardRef<ElementRef<typeof AvatarRoot>, AvatarProps>(
+  ({ src, alt, fallback, className, ...props }, ref) => (
+    <AvatarRoot
+      {...props}
       ref={ref}
       className={cn(
-        'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+        'relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full',
         className
       )}
-      {...props}
-    />
+    >
+      <AvatarImage
+        src={src}
+        alt={alt}
+        className='aspect-square h-full w-full'
+      />
+      <AvatarFallback className='flex h-full w-full items-center justify-center rounded-full bg-muted'>
+        {fallback || alt?.[0]}
+      </AvatarFallback>
+    </AvatarRoot>
   )
 );
-Avatar.displayName = Root.displayName;
-
-export const AvatarImage = forwardRef<
-  ElementRef<typeof Image>,
-  AvatarImageProps
->(({ src, alt, className, ...props }, ref) => (
-  <Image
-    ref={ref}
-    src={src}
-    alt={alt}
-    className={cn('aspect-square h-full w-full', className)}
-    {...props}
-  />
-));
-AvatarImage.displayName = Image.displayName;
-
-export const AvatarFallback = forwardRef<
-  ElementRef<typeof Fallback>,
-  AvatarFallbackProps
->(({ className, ...props }, ref) => (
-  <Fallback
-    ref={ref}
-    className={cn(
-      'flex h-full w-full items-center justify-center rounded-full bg-muted',
-      className
-    )}
-    {...props}
-  />
-));
-AvatarFallback.displayName = Fallback.displayName;
+Avatar.displayName = AvatarRoot.displayName;

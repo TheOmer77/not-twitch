@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar } from '@/components/ui/avatar';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
@@ -31,10 +31,7 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
       )}
     >
       <Link href={href}>
-        <Avatar className='h-8 w-8'>
-          <AvatarImage src={imageUrl} alt={username} />
-          <AvatarFallback>{username[0]}</AvatarFallback>
-        </Avatar>
+        <Avatar src={imageUrl} alt={username} fallback={username[0]} />
         {!sidebarCollapsed && <span>{username}</span>}
       </Link>
     </Button>
