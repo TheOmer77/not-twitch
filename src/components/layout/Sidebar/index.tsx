@@ -18,7 +18,7 @@ bg-background p-2 shadow`,
       )}
     >
       <CollapseToggle />
-      {!collapsed && <>Sidebar TBD</>}
+      {!collapsed && matchesLg && <>Sidebar TBD</>}
     </aside>
   );
 };
