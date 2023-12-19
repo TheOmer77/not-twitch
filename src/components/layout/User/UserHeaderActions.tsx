@@ -4,7 +4,7 @@ import { useTransition } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/useToast';
-import { onFollow } from '@/actions/follow';
+import { onFollow, onUnfollow } from '@/actions/follow';
 
 export type UserHeaderActionsProps = {
   userId: string;
@@ -26,7 +26,6 @@ export const UserHeaderActions = ({
           description: `You are now following ${followedUser.followed.username}!`,
         });
       } catch (err) {
-        console.error(err);
         toast({
           title: `Couldn't follow this user`,
           description:
@@ -38,12 +37,31 @@ export const UserHeaderActions = ({
     });
   };
 
+  const handleUnfollowClick = async () => {
+    startTransition(async () => {
+      try {
+        const followedUser = await onUnfollow(userId);
+        toast({
+          description: `You are no longer following ${followedUser.followed.username}.`,
+        });
+      } catch (err) {
+        toast({
+          title: `Couldn't unfollow this user`,
+          description:
+            err instanceof Error
+              ? err.message
+              : 'Something went wrong while trying to unfollow this user.',
+        });
+      }
+    });
+  };
+
   return (
     <div className='ms-auto'>
       <Button
         variant={isFollowing ? 'secondary' : 'default'}
-        onClick={handleFollowClick}
-        disabled={isPending || isFollowing}
+        onClick={isFollowing ? handleUnfollowClick : handleFollowClick}
+        disabled={isPending}
       >
         {isFollowing ? 'Unfollow' : 'Follow'}
       </Button>
