@@ -5,6 +5,7 @@ import type { User } from '@prisma/client';
 import { UserItem, UserItemSkeleton } from './UserItem';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export type RecommendedProps = {
   data: User[];
@@ -33,9 +34,12 @@ export const Recommended = ({ data }: RecommendedProps) => {
 };
 
 export const RecommendedSkeleton = () => (
-  <ul className='flex w-full flex-col'>
-    {[...Array(5).keys()].map(key => (
-      <UserItemSkeleton key={key} />
-    ))}
-  </ul>
+  <div className='flex w-full flex-col'>
+    <Skeleton className='m-2 mb-4 hidden h-5 w-28 lg:block' />
+    <ul className='flex w-full flex-col'>
+      {[...Array(5).keys()].map(key => (
+        <UserItemSkeleton key={key} />
+      ))}
+    </ul>
+  </div>
 );
