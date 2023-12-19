@@ -1,4 +1,4 @@
-import type { UserItemProps } from './UserItem';
+import type { UserItemProps } from '../Sidebar/UserItem';
 import { Avatar, type AvatarProps } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { UserAvatar } from './UserAvatar';
+import { UserAvatar } from '../User/UserAvatar';
 import { LiveBadge } from './LiveBadge';
 import { Button } from '@/components/ui/button';
 import { AvatarSkeleton, Skeleton } from '@/components/ui/skeleton';
