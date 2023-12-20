@@ -31,6 +31,7 @@ border-e bg-background p-2 shadow lg:w-80`,
         )}
       >
         <SidebarUserListSkeleton />
+        <SidebarUserListSkeleton />
       </aside>
     );
 
