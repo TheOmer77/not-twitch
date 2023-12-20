@@ -4,8 +4,8 @@ import { useTransition } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/useToast';
-import { onFollow, onUnfollow } from '@/actions/follow';
-import { onBlock, onUnblock } from '@/actions/block';
+import { followUser, unfollowUser } from '@/actions/follow';
+import { blockUser, unblockUser } from '@/actions/block';
 
 export type UserHeaderActionsProps = {
   currentUserId: string;
@@ -27,8 +27,8 @@ export const UserHeaderActions = ({
     startTransition(async () => {
       try {
         const follow = await (isFollowing
-          ? onUnfollow(userId)
-          : onFollow(userId));
+          ? unfollowUser(userId)
+          : followUser(userId));
         toast({
           description: isFollowing
             ? `You are no longer following ${follow.followed.username}.`
@@ -53,7 +53,9 @@ export const UserHeaderActions = ({
   const handleBlockClick = async () => {
     startTransition(async () => {
       try {
-        const block = await (isBlocking ? onUnblock(userId) : onBlock(userId));
+        const block = await (isBlocking
+          ? unblockUser(userId)
+          : blockUser(userId));
         toast({
           description: isBlocking
             ? `You've unblocked ${block.blocked.username}.`

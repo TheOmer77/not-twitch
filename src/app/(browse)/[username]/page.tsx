@@ -2,10 +2,10 @@ import { notFound } from 'next/navigation';
 
 import { UserAvatar } from '@/components/layout/User/UserAvatar';
 import { UserHeaderActions } from '@/components/layout/User/UserHeaderActions';
+import { isFollowingUser } from '@/queries/follow';
+import { isBlockingUser } from '@/queries/block';
 import { getUserByUsername } from '@/services/users';
-import { isFollowingUser } from '@/services/follow';
 import { getSelf } from '@/services/auth';
-import { isBlockingUser } from '@/services/block';
 
 type UserPageProps = {
   params: { username: string };

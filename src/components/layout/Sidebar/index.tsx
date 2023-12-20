@@ -2,7 +2,7 @@ import { CollapseToggle } from './CollapseToggle';
 import { SidebarContent } from './SidebarContent';
 import { SidebarUserList, SidebarUserListSkeleton } from './SidebarUserList';
 import { getRecommended } from '@/services/recommended';
-import { getFollowedUsers } from '@/services/follow';
+import { getFollowedUsers } from '@/queries/follow';
 
 export const Sidebar = async () => {
   const recommended = await getRecommended(),

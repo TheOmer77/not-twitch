@@ -1,6 +1,6 @@
 import { db } from '@/lib/db';
-import { getSelf } from './auth';
-import { getUserById } from './users';
+import { getSelf } from '../services/auth';
+import { getUserById } from '../services/users';
 
 export const getFollowedUsers = async () => {
   try {
@@ -37,7 +37,7 @@ export const isFollowingUser = async (userId: string) => {
   }
 };
 
-export const followUser = async (userId: string) => {
+export const createFollow = async (userId: string) => {
   const currentUser = await getSelf(),
     otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
@@ -61,7 +61,7 @@ export const followUser = async (userId: string) => {
   return newFollow;
 };
 
-export const unfollowUser = async (userId: string) => {
+export const deleteFollow = async (userId: string) => {
   const currentUser = await getSelf(),
     otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
