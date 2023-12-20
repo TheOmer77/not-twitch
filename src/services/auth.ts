@@ -3,7 +3,8 @@ import { db } from '../lib/db';
 
 export const getSelf = async () => {
   const clerkUser = await currentUser();
-  if (!clerkUser || !clerkUser.username) throw new Error('Unauthorized');
+  if (!clerkUser || !clerkUser.username)
+    throw new Error("You're not logged in.");
 
   const dbUser = await db.user.findUnique({
     where: { externalUserId: clerkUser.id },
