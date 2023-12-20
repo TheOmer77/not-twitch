@@ -2,7 +2,7 @@ import { db } from '@/lib/db';
 import { getSelf } from './auth';
 import { getUserById } from './users';
 
-export const isBlockedByUser = async (userId: string) => {
+export const isBlockingUser = async (userId: string) => {
   try {
     const currentUser = await getSelf(),
       otherUser = await getUserById(userId);
@@ -14,6 +14,27 @@ export const isBlockedByUser = async (userId: string) => {
         blockerId_blockedId: {
           blockerId: currentUser.id,
           blockedId: otherUser.id,
+        },
+      },
+    });
+    return !!existingBlock;
+  } catch (err) {
+    return false;
+  }
+};
+
+export const isBlockedByUser = async (userId: string) => {
+  try {
+    const currentUser = await getSelf(),
+      otherUser = await getUserById(userId);
+    if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
+    if (otherUser.id === currentUser.id) return true;
+
+    const existingBlock = await db.block.findUnique({
+      where: {
+        blockerId_blockedId: {
+          blockerId: otherUser.id,
+          blockedId: currentUser.id,
         },
       },
     });
