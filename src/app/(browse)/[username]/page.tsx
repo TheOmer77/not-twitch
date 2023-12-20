@@ -3,8 +3,7 @@ import { notFound } from 'next/navigation';
 import { isFollowingUser } from '@/queries/follow';
 import { isBlockingUser } from '@/queries/block';
 import { getUserByUsername } from '@/queries/users';
-import { getSelf } from '@/services/auth';
-import { UserHeader } from '@/components/layout/User';
+import { UserHeader } from '@/components/layout';
 
 type UserPageProps = {
   params: { username: string };
