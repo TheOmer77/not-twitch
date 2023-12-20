@@ -1,6 +1,6 @@
 import { db } from '@/lib/db';
 import { getSelf } from '../services/auth';
-import { getUserById } from '../services/users';
+import { getUserById } from './users';
 
 export const getFollowedUsers = async () => {
   try {

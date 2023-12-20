@@ -4,7 +4,7 @@ import { UserAvatar } from '@/components/layout/User/UserAvatar';
 import { UserHeaderActions } from '@/components/layout/User/UserHeaderActions';
 import { isFollowingUser } from '@/queries/follow';
 import { isBlockingUser } from '@/queries/block';
-import { getUserByUsername } from '@/services/users';
+import { getUserByUsername } from '@/queries/users';
 import { getSelf } from '@/services/auth';
 
 type UserPageProps = {
