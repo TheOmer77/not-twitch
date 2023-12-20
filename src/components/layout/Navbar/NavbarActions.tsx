@@ -3,7 +3,7 @@ import { currentUser, SignInButton, UserButton } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { DashboardButton } from './DashboardButton';
 
-export const Actions = async () => {
+export const NavbarActions = async () => {
   const user = await currentUser();
 
   return (

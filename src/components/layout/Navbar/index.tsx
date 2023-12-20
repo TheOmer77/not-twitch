@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 import Logo from '@/components/Logo';
-import { Search } from './Search';
-import { Actions } from './Actions';
+import { NavbarSearch } from './NavbarSearch';
+import { NavbarActions } from './NavbarActions';
 
 export const Navbar = () => (
   <>
@@ -18,8 +18,8 @@ duration-75 hover:brightness-125 active:opacity-70 active:duration-0'
           />
         </Link>
       </div>
-      <Search />
-      <Actions />
+      <NavbarSearch />
+      <NavbarActions />
     </nav>
     <div className='h-16 w-full' />
   </>
