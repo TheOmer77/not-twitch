@@ -78,7 +78,7 @@ export const UserHeaderActions = ({
   };
 
   return (
-    <div className='ms-auto flex flex-row gap-2'>
+    <div className='mt-4 flex flex-row gap-2 md:ms-auto md:mt-0'>
       {currentUser?.id !== userId && (
         <>
           <Button
