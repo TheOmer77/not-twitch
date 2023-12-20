@@ -1,6 +1,6 @@
 import { CollapseToggle } from './CollapseToggle';
-import { Recommended, RecommendedSkeleton } from './Recommended';
 import { SidebarContent } from './SidebarContent';
+import { SidebarUserList, SidebarUserListSkeleton } from './SidebarUserList';
 import { getRecommended } from '@/services/recommended';
 
 export const Sidebar = async () => {
@@ -9,7 +9,7 @@ export const Sidebar = async () => {
   return (
     <SidebarContent>
       <CollapseToggle />
-      <Recommended data={recommended} />
+      <SidebarUserList title='Recommended' data={recommended} />
     </SidebarContent>
   );
 };
@@ -19,6 +19,6 @@ export const SidebarSkeleton = () => (
     className='fixed start-0 z-20 flex h-full w-20 flex-col items-center gap-1
 border-e bg-background p-2 shadow lg:w-80'
   >
-    <RecommendedSkeleton />
+    <SidebarUserListSkeleton />
   </aside>
 );

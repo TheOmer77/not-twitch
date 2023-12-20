@@ -2,7 +2,7 @@
 
 import { useEffect, type ComponentPropsWithoutRef } from 'react';
 
-import { RecommendedSkeleton } from './Recommended';
+import { SidebarUserListSkeleton } from './SidebarUserList';
 import { useIsClient, useMediaQuery } from '@/hooks';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
@@ -30,7 +30,7 @@ border-e bg-background p-2 shadow lg:w-80`,
           className
         )}
       >
-        <RecommendedSkeleton />
+        <SidebarUserListSkeleton />
       </aside>
     );
 
