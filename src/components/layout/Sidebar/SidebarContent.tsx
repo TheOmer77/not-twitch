@@ -7,6 +7,24 @@ import { useIsClient, useMediaQuery } from '@/hooks';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
+export const SidebarSkeleton = ({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<'aside'>) => (
+  <aside
+    {...props}
+    className={cn(
+      `fixed start-0 z-20 flex h-full w-20 flex-col items-center gap-1
+border-e bg-card p-2 shadow lg:w-80`,
+      className
+    )}
+  >
+    <SidebarUserListSkeleton />
+    <SidebarUserListSkeleton />
+  </aside>
+);
+
 export const SidebarContent = ({
   className,
   children,
@@ -20,20 +38,7 @@ export const SidebarContent = ({
     setCollapsed(!matchesLg);
   }, [matchesLg, setCollapsed]);
 
-  if (!isClient)
-    return (
-      <aside
-        {...props}
-        className={cn(
-          `fixed start-0 z-20 flex h-full w-20 flex-col items-center gap-1
-border-e bg-card p-2 shadow lg:w-80`,
-          className
-        )}
-      >
-        <SidebarUserListSkeleton />
-        <SidebarUserListSkeleton />
-      </aside>
-    );
+  if (!isClient) return <SidebarSkeleton />;
 
   return (
     <aside
