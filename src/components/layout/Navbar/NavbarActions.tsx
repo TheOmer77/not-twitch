@@ -10,7 +10,7 @@ export const NavbarActions = async () => {
     <div className='flex items-center justify-end gap-2'>
       {user && typeof user.username === 'string' ? (
         <>
-          <DashboardButton username={user.username} />
+          <DashboardButton />
           <UserButton afterSignOutUrl='/' />
         </>
       ) : (
