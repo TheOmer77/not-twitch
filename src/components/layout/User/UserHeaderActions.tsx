@@ -3,23 +3,23 @@
 import { useTransition } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { useToast } from '@/hooks/useToast';
 import { followUser, unfollowUser } from '@/actions/follow';
 import { blockUser, unblockUser } from '@/actions/block';
 
 export type UserHeaderActionsProps = {
-  currentUserId: string;
   userId: string;
   isFollowing: boolean;
   isBlocking: boolean;
 };
 
 export const UserHeaderActions = ({
-  currentUserId,
   userId,
   isFollowing,
   isBlocking,
 }: UserHeaderActionsProps) => {
+  const currentUser = useCurrentUser();
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
@@ -79,7 +79,7 @@ export const UserHeaderActions = ({
 
   return (
     <div className='ms-auto flex flex-row gap-2'>
-      {currentUserId !== userId && (
+      {currentUser?.id !== userId && (
         <>
           <Button
             variant={isFollowing ? 'secondary' : 'default'}

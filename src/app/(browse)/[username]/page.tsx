@@ -12,7 +12,6 @@ type UserPageProps = {
 };
 
 const UserPage = async ({ params: { username } }: UserPageProps) => {
-  const currentUser = await getSelf();
   const viewedUser = await getUserByUsername(username);
   if (!viewedUser) notFound();
 
@@ -29,7 +28,6 @@ const UserPage = async ({ params: { username } }: UserPageProps) => {
         />
         <h1 className='text-3xl font-bold tracking-tight'>{username}</h1>
         <UserHeaderActions
-          currentUserId={currentUser.id}
           userId={viewedUser.id}
           isFollowing={isFollowing}
           isBlocking={isBlocking}

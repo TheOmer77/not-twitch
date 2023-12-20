@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 
+import { Provider } from '@/components/providers';
 import { Toaster } from '@/components/ui/toaster';
 import { clerkTheme } from '@/constants/clerkTheme';
 import './styles/index.css';
@@ -20,12 +21,14 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider appearance={clerkTheme}>
-      <html lang='en' className={manrope.variable}>
-        <body>
-          {children}
-          <Toaster />
-        </body>
-      </html>
+      <Provider>
+        <html lang='en' className={manrope.variable}>
+          <body>
+            {children}
+            <Toaster />
+          </body>
+        </html>
+      </Provider>
     </ClerkProvider>
   );
 };
