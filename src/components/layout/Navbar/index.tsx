@@ -1,23 +1,14 @@
-import Link from 'next/link';
-
-import Logo from '@/components/Logo';
-import { NavbarSearch } from './NavbarSearch';
 import { NavbarActions } from './NavbarActions';
+import { NavbarLogo } from './NavbarLogo';
+import { NavbarSearch } from './NavbarSearch';
 
 export const Navbar = () => (
   <>
     <nav
       className='fixed top-0 grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center
-justify-between gap-4 border-b bg-background px-2 shadow md:px-4'
+justify-between gap-4 bg-background pe-2 md:pe-4'
     >
-      <div className='flex flex-row items-center justify-start gap-4'>
-        <Link href='/'>
-          <Logo
-            className='text-5xl text-primary transition-[opacity,filter]
-duration-75 hover:brightness-125 active:opacity-70 active:duration-0'
-          />
-        </Link>
-      </div>
+      <NavbarLogo />
       <NavbarSearch />
       <NavbarActions />
     </nav>

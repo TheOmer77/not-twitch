@@ -20,7 +20,7 @@ export const Sidebar = async () => {
 export const SidebarSkeleton = () => (
   <aside
     className='fixed start-0 z-20 flex h-full w-20 flex-col items-center gap-1
-border-e bg-background p-2 shadow lg:w-80'
+border-e bg-card p-2 shadow lg:w-80'
   >
     <SidebarUserListSkeleton />
     <SidebarUserListSkeleton />
