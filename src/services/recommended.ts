@@ -16,8 +16,12 @@ export const getRecommended = async () => {
           where: {
             AND: [
               { NOT: { id: currentUserId } },
-              { NOT: { followedBy: { some: { followerId: currentUserId } } } },
-              { NOT: { blocking: { some: { blockedId: currentUserId } } } },
+              {
+                NOT: {
+                  followedBy: { some: { followingUserId: currentUserId } },
+                },
+              },
+              { NOT: { blocking: { some: { blockedUserId: currentUserId } } } },
             ],
           },
         }

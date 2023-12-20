@@ -24,33 +24,33 @@ model User {
 }
 
 model Follow {
-  id         String @id @default(uuid()) @db.Uuid
-  followerId String @db.Uuid
-  followedId String @db.Uuid
+  id              String @id @default(uuid()) @db.Uuid
+  followingUserId String @db.Uuid
+  followedUserId  String @db.Uuid
 
-  follower User @relation(name: "Following", fields: [followerId], references: [id], onDelete: Cascade)
-  followed User @relation(name: "FollowedBy", fields: [followedId], references: [id], onDelete: Cascade)
+  followingUser User @relation(name: "Following", fields: [followingUserId], references: [id], onDelete: Cascade)
+  followedUser  User @relation(name: "FollowedBy", fields: [followedUserId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([followerId, followedId])
-  @@index([followerId])
-  @@index([followedId])
+  @@unique([followingUserId, followedUserId])
+  @@index([followingUserId])
+  @@index([followedUserId])
 }
 
 model Block {
-  id        String @id @default(uuid()) @db.Uuid
-  blockerId String @db.Uuid
-  blockedId String @db.Uuid
+  id             String @id @default(uuid()) @db.Uuid
+  blockingUserId String @db.Uuid
+  blockedUserId  String @db.Uuid
 
-  blocker User @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
-  blocked User @relation(name: "BlockedBy", fields: [blockedId], references: [id], onDelete: Cascade)
+  blockingUser User @relation(name: "Blocking", fields: [blockingUserId], references: [id], onDelete: Cascade)
+  blockedUser  User @relation(name: "BlockedBy", fields: [blockedUserId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([blockerId, blockedId])
-  @@index([blockerId])
-  @@index([blockedId])
+  @@unique([blockingUserId, blockedUserId])
+  @@index([blockingUserId])
+  @@index([blockedUserId])
 }

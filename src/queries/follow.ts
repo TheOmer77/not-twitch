@@ -8,12 +8,14 @@ export const getFollowedUsers = async () => {
     return (
       await db.follow.findMany({
         where: {
-          followerId: currentUser.id,
-          followed: { blocking: { none: { blockedId: currentUser.id } } },
+          followingUserId: currentUser.id,
+          followedUser: {
+            blocking: { none: { blockedUserId: currentUser.id } },
+          },
         },
-        include: { followed: true },
+        include: { followedUser: true },
       })
-    ).map(({ followed }) => followed);
+    ).map(({ followedUser }) => followedUser);
   } catch (err) {
     return [];
   }
@@ -28,9 +30,9 @@ export const isFollowingUser = async (userId: string) => {
 
     const existingFollow = await db.follow.findUnique({
       where: {
-        followerId_followedId: {
-          followerId: currentUser.id,
-          followedId: otherUser.id,
+        followingUserId_followedUserId: {
+          followingUserId: currentUser.id,
+          followedUserId: otherUser.id,
         },
       },
     });
@@ -49,17 +51,17 @@ export const createFollow = async (userId: string) => {
 
   const existingFollow = await db.follow.findUnique({
     where: {
-      followerId_followedId: {
-        followerId: currentUser.id,
-        followedId: otherUser.id,
+      followingUserId_followedUserId: {
+        followingUserId: currentUser.id,
+        followedUserId: otherUser.id,
       },
     },
   });
   if (existingFollow) throw new Error("You're already following this user.");
 
   const newFollow = await db.follow.create({
-    data: { followerId: currentUser.id, followedId: otherUser.id },
-    include: { follower: true, followed: true },
+    data: { followingUserId: currentUser.id, followedUserId: otherUser.id },
+    include: { followedUser: true },
   });
   return newFollow;
 };
@@ -73,9 +75,9 @@ export const deleteFollow = async (userId: string) => {
 
   const existingFollow = await db.follow.findUnique({
     where: {
-      followerId_followedId: {
-        followerId: currentUser.id,
-        followedId: otherUser.id,
+      followingUserId_followedUserId: {
+        followingUserId: currentUser.id,
+        followedUserId: otherUser.id,
       },
     },
   });
@@ -83,7 +85,7 @@ export const deleteFollow = async (userId: string) => {
 
   const deletedFollow = await db.follow.delete({
     where: { id: existingFollow.id },
-    include: { followed: true },
+    include: { followedUser: true },
   });
   return deletedFollow;
 };

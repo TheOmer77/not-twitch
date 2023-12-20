@@ -6,15 +6,15 @@ import { createBlock, deleteBlock } from '@/queries/block';
 export const blockUser = async (userId: string) => {
   // TODO: Adapt to disconnect from livestream
   // TODO: Allow ability to kick the user
-  const blockedUser = await createBlock(userId);
+  const newBlock = await createBlock(userId);
   revalidatePath('/');
-  if (blockedUser) revalidatePath(`/${blockedUser.blocked.username}`);
-  return blockedUser;
+  if (newBlock) revalidatePath(`/${newBlock.blockedUser.username}`);
+  return newBlock;
 };
 
 export const unblockUser = async (userId: string) => {
-  const unblockedUser = await deleteBlock(userId);
+  const deletedBlock = await deleteBlock(userId);
   revalidatePath('/');
-  if (unblockedUser) revalidatePath(`/${unblockedUser.blocked.username}`);
-  return unblockedUser;
+  if (deletedBlock) revalidatePath(`/${deletedBlock.blockedUser.username}`);
+  return deletedBlock;
 };

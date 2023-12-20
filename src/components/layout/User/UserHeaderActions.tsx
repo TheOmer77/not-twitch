@@ -31,8 +31,8 @@ export const UserHeaderActions = ({
           : followUser(userId));
         toast({
           description: isFollowing
-            ? `You are no longer following ${follow.followed.username}.`
-            : `You are now following ${follow.followed.username}!`,
+            ? `You are no longer following ${follow.followedUser.username}.`
+            : `You are now following ${follow.followedUser.username}!`,
         });
       } catch (err) {
         toast({
@@ -58,8 +58,8 @@ export const UserHeaderActions = ({
           : blockUser(userId));
         toast({
           description: isBlocking
-            ? `You've unblocked ${block.blocked.username}.`
-            : `You've blocked ${block.blocked.username}.`,
+            ? `You've unblocked ${block.blockedUser.username}.`
+            : `You've blocked ${block.blockedUser.username}.`,
         });
       } catch (err) {
         toast({

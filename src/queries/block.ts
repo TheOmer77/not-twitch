@@ -11,9 +11,9 @@ export const isBlockingUser = async (userId: string) => {
 
     const existingBlock = await db.block.findUnique({
       where: {
-        blockerId_blockedId: {
-          blockerId: currentUser.id,
-          blockedId: otherUser.id,
+        blockingUserId_blockedUserId: {
+          blockingUserId: currentUser.id,
+          blockedUserId: otherUser.id,
         },
       },
     });
@@ -32,9 +32,9 @@ export const isBlockedByUser = async (userId: string) => {
 
     const existingBlock = await db.block.findUnique({
       where: {
-        blockerId_blockedId: {
-          blockerId: otherUser.id,
-          blockedId: currentUser.id,
+        blockingUserId_blockedUserId: {
+          blockingUserId: otherUser.id,
+          blockedUserId: currentUser.id,
         },
       },
     });
@@ -52,13 +52,13 @@ export const createBlock = async (userId: string) => {
     throw new Error('You cannot block yourself.');
 
   const existingBlock = await db.block.findFirst({
-    where: { blockerId: currentUser.id, blockedId: otherUser.id },
+    where: { blockingUserId: currentUser.id, blockedUserId: otherUser.id },
   });
   if (existingBlock) throw new Error("You've already blocked this user.");
 
   const newBlock = await db.block.create({
-    data: { blockerId: currentUser.id, blockedId: otherUser.id },
-    include: { blocker: true, blocked: true },
+    data: { blockingUserId: currentUser.id, blockedUserId: otherUser.id },
+    include: { blockingUser: true, blockedUser: true },
   });
   return newBlock;
 };
@@ -72,9 +72,9 @@ export const deleteBlock = async (userId: string) => {
 
   const existingBlock = await db.block.findUnique({
     where: {
-      blockerId_blockedId: {
-        blockerId: currentUser.id,
-        blockedId: otherUser.id,
+      blockingUserId_blockedUserId: {
+        blockingUserId: currentUser.id,
+        blockedUserId: otherUser.id,
       },
     },
   });
@@ -82,7 +82,7 @@ export const deleteBlock = async (userId: string) => {
 
   const deletedBlock = await db.block.delete({
     where: { id: existingBlock.id },
-    include: { blocked: true },
+    include: { blockedUser: true },
   });
   return deletedBlock;
 };
