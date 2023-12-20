@@ -10,12 +10,22 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-      - /app/.next
     environment:
       - NEXT_PUBLIC_CLERK_SIGN_IN_URL=/login
       - NEXT_PUBLIC_CLERK_SIGN_UP_URL=/signup
       - NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
       - NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+
+  prisma-studio:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 5555:5555
+    command: npm run prisma:studio
+    volumes:
+      - .:/app
+      - /app/node_modules
 
   ngrok:
     image: ngrok/ngrok
@@ -34,18 +44,5 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
 
-  pgadmin:
-    image: dpage/pgadmin4
-    depends_on:
-      - db
-    ports:
-      - '5050:80'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=pgadmin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-
 volumes:
   db-data:
-  pgadmin:
