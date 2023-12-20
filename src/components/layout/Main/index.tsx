@@ -11,8 +11,8 @@ export const Main = ({ children }: PropsWithChildren) => {
   return (
     <main
       className={cn(
-        'mx-auto max-w-3xl p-4',
-        !collapsed && 'max-w-6xl ps-[21rem]'
+        'mx-auto max-w-6xl p-4 ps-24 lg:ps-[21rem]',
+        collapsed && 'lg:max-w-6xl lg:ps-4'
       )}
     >
       {children}
