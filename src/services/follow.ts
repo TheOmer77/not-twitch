@@ -1,5 +1,6 @@
 import { db } from '@/lib/db';
 import { getSelf } from './auth';
+import { getUserById } from './users';
 
 export const getFollowedUsers = async () => {
   try {
@@ -17,8 +18,8 @@ export const getFollowedUsers = async () => {
 
 export const isFollowingUser = async (userId: string) => {
   try {
-    const currentUser = await getSelf();
-    const otherUser = await db.user.findUnique({ where: { id: userId } });
+    const currentUser = await getSelf(),
+      otherUser = await getUserById(userId);
     if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
     if (otherUser.id === currentUser.id) return true;
 
@@ -32,8 +33,8 @@ export const isFollowingUser = async (userId: string) => {
 };
 
 export const followUser = async (userId: string) => {
-  const currentUser = await getSelf();
-  const otherUser = await db.user.findUnique({ where: { id: userId } });
+  const currentUser = await getSelf(),
+    otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
   if (otherUser.id === currentUser.id)
     throw new Error('You cannot follow yourself.');
@@ -51,8 +52,8 @@ export const followUser = async (userId: string) => {
 };
 
 export const unfollowUser = async (userId: string) => {
-  const currentUser = await getSelf();
-  const otherUser = await db.user.findUnique({ where: { id: userId } });
+  const currentUser = await getSelf(),
+    otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
   if (otherUser.id === currentUser.id)
     throw new Error('You cannot unfollow yourself.');
