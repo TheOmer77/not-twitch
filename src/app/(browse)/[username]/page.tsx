@@ -5,6 +5,7 @@ import { UserHeaderActions } from '@/components/layout/User/UserHeaderActions';
 import { getUserByUsername } from '@/services/users';
 import { isFollowingUser } from '@/services/follow';
 import { getSelf } from '@/services/auth';
+import { isBlockingUser } from '@/services/block';
 
 type UserPageProps = {
   params: { username: string };
@@ -15,7 +16,8 @@ const UserPage = async ({ params: { username } }: UserPageProps) => {
   const viewedUser = await getUserByUsername(username);
   if (!viewedUser) notFound();
 
-  const isFollowing = await isFollowingUser(viewedUser.id);
+  const isFollowing = await isFollowingUser(viewedUser.id),
+    isBlocking = await isBlockingUser(viewedUser.id);
 
   return (
     <div>
@@ -30,6 +32,7 @@ const UserPage = async ({ params: { username } }: UserPageProps) => {
           currentUserId={currentUser.id}
           userId={viewedUser.id}
           isFollowing={isFollowing}
+          isBlocking={isBlocking}
         />
       </div>
       {viewedUser.bio && <p className='text-xl'>{viewedUser.bio}</p>}
