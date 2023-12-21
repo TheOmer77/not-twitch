@@ -1,4 +1,4 @@
-import { Avatar, type AvatarProps } from '@/components/ui/avatar';
+import { Avatar, type AvatarProps } from '@/components/ui/Avatar';
 import { cn } from '@/lib/utils';
 
 export type UserAvatarProps = Omit<

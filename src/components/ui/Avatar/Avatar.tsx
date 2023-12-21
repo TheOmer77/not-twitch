@@ -8,24 +8,10 @@ import {
   type AvatarImageProps,
   type AvatarProps as AvatarRootProps,
 } from '@radix-ui/react-avatar';
-import { cva, type VariantProps } from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority';
 
+import { avatarVariants } from './variants';
 import { cn } from '@/lib/utils';
-
-export const avatarVariants = cva(
-  'relative flex shrink-0 overflow-hidden rounded-full',
-  {
-    variants: {
-      size: {
-        md: 'h-8 w-8',
-        lg: 'h-14 w-14',
-      },
-    },
-    defaultVariants: {
-      size: 'md',
-    },
-  }
-);
 
 export type AvatarProps = AvatarRootProps &
   AvatarImageProps &
