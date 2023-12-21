@@ -5,7 +5,7 @@ import { AvatarSkeleton, Skeleton } from '@/components/ui/skeleton';
 
 export const DashboardSidebarSkeleton = () => (
   <SidebarSkeletonBase>
-    <ul className='flex grow flex-col gap-px lg:w-full'>
+    <ul className='flex w-full grow flex-col gap-px lg:w-full'>
       {[...Array(4).keys()].map(key => (
         <li
           key={key}
