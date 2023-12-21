@@ -10,49 +10,72 @@ const config: Config = {
         '2xl': '1400px',
       },
     },
+    colors: {
+      inherit: 'inherit',
+      white: '#fff',
+      black: '#000',
+      transparent: 'transparent',
+
+      ...['primary', 'neutral', 'destructive'].reduce(
+        (obj, colorName) => ({
+          ...obj,
+          [colorName]: [
+            50,
+            ...[...Array(9).keys()].map(key => (key + 1) * 100),
+            950,
+          ].reduce(
+            (obj, shade) => ({
+              ...obj,
+              [shade]: `rgb(var(--color-${colorName}-${shade}) / <alpha-value>)`,
+            }),
+            {}
+          ),
+        }),
+        {}
+      ),
+
+      border: 'rgb(var(--color-border))',
+      input: 'rgb(var(--color-input))',
+      ring: 'rgb(var(--color-ring))',
+      background: 'rgb(var(--color-background))',
+      foreground: 'rgb(var(--color-foreground))',
+      primary: {
+        DEFAULT: 'rgb(var(--color-primary))',
+        foreground: 'rgb(var(--color-primary-foreground))',
+      },
+      secondary: {
+        DEFAULT: 'rgb(var(--color-secondary))',
+        foreground: 'rgb(var(--color-secondary-foreground))',
+      },
+      destructive: {
+        DEFAULT: 'rgb(var(--color-destructive))',
+        foreground: 'rgb(var(--color-destructive-foreground))',
+      },
+      muted: {
+        DEFAULT: 'rgb(var(--color-muted))',
+        foreground: 'rgb(var(--color-muted-foreground))',
+      },
+      accent: {
+        DEFAULT: 'rgb(var(--color-accent))',
+        foreground: 'rgb(var(--color-accent-foreground))',
+      },
+      popover: {
+        DEFAULT: 'rgb(var(--color-popover))',
+        foreground: 'rgb(var(--color-popover-foreground))',
+      },
+      card: {
+        DEFAULT: 'rgb(var(--color-card))',
+        foreground: 'rgb(var(--color-card-foreground))',
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['var(--font-family)', 'sans-serif'],
       },
-      colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-      },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        lg: 'var(--border-radius)',
+        md: 'calc(var(--border-radius) - 2px)',
+        sm: 'calc(var(--border-radius) - 4px)',
       },
       keyframes: {
         'accordion-down': {
