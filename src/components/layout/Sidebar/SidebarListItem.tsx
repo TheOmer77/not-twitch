@@ -21,7 +21,8 @@ export const SidebarListItem = ({
       <Button
         variant='ghost'
         className={cn(
-          'flex-col justify-center px-0 py-8 lg:flex-row lg:justify-start lg:px-4 lg:py-2',
+          `h-16 flex-col justify-center p-0 lg:h-10 lg:flex-row
+lg:justify-start lg:px-4`,
           active && 'bg-accent',
           className
         )}
