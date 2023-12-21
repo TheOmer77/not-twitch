@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import queryString from 'query-string';
 import { SearchIcon } from 'lucide-react';
 
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 
 export const NavbarSearch = () => {
   const router = useRouter();
