@@ -25,20 +25,20 @@ duration-75 hover:brightness-125 active:opacity-70 active:duration-0'
           />
         </Link>
         {!sidebarCollapsed && (
-          <h1 className='hidden text-xl font-bold tracking-tight lg:block'>
+          <span className='hidden text-xl font-bold tracking-tight lg:block'>
             Creator Dashboard
-          </h1>
+          </span>
         )}
       </div>
       {sidebarCollapsed && (
-        <h1
+        <span
           className={cn(
             'text-xl font-bold leading-6 tracking-tight lg:hidden',
             sidebarCollapsed && 'lg:block'
           )}
         >
           Creator Dashboard
-        </h1>
+        </span>
       )}
     </div>
   );
