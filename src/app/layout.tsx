@@ -3,7 +3,7 @@ import { Manrope } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 
 import { Provider } from '@/components/providers';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/ui/Toast';
 import { clerkTheme } from '@/constants/clerkTheme';
 import './styles/index.css';
 
