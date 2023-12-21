@@ -9,6 +9,7 @@
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
+    "prisma:reset": "prisma migrate reset && npm -s run prisma:push",
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
