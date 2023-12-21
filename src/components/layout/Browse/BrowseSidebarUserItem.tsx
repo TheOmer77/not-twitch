@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import { LiveBadge } from './LiveBadge';
 import { UserAvatar, type UserAvatarProps } from '@/components/layout/User';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { AvatarSkeleton, Skeleton } from '@/components/ui/skeleton';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';

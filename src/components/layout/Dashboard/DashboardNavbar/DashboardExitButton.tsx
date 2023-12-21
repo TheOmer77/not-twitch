@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { LogOutIcon } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Tooltip } from '@/components/ui/tooltip';
 
 export const DashboardExitButton = () => (

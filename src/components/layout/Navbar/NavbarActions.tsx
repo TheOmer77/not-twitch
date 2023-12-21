@@ -1,6 +1,6 @@
 import { currentUser, SignInButton, UserButton } from '@clerk/nextjs';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { DashboardButton } from './DashboardButton';
 
 export const NavbarActions = async () => {

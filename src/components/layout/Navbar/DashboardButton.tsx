@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ClapperboardIcon } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Tooltip } from '@/components/ui/tooltip';
 
 export const DashboardButton = () => (

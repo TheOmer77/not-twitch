@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef } from 'react';
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 export type SidebarListItemProps = ComponentPropsWithRef<typeof Link> & {
