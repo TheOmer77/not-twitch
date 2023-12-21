@@ -1,5 +1,5 @@
 import { SettingsItemSkeleton } from '@/components/layout';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui/Card';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const DashboardChatLoading = () => (

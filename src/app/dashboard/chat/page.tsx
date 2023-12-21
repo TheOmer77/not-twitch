@@ -1,5 +1,5 @@
 import { SwitchSettingsItem } from '@/components/layout';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui/Card';
 import { getStreamByUserId } from '@/queries/stream';
 import { getSelf } from '@/services/auth';
 
