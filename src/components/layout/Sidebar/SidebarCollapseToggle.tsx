@@ -7,7 +7,7 @@ import { Tooltip } from '@/components/ui/tooltip';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
-export const CollapseToggle = () => {
+export const SidebarCollapseToggle = () => {
   const { collapsed, setCollapsed } = useSidebar();
 
   const Icon = collapsed ? ArrowRightFromLineIcon : ArrowLeftFromLineIcon;

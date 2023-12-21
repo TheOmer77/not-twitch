@@ -1,4 +1,4 @@
-import { CollapseToggle } from './CollapseToggle';
+import { SidebarCollapseToggle } from './SidebarCollapseToggle';
 import { SidebarContent } from './SidebarContent';
 import { SidebarUserList } from './SidebarUserList';
 import { getRecommended } from '@/services/recommended';
@@ -10,7 +10,7 @@ export const Sidebar = async () => {
 
   return (
     <SidebarContent>
-      <CollapseToggle />
+      <SidebarCollapseToggle />
       <SidebarUserList title='Followed' data={followed} />
       <SidebarUserList title='Recommended' data={recommended} />
     </SidebarContent>
