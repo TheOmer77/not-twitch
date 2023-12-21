@@ -28,8 +28,7 @@ export const SwitchSettingsItem = ({
         try {
           await updateStreamSettings({ [field]: checked });
         } catch (err) {
-          displayToast({
-            title: "Couldn't update stream settings",
+          displayToast("Couldn't update stream settings", {
             description:
               err instanceof Error
                 ? err.message

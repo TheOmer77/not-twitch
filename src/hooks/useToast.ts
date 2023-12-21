@@ -105,9 +105,9 @@ const dispatch = (action: Action) => {
   });
 };
 
-type Toast = Omit<ToasterToast, 'id'>;
+type Toast = Omit<ToasterToast, 'id' | 'title'>;
 
-export const displayToast = ({ ...props }: Toast) => {
+export const displayToast = (title: string, { ...props }: Toast = {}) => {
   const id = generateToastId();
 
   const update = (props: ToasterToast) =>
@@ -119,13 +119,14 @@ export const displayToast = ({ ...props }: Toast) => {
     toast: {
       ...props,
       id,
+      title,
       open: true,
       onOpenChange: open => {
         if (!open) dismiss();
       },
     },
   });
-  return { id: id, dismiss, update };
+  return { id, dismiss, update };
 };
 
 export const useToast = () => {

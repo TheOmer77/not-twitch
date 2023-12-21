@@ -29,23 +29,25 @@ export const UserHeaderActions = ({
         const follow = await (isFollowing
           ? unfollowUser(userId)
           : followUser(userId));
-        displayToast({
-          description: isFollowing
+        displayToast(
+          isFollowing
             ? `You are no longer following ${follow.followedUser.username}.`
-            : `You are now following ${follow.followedUser.username}!`,
-        });
+            : `You are now following ${follow.followedUser.username}!`
+        );
       } catch (err) {
-        displayToast({
-          title: isFollowing
+        displayToast(
+          isFollowing
             ? `Couldn't unfollow this user`
             : `Couldn't follow this user`,
-          description:
-            err instanceof Error
-              ? err.message
-              : isFollowing
-                ? 'Something went wrong while trying to unfollow this user.'
-                : 'Something went wrong while trying to follow this user.',
-        });
+          {
+            description:
+              err instanceof Error
+                ? err.message
+                : isFollowing
+                  ? 'Something went wrong while trying to unfollow this user.'
+                  : 'Something went wrong while trying to follow this user.',
+          }
+        );
       }
     });
   };
@@ -56,23 +58,25 @@ export const UserHeaderActions = ({
         const block = await (isBlocking
           ? unblockUser(userId)
           : blockUser(userId));
-        displayToast({
-          description: isBlocking
+        displayToast(
+          isBlocking
             ? `You've unblocked ${block.blockedUser.username}.`
-            : `You've blocked ${block.blockedUser.username}.`,
-        });
+            : `You've blocked ${block.blockedUser.username}.`
+        );
       } catch (err) {
-        displayToast({
-          title: isBlocking
+        displayToast(
+          isBlocking
             ? `Couldn't unblock this user`
             : `Couldn't block this user`,
-          description:
-            err instanceof Error
-              ? err.message
-              : isBlocking
-                ? 'Something went wrong while trying to unblock this user.'
-                : 'Something went wrong while trying to block this user.',
-        });
+          {
+            description:
+              err instanceof Error
+                ? err.message
+                : isBlocking
+                  ? 'Something went wrong while trying to unblock this user.'
+                  : 'Something went wrong while trying to block this user.',
+          }
+        );
       }
     });
   };
