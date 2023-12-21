@@ -2,7 +2,7 @@
 
 import { useCallback, useTransition } from 'react';
 
-import { Switch } from '@/components/ui/switch';
+import { Switch } from '@/components/ui/Switch';
 import { useToast } from '@/hooks/useToast';
 import { updateStreamSettings } from '@/actions/stream';
 
