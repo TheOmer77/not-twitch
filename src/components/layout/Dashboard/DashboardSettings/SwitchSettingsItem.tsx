@@ -19,7 +19,7 @@ export const SwitchSettingsItem = ({
   description,
   checked = false,
 }: SwitchSettingsItemProps) => {
-  const { toast } = useToast();
+  const { displayToast } = useToast();
   const [isPending, startTransition] = useTransition();
 
   const handleCheckedChange = useCallback(
@@ -28,7 +28,7 @@ export const SwitchSettingsItem = ({
         try {
           await updateStreamSettings({ [field]: checked });
         } catch (err) {
-          toast({
+          displayToast({
             title: "Couldn't update stream settings",
             description:
               err instanceof Error
@@ -38,7 +38,7 @@ export const SwitchSettingsItem = ({
         }
       });
     },
-    [field, toast]
+    [displayToast, field]
   );
 
   return (

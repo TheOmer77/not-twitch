@@ -20,7 +20,7 @@ export const UserHeaderActions = ({
   isBlocking,
 }: UserHeaderActionsProps) => {
   const currentUser = useCurrentUser();
-  const { toast } = useToast();
+  const { displayToast } = useToast();
   const [isPending, startTransition] = useTransition();
 
   const handleFollowClick = async () => {
@@ -29,13 +29,13 @@ export const UserHeaderActions = ({
         const follow = await (isFollowing
           ? unfollowUser(userId)
           : followUser(userId));
-        toast({
+        displayToast({
           description: isFollowing
             ? `You are no longer following ${follow.followedUser.username}.`
             : `You are now following ${follow.followedUser.username}!`,
         });
       } catch (err) {
-        toast({
+        displayToast({
           title: isFollowing
             ? `Couldn't unfollow this user`
             : `Couldn't follow this user`,
@@ -56,13 +56,13 @@ export const UserHeaderActions = ({
         const block = await (isBlocking
           ? unblockUser(userId)
           : blockUser(userId));
-        toast({
+        displayToast({
           description: isBlocking
             ? `You've unblocked ${block.blockedUser.username}.`
             : `You've blocked ${block.blockedUser.username}.`,
         });
       } catch (err) {
-        toast({
+        displayToast({
           title: isBlocking
             ? `Couldn't unblock this user`
             : `Couldn't block this user`,
