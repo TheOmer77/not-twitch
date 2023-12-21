@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ClapperboardIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/Button';
-import { Tooltip } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/ui/Tooltip';
 
 export const DashboardButton = () => (
   <Tooltip label='Dashboard'>
