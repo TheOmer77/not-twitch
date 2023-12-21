@@ -35,7 +35,7 @@ export const Sidebar = ({
       {...props}
       className={cn(
         `fixed start-0 z-20 flex h-full w-80 flex-col items-center gap-1
-border-e bg-card p-2 shadow`,
+bg-card p-2`,
         collapsed && 'w-20',
         className
       )}
