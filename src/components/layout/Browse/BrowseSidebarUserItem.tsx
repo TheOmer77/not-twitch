@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { LiveBadge } from './LiveBadge';
 import { UserAvatar, type UserAvatarProps } from '@/components/layout/User';
 import { Button } from '@/components/ui/Button';
-import { AvatarSkeleton, Skeleton } from '@/components/ui/skeleton';
+import { AvatarSkeleton, Skeleton } from '@/components/ui/Skeleton';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 

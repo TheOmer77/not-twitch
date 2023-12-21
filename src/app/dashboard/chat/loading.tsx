@@ -1,6 +1,6 @@
 import { SettingsItemSkeleton } from '@/components/layout';
 import { Card } from '@/components/ui/Card';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 const DashboardChatLoading = () => (
   <>

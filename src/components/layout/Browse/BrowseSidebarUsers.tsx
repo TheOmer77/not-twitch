@@ -6,9 +6,9 @@ import {
   BrowseSidebarUserItem,
   BrowseSidebarUserItemSkeleton,
 } from './BrowseSidebarUserItem';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
-import { Skeleton } from '@/components/ui/skeleton';
 
 export type SidebarUserListProps = {
   data: User[];
