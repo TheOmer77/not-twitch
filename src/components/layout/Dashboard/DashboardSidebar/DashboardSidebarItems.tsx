@@ -8,7 +8,11 @@ import {
   UsersRoundIcon,
 } from 'lucide-react';
 
-import { SidebarListItem, SidebarListItemIcon } from '@/components/layout';
+import {
+  SidebarListItem,
+  SidebarListItemIcon,
+  SidebarListItemText,
+} from '@/components/layout';
 
 const sidebarItems = [
   { label: 'Stream', href: '/dashboard', icon: <RadioIcon /> },
@@ -29,9 +33,7 @@ export const DashboardSidebarItems = () => {
       {sidebarItems.map(({ label, href, icon }) => (
         <SidebarListItem key={href} href={href} active={pathname === href}>
           <SidebarListItemIcon>{icon}</SidebarListItemIcon>
-          <span className='shrink-0 text-xs font-medium lg:text-sm'>
-            {label}
-          </span>
+          <SidebarListItemText>{label}</SidebarListItemText>
         </SidebarListItem>
       ))}
     </ul>
