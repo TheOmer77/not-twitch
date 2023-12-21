@@ -2,7 +2,10 @@
 
 import type { User } from '@prisma/client';
 
-import { UserItem, UserItemSkeleton } from './UserItem';
+import {
+  BrowseSidebarUserItem,
+  BrowseSidebarUserItemSkeleton,
+} from './BrowseSidebarUserItem';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -12,7 +15,7 @@ export type SidebarUserListProps = {
   title?: string;
 };
 
-export const SidebarUserList = ({ data, title }: SidebarUserListProps) => {
+export const BrowseSidebarUsers = ({ data, title }: SidebarUserListProps) => {
   const collapsed = useSidebar(state => state.collapsed);
 
   return (
@@ -24,7 +27,7 @@ export const SidebarUserList = ({ data, title }: SidebarUserListProps) => {
           </h2>
         )}
         {data.map(({ id, username, imageUrl }) => (
-          <UserItem
+          <BrowseSidebarUserItem
             key={id}
             username={username}
             imageUrl={imageUrl}
@@ -36,12 +39,12 @@ export const SidebarUserList = ({ data, title }: SidebarUserListProps) => {
   );
 };
 
-export const SidebarUserListSkeleton = () => (
+export const BrowseSidebarUsersSkeleton = () => (
   <div className='flex w-full flex-col'>
     <Skeleton className='m-2 mb-4 hidden h-5 w-28 lg:block' />
     <ul className='flex w-full flex-col'>
       {[...Array(5).keys()].map(key => (
-        <UserItemSkeleton key={key} />
+        <BrowseSidebarUserItemSkeleton key={key} />
       ))}
     </ul>
   </div>

@@ -1,3 +1,4 @@
+export * from './Browse';
 export * from './Dashboard';
 export * from './Main';
 export * from './Navbar';

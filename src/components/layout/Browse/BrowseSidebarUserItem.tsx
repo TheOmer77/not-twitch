@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { UserAvatar } from '../User/UserAvatar';
 import { LiveBadge } from './LiveBadge';
+import { UserAvatar } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { AvatarSkeleton, Skeleton } from '@/components/ui/skeleton';
 import { useSidebar } from '@/store/useSidebar';
@@ -14,7 +14,11 @@ export type UserItemProps = {
   isLive?: boolean;
 };
 
-export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
+export const BrowseSidebarUserItem = ({
+  username,
+  imageUrl,
+  isLive,
+}: UserItemProps) => {
   const pathname = usePathname();
   const sidebarCollapsed = useSidebar(state => state.collapsed);
 
@@ -41,7 +45,7 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
   );
 };
 
-export const UserItemSkeleton = () => (
+export const BrowseSidebarUserItemSkeleton = () => (
   <li className='inline-flex h-10 flex-row items-center justify-start gap-2 px-4 py-2'>
     <AvatarSkeleton />
     <Skeleton className='h-5 grow' />

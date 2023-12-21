@@ -1,35 +1,25 @@
 'use client';
 
-import { useEffect, type ComponentPropsWithoutRef } from 'react';
+import {
+  useEffect,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+} from 'react';
 
-import { SidebarUserListSkeleton } from './SidebarUserList';
 import { useIsClient, useMediaQuery } from '@/hooks';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
-export const SidebarSkeleton = ({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<'aside'>) => (
-  <aside
-    {...props}
-    className={cn(
-      `fixed start-0 z-20 flex h-full w-20 flex-col items-center gap-1
-border-e bg-card p-2 shadow lg:w-80`,
-      className
-    )}
-  >
-    <SidebarUserListSkeleton />
-    <SidebarUserListSkeleton />
-  </aside>
-);
+export type SidebarProps = ComponentPropsWithoutRef<'aside'> & {
+  skeleton?: ReactNode;
+};
 
-export const SidebarContent = ({
+export const Sidebar = ({
+  skeleton = null,
   className,
   children,
   ...props
-}: ComponentPropsWithoutRef<'aside'>) => {
+}: SidebarProps) => {
   const isClient = useIsClient();
   const matchesLg = useMediaQuery('(min-width: 1024px)');
   const { collapsed, setCollapsed } = useSidebar();
@@ -38,7 +28,7 @@ export const SidebarContent = ({
     setCollapsed(!matchesLg);
   }, [matchesLg, setCollapsed]);
 
-  if (!isClient) return <SidebarSkeleton />;
+  if (!isClient) return skeleton;
 
   return (
     <aside
