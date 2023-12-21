@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 
 import { DashboardSidebarSkeleton } from './DashboardSidebarSkeleton';
 import { DashboardSidebarItems } from './DashboardSidebarItems';
-import { Sidebar } from '@/components/layout';
+import { Sidebar } from '@/components/layout/Sidebar';
 
 export const DashboardSidebar = async () => {
   return (

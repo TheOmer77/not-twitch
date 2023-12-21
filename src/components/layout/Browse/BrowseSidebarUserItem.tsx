@@ -2,17 +2,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { LiveBadge } from './LiveBadge';
-import { UserAvatar } from '@/components/layout';
+import { UserAvatar, type UserAvatarProps } from '@/components/layout/User';
 import { Button } from '@/components/ui/button';
 import { AvatarSkeleton, Skeleton } from '@/components/ui/skeleton';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
-export type UserItemProps = {
-  username: string;
-  imageUrl?: string;
-  isLive?: boolean;
-};
+export type UserItemProps = Pick<
+  UserAvatarProps,
+  'username' | 'imageUrl' | 'isLive'
+>;
 
 export const BrowseSidebarUserItem = ({
   username,

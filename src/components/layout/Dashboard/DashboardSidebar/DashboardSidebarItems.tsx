@@ -12,7 +12,7 @@ import {
   SidebarListItem,
   SidebarListItemIcon,
   SidebarListItemText,
-} from '@/components/layout';
+} from '@/components/layout/Sidebar';
 
 const sidebarItems = [
   { label: 'Stream', href: '/dashboard', icon: <RadioIcon /> },

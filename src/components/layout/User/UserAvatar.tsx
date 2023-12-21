@@ -1,9 +1,14 @@
-import type { UserItemProps } from '../Browse/BrowseSidebarUserItem';
 import { Avatar, type AvatarProps } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 
-export type UserAvatarProps = UserItemProps &
-  Omit<AvatarProps, 'src' | 'alt' | 'fallback' | 'children'>;
+export type UserAvatarProps = Omit<
+  AvatarProps,
+  'src' | 'alt' | 'fallback' | 'children'
+> & {
+  username: string;
+  imageUrl?: string;
+  isLive?: boolean;
+};
 
 export const UserAvatar = ({
   imageUrl,
