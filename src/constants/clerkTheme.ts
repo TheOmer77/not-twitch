@@ -4,7 +4,7 @@ import type { Appearance } from '@clerk/types';
 
 export const clerkTheme: Appearance = {
   elements: {
-    card: 'bg-card text-card-foreground shadow-md shadow-black/30',
+    card: 'bg-card text-card-foreground shadow-md',
     userPreviewSecondaryIdentifier: 'text-muted-foreground',
     userButtonPopoverActionButtonText: 'text-card-foreground',
     userButtonPopoverActionButtonIcon: 'text-muted-foreground',
@@ -16,6 +16,9 @@ export const clerkTheme: Appearance = {
     formButtonPrimary: cn(buttonVariants({ variant: 'default' })),
     footerActionText: 'text-foreground',
     footerActionLink: 'text-primary font-medium hover:text-primary',
+  },
+  userProfile: {
+    elements: { card: 'bg-background' },
   },
   ...['signIn', 'signUp'].reduce(
     (obj, curr) => ({
