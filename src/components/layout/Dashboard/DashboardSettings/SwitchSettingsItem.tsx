@@ -5,19 +5,16 @@ import { useCallback, useTransition } from 'react';
 import { Switch } from '@/components/ui/Switch';
 import { useToast } from '@/hooks/useToast';
 import { updateStreamSettings } from '@/actions/stream';
+import { SettingsItem, type SettingsItemProps } from './SettingsItem';
 
-export type SwitchSettingsItemProps = {
-  field: 'isChatDelayed' | 'isChatEnabled' | 'isChatFollowersOnly';
-  label: string;
-  description?: string;
+export type SwitchSettingsItemProps = Omit<SettingsItemProps, 'children'> & {
   checked?: boolean;
 };
 
 export const SwitchSettingsItem = ({
   field,
-  label,
-  description,
   checked = false,
+  ...props
 }: SwitchSettingsItemProps) => {
   const { displayToast } = useToast();
   const [isPending, startTransition] = useTransition();
@@ -41,13 +38,7 @@ export const SwitchSettingsItem = ({
   );
 
   return (
-    <li className='flex flex-row items-center px-4 py-3'>
-      <div className='5 flex flex-col gap-0'>
-        <label htmlFor={`switch-${field}`} className='text-base font-medium'>
-          {label}
-        </label>
-        <p className='text-sm text-muted-foreground'>{description}</p>
-      </div>
+    <SettingsItem {...props} field={field} htmlFor={`switch-${field}`}>
       <Switch
         id={`switch-${field}`}
         className='ms-auto'
@@ -55,6 +46,6 @@ export const SwitchSettingsItem = ({
         onCheckedChange={handleCheckedChange}
         disabled={isPending}
       />
-    </li>
+    </SettingsItem>
   );
 };
