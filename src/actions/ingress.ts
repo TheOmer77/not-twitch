@@ -79,3 +79,15 @@ export const createIngress = async (ingressType: IngressInput) => {
   revalidatePath('/dashboard/keys');
   return ingress;
 };
+
+export const deleteIngress = async () => {
+  const currentUser = await getCurrentUser();
+
+  await resetIngresses(currentUser.id);
+
+  await db.stream.update({
+    where: { userId: currentUser.id },
+    data: { ingressId: null, serverUrl: null, streamKey: null },
+  });
+  revalidatePath('/dashboard/keys');
+};
