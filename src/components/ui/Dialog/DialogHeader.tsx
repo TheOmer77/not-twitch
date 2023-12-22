@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
-const DialogHeader = ({
+export const DialogHeader = ({
   className,
   ...props
 }: ComponentPropsWithoutRef<'div'>) => (

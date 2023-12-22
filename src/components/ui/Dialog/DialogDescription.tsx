@@ -9,7 +9,7 @@ import { Description } from '@radix-ui/react-dialog';
 
 import { cn } from '@/lib/utils';
 
-const DialogDescription = forwardRef<
+export const DialogDescription = forwardRef<
   ElementRef<typeof Description>,
   ComponentPropsWithoutRef<typeof Description>
 >(({ className, ...props }, ref) => (
