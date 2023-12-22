@@ -1,11 +1,13 @@
 'use client';
 
+import { AlertTriangleIcon } from 'lucide-react';
+
+import { Alert, AlertDescription } from '@/components/ui/Alert';
 import { Button } from '@/components/ui/Button';
 import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -28,10 +30,6 @@ export const ConnectDialog = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Generate connection</DialogTitle>
-          <DialogDescription>
-            Choose an ingress type below. Note that this will invalidate your
-            current connection, and reset all active streams using it.
-          </DialogDescription>
         </DialogHeader>
         <div className='flex flex-col gap-4'>
           <Select>
@@ -43,6 +41,13 @@ export const ConnectDialog = () => {
               <SelectItem value='whip'>WHIP</SelectItem>
             </SelectContent>
           </Select>
+          <Alert variant='destructive'>
+            <AlertTriangleIcon />
+            <AlertDescription>
+              This action will invalidate your current connection, and reset all
+              active streams using it.
+            </AlertDescription>
+          </Alert>
         </div>
         <DialogFooter>
           <DialogClose asChild>
