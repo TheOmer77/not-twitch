@@ -20,7 +20,12 @@ export const BrowseSidebarUsers = ({ data, title }: SidebarUserListProps) => {
 
   return (
     data.length > 0 && (
-      <div className={cn(!collapsed && 'flex w-full flex-col')}>
+      <div
+        className={cn(
+          'flex w-full flex-col gap-px',
+          collapsed ? 'items-center' : 'items-stretch'
+        )}
+      >
         {typeof title === 'string' && !collapsed && (
           <h2 className='mb-2 p-2 text-sm font-semibold tracking-tight text-muted-foreground'>
             {title}
