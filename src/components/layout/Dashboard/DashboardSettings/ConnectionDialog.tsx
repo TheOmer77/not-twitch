@@ -25,7 +25,11 @@ import {
 import { useToast } from '@/hooks/useToast';
 import { createIngress } from '@/actions/ingress';
 
-export const ConnectionDialog = () => {
+export type ConnectionDialogProps = {
+  isRegenerate?: boolean;
+};
+
+export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [ingressType, setIngressType] = useState<number>(
     IngressInput.RTMP_INPUT
@@ -53,14 +57,19 @@ export const ConnectionDialog = () => {
 
   return (
     <>
-      <Button variant='primary' onClick={() => setDialogOpen(true)}>
-        Generate connection
+      <Button
+        variant={isRegenerate ? 'secondary' : 'primary'}
+        onClick={() => setDialogOpen(true)}
+      >
+        {isRegenerate ? 'Regenerate connection' : 'Generate connection'}
       </Button>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Generate connection</DialogTitle>
+            <DialogTitle>
+              {isRegenerate ? 'Regenerate connection' : 'Generate connection'}
+            </DialogTitle>
           </DialogHeader>
           <div className='flex flex-col gap-4'>
             <Select
@@ -80,13 +89,15 @@ export const ConnectionDialog = () => {
                 </SelectItem>
               </SelectContent>
             </Select>
-            <Alert variant='destructive'>
-              <AlertTriangleIcon />
-              <AlertDescription>
-                This action will invalidate your current connection, and reset
-                all active streams using it.
-              </AlertDescription>
-            </Alert>
+            {isRegenerate && (
+              <Alert variant='destructive'>
+                <AlertTriangleIcon />
+                <AlertDescription>
+                  This action will invalidate your current connection, and reset
+                  all active streams using it.
+                </AlertDescription>
+              </Alert>
+            )}
           </div>
           <DialogFooter>
             <DialogClose asChild>

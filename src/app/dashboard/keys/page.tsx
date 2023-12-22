@@ -52,7 +52,7 @@ const DashboardKeysPage = async () => {
 your stream key, in case something went wrong. Note that this will invalidate
 your current connection details."
               >
-                <ConnectionDialog />
+                <ConnectionDialog isRegenerate />
               </SettingsItem>
               <SettingsItem
                 label='Delete connection'
