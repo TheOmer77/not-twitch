@@ -1,5 +1,4 @@
-import { InputSettingsItem } from '@/components/layout';
-import { Button } from '@/components/ui/Button';
+import { ConnectDialog, InputSettingsItem } from '@/components/layout';
 import { Card } from '@/components/ui/Card';
 import { getStreamByUserId } from '@/queries/stream';
 import { getSelf } from '@/services/auth';
@@ -13,7 +12,7 @@ const DashboardKeysPage = async () => {
     <>
       <h1 className='mb-4 flex flex-row justify-between text-4xl font-bold tracking-tight'>
         Keys
-        <Button variant='primary'>Generate</Button>
+        <ConnectDialog />
       </h1>
       <Card>
         <ul className='flex w-full flex-col gap-px'>

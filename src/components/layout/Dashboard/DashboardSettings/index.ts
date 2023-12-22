@@ -1,3 +1,4 @@
+export * from './ConnectionDialog';
 export * from './InputSettingsItem';
 export * from './SettingsCopyButton';
 export * from './SettingsHideButton';
