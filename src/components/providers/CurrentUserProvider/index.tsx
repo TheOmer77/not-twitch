@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from 'react';
 
 import ClientCurrentUserProvider from './clientProvider';
-import { getSelf } from '@/services/auth';
+import { getCurrentUser } from '@/services/auth';
 
 export const CurrentUserProvider = async ({ children }: PropsWithChildren) => {
   let currentUser;
   try {
-    currentUser = await getSelf();
+    currentUser = await getCurrentUser();
   } catch {
     currentUser = null;
   }

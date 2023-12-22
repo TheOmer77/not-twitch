@@ -1,10 +1,10 @@
+import { getCurrentUser } from '@/services/auth';
 import { db } from '@/lib/db';
-import { getSelf } from '../services/auth';
 import { getUserById } from './users';
 
 export const getFollowedUsers = async () => {
   try {
-    const currentUser = await getSelf();
+    const currentUser = await getCurrentUser();
     return (
       await db.follow.findMany({
         where: {
@@ -23,7 +23,7 @@ export const getFollowedUsers = async () => {
 
 export const isFollowingUser = async (userId: string) => {
   try {
-    const currentUser = await getSelf(),
+    const currentUser = await getCurrentUser(),
       otherUser = await getUserById(userId);
     if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
     if (otherUser.id === currentUser.id) return true;
@@ -43,7 +43,7 @@ export const isFollowingUser = async (userId: string) => {
 };
 
 export const createFollow = async (userId: string) => {
-  const currentUser = await getSelf(),
+  const currentUser = await getCurrentUser(),
     otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
   if (otherUser.id === currentUser.id)
@@ -67,7 +67,7 @@ export const createFollow = async (userId: string) => {
 };
 
 export const deleteFollow = async (userId: string) => {
-  const currentUser = await getSelf(),
+  const currentUser = await getCurrentUser(),
     otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
   if (otherUser.id === currentUser.id)

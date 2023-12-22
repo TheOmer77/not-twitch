@@ -1,10 +1,10 @@
 import { db } from '@/lib/db';
-import { getSelf } from './auth';
+import { getCurrentUser } from './auth';
 
 export const getRecommended = async () => {
   let currentUserId;
   try {
-    currentUserId = (await getSelf()).id;
+    currentUserId = (await getCurrentUser()).id;
   } catch (err) {
     currentUserId = null;
   }

@@ -1,10 +1,10 @@
+import { getCurrentUser } from '@/services/auth';
 import { db } from '@/lib/db';
-import { getSelf } from '../services/auth';
 import { getUserById } from './users';
 
 export const isBlockingUser = async (userId: string) => {
   try {
-    const currentUser = await getSelf(),
+    const currentUser = await getCurrentUser(),
       otherUser = await getUserById(userId);
     if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
     if (otherUser.id === currentUser.id) return true;
@@ -25,7 +25,7 @@ export const isBlockingUser = async (userId: string) => {
 
 export const isBlockedByUser = async (userId: string) => {
   try {
-    const currentUser = await getSelf(),
+    const currentUser = await getCurrentUser(),
       otherUser = await getUserById(userId);
     if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
     if (otherUser.id === currentUser.id) return true;
@@ -45,7 +45,7 @@ export const isBlockedByUser = async (userId: string) => {
 };
 
 export const createBlock = async (userId: string) => {
-  const currentUser = await getSelf(),
+  const currentUser = await getCurrentUser(),
     otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
   if (otherUser.id === currentUser.id)
@@ -64,7 +64,7 @@ export const createBlock = async (userId: string) => {
 };
 
 export const deleteBlock = async (userId: string) => {
-  const currentUser = await getSelf(),
+  const currentUser = await getCurrentUser(),
     otherUser = await getUserById(userId);
   if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
   if (otherUser.id === currentUser.id)

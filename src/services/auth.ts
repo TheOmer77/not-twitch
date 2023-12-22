@@ -1,7 +1,8 @@
 import { currentUser } from '@clerk/nextjs';
-import { db } from '../lib/db';
 
-export const getSelf = async () => {
+import { db } from '@/lib/db';
+
+export const getCurrentUser = async () => {
   const clerkUser = await currentUser();
   if (!clerkUser || !clerkUser.username)
     throw new Error("You're not logged in.");

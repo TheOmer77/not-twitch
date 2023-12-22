@@ -1,10 +1,10 @@
 import { ConnectDialog, InputSettingsItem } from '@/components/layout';
 import { Card } from '@/components/ui/Card';
 import { getStreamByUserId } from '@/queries/stream';
-import { getSelf } from '@/services/auth';
+import { getCurrentUser } from '@/services/auth';
 
 const DashboardKeysPage = async () => {
-  const currentUser = await getSelf(),
+  const currentUser = await getCurrentUser(),
     stream = await getStreamByUserId(currentUser.id);
   if (!stream) throw new Error("You don't have a stream.");
 
