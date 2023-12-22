@@ -19,7 +19,7 @@ export const SidebarListItem = ({
   return (
     <li>
       <Button
-        variant='ghost'
+        variant='flat'
         className={cn(
           `h-16 flex-col justify-center p-0 lg:h-10 lg:flex-row
 lg:justify-start lg:px-4`,

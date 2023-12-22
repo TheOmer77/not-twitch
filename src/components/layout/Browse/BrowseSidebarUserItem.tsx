@@ -27,8 +27,8 @@ export const BrowseSidebarUserItem = ({
   return (
     <Button
       asChild
-      variant='ghost'
-      size={sidebarCollapsed ? 'icon' : 'default'}
+      variant='flat'
+      size={sidebarCollapsed ? 'icon' : 'md'}
       className={cn(
         'gap-2',
         isActive && 'bg-accent',

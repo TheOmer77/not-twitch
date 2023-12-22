@@ -15,7 +15,7 @@ export const NavbarActions = async () => {
         </>
       ) : (
         <SignInButton>
-          <Button>Login</Button>
+          <Button variant='primary'>Login</Button>
         </SignInButton>
       )}
     </div>

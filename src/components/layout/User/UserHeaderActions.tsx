@@ -86,7 +86,7 @@ export const UserHeaderActions = ({
       {currentUser?.id !== userId && (
         <>
           <Button
-            variant={isFollowing ? 'secondary' : 'default'}
+            variant={isFollowing ? 'secondary' : 'primary'}
             onClick={handleFollowClick}
             disabled={isPending}
           >
