@@ -22,7 +22,7 @@ const DashboardChatPage = async () => {
           <SwitchSettingsItem
             field='isChatDelayed'
             label='Slow mode'
-            description='Only allow users to send messages in chat every TBD seconds.'
+            description='Only allow users to send messages in chat every 3 seconds.'
             checked={stream.isChatDelayed}
           />
           <SwitchSettingsItem
