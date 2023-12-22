@@ -3,7 +3,7 @@ import type { PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
 
 export type SettingsItemProps = PropsWithChildren<{
-  field:
+  field?:
     | 'isChatDelayed'
     | 'isChatEnabled'
     | 'isChatFollowersOnly'
@@ -29,7 +29,7 @@ export const SettingsItem = ({
       orientation === 'vertical' ? 'flex-col items-start' : 'flex-row'
     )}
   >
-    <div className='5 flex shrink-0 flex-col gap-0'>
+    <div className='5 flex flex-col gap-0'>
       <label htmlFor={htmlFor || field} className='text-base font-medium'>
         {label}
       </label>
