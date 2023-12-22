@@ -41,7 +41,7 @@ export const SwitchSettingsItem = ({
   );
 
   return (
-    <li className='flex flex-row items-center px-4 py-2'>
+    <li className='flex flex-row items-center px-4 py-3'>
       <div className='5 flex flex-col gap-0'>
         <label htmlFor={`switch-${field}`} className='text-base font-medium'>
           {label}
