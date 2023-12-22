@@ -1,5 +1,6 @@
 import {
   ConnectionDialog,
+  DeleteConnectionDialog,
   InputSettingsItem,
   SettingsItem,
 } from '@/components/layout';
@@ -53,12 +54,18 @@ your current connection details."
               >
                 <ConnectionDialog />
               </SettingsItem>
+              <SettingsItem
+                label='Delete connection'
+                description="Delete your current connection. You won't be able to stream again until you generate a new one."
+              >
+                <DeleteConnectionDialog />
+              </SettingsItem>
             </ul>
           </Card>
         </>
       ) : (
         <>
-          <p>You haven&apos;t generated a connection yet.</p>
+          <p className='mb-2'>You haven&apos;t generated a connection yet.</p>
           <ConnectionDialog />
         </>
       )}
