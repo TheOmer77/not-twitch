@@ -14,7 +14,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/Dialog';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import {
   Select,
   SelectContent,
@@ -22,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/Select';
+import { Spinner } from '@/components/ui/Spinner';
 import { useToast } from '@/hooks/useToast';
 import { createIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
@@ -113,7 +113,7 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
               className='relative'
             >
               <span className={cn(isPending && 'invisible')}>Confirm</span>
-              {isPending && <LoadingSpinner className='absolute text-xl' />}
+              {isPending && <Spinner className='absolute h-5 w-5' />}
             </Button>
           </DialogFooter>
         </DialogContent>
