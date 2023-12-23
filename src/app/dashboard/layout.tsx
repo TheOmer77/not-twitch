@@ -1,15 +1,13 @@
 import type { PropsWithChildren } from 'react';
 
-import { DashboardNavbar, DashboardSidebar, Main } from '@/components/layout';
+import { DashboardNavbar, DashboardSidebar } from '@/components/layout';
 
-const DashboardLayout = ({ children }: PropsWithChildren) => {
-  return (
-    <>
-      <DashboardNavbar />
-      <DashboardSidebar />
-      <Main>{children}</Main>
-    </>
-  );
-};
+const DashboardLayout = ({ children }: PropsWithChildren) => (
+  <>
+    <DashboardNavbar />
+    <DashboardSidebar />
+    {children}
+  </>
+);
 
 export default DashboardLayout;
