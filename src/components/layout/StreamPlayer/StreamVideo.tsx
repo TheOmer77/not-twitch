@@ -23,7 +23,7 @@ export const StreamVideo = ({ hostName, hostId }: StreamVideoProps) => {
     );
 
   return (
-    <div className='group relative aspect-video rounded-lg bg-card'>
+    <div className='group relative aspect-video overflow-hidden rounded-lg bg-card'>
       {!participant && connectionState === ConnectionState.Connected ? (
         <StreamOfflineState username={hostName} />
       ) : !participant || tracks.length < 1 ? (
