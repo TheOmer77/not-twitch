@@ -23,9 +23,7 @@ export const UserAvatar = ({
     alt={username}
     fallback={username[0]}
     className={cn(
-      isLive &&
-        `ring-2 ring-red-600 ring-offset-2 ring-offset-white
-dark:ring-red-400 dark:ring-offset-slate-950`,
+      isLive && 'ring-2 ring-destructive ring-offset-2 ring-offset-background',
       className
     )}
   />

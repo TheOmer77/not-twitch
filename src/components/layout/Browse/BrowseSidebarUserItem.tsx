@@ -36,7 +36,12 @@ export const BrowseSidebarUserItem = ({
       )}
     >
       <Link href={href}>
-        <UserAvatar username={username} imageUrl={imageUrl} isLive={isLive} />
+        <UserAvatar
+          username={username}
+          imageUrl={imageUrl}
+          isLive={isLive}
+          className='ring-offset-card'
+        />
         {!sidebarCollapsed && <span className='grow'>{username}</span>}
         {!sidebarCollapsed && isLive && <LiveBadge />}
       </Link>
