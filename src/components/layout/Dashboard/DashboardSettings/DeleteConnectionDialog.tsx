@@ -2,8 +2,6 @@
 
 import { useCallback, useState, useTransition } from 'react';
 
-import { useToast } from '@/hooks/useToast';
-import { deleteIngress } from '@/actions/ingress';
 import { Button } from '@/components/ui/Button';
 import {
   Dialog,
@@ -14,6 +12,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/Dialog';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { useToast } from '@/hooks/useToast';
+import { deleteIngress } from '@/actions/ingress';
+import { cn } from '@/lib/utils';
 
 export const DeleteConnectionDialog = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -63,8 +65,10 @@ export const DeleteConnectionDialog = () => {
               variant='destructive'
               onClick={handleConfirm}
               disabled={isPending}
+              className='relative'
             >
-              Delete
+              <span className={cn(isPending && 'invisible')}>Delete</span>
+              {isPending && <LoadingSpinner className='absolute text-xl' />}
             </Button>
           </DialogFooter>
         </DialogContent>
