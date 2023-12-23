@@ -11,7 +11,7 @@ import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
 export type SidebarUserListProps = {
-  data: (User & { stream: Stream | null })[];
+  data: (User & { stream: Pick<Stream, 'isLive'> | null })[];
   title?: string;
 };
 

@@ -13,7 +13,9 @@ export const getFollowedUsers = async () => {
             blocking: { none: { blockedUserId: currentUser.id } },
           },
         },
-        include: { followedUser: { include: { stream: true } } },
+        include: {
+          followedUser: { include: { stream: { select: { isLive: true } } } },
+        },
       })
     ).map(({ followedUser }) => followedUser);
   } catch (err) {
