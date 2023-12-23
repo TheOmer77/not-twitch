@@ -4,7 +4,7 @@ import type { Appearance } from '@clerk/types';
 
 export const clerkTheme: Appearance = {
   elements: {
-    card: 'bg-card text-card-foreground shadow-md',
+    card: 'bg-popover text-popover-foreground shadow-md',
     userPreviewSecondaryIdentifier: 'text-muted-foreground',
     userButtonPopoverActionButtonText: 'text-card-foreground',
     userButtonPopoverActionButtonIcon: 'text-muted-foreground',
@@ -13,7 +13,7 @@ export const clerkTheme: Appearance = {
     socialButtonsBlockButtonText: 'text-foreground',
     formFieldLabel: 'text-muted-foreground',
     formFieldInput: 'bg-background text-inherit',
-    formButtonPrimary: cn(buttonVariants({ variant: 'default' })),
+    formButtonPrimary: cn(buttonVariants({ variant: 'primary' })),
     footerActionText: 'text-foreground',
     footerActionLink: 'text-primary font-medium hover:text-primary',
   },
