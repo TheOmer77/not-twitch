@@ -42,7 +42,11 @@ export const DeleteConnectionDialog = () => {
 
   return (
     <>
-      <Button variant='destructive' onClick={() => setDialogOpen(true)}>
+      <Button
+        variant='destructive'
+        onClick={() => setDialogOpen(true)}
+        className='ms-auto'
+      >
         Delete connection
       </Button>
 

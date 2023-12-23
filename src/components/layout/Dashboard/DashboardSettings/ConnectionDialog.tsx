@@ -61,6 +61,7 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
       <Button
         variant={isRegenerate ? 'secondary' : 'primary'}
         onClick={() => setDialogOpen(true)}
+        className={cn(isRegenerate && 'ms-auto')}
       >
         {isRegenerate ? 'Regenerate connection' : 'Generate connection'}
       </Button>
