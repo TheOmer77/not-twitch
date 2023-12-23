@@ -2,13 +2,16 @@ import { currentUser } from '@clerk/nextjs';
 
 import { db } from '@/lib/db';
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = async ({
+  includeStream,
+}: { includeStream?: boolean } = {}) => {
   const clerkUser = await currentUser();
   if (!clerkUser || !clerkUser.username)
     throw new Error("You're not logged in.");
 
   const dbUser = await db.user.findUnique({
     where: { externalUserId: clerkUser.id },
+    include: { stream: includeStream },
   });
   if (!dbUser)
     throw new Error(
