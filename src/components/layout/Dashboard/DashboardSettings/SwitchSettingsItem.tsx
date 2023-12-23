@@ -21,6 +21,7 @@ export const SwitchSettingsItem = ({
 
   const handleCheckedChange = useCallback(
     (checked: boolean) => {
+      if (!field) return;
       startTransition(async () => {
         try {
           await updateStreamSettings({ [field]: checked });
