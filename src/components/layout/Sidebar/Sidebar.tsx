@@ -5,9 +5,8 @@ import {
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from 'react';
-import { useMediaQuery } from 'usehooks-ts';
+import { useIsClient, useMediaQuery } from 'usehooks-ts';
 
-import { useIsClient } from '@/hooks';
 import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
