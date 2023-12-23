@@ -1,11 +1,9 @@
 import { SwitchSettingsItem } from '@/components/layout';
 import { Card } from '@/components/ui/Card';
-import { getStreamByUserId } from '@/queries/stream';
 import { getCurrentUser } from '@/services/auth';
 
 const DashboardChatPage = async () => {
-  const currentUser = await getCurrentUser(),
-    stream = await getStreamByUserId(currentUser.id);
+  const { stream } = await getCurrentUser({ includeStream: true });
   if (!stream) throw new Error("You don't have a stream.");
 
   return (
