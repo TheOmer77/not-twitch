@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { jwtDecode, type JwtPayload } from 'jwt-decode';
 
 import { useToast } from './useToast';
@@ -7,11 +7,13 @@ import { createViewerToken } from '@/actions/token';
 export const useViewerToken = (hostId: string) => {
   const [token, setToken] = useState(''),
     [name, setName] = useState(''),
-    [identity, setIdentity] = useState('');
+    [identity, setIdentity] = useState(''),
+    [error, setError] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const { displayToast } = useToast();
 
   useEffect(() => {
-    const createToken = async () => {
+    startTransition(async () => {
       try {
         const viewerToken = await createViewerToken(hostId);
         setToken(viewerToken);
@@ -23,6 +25,7 @@ export const useViewerToken = (hostId: string) => {
         if (jti) setIdentity(jti);
         if (name) setName(name);
       } catch (err) {
+        setError(true);
         displayToast("Couldn't create token", {
           description:
             err instanceof Error
@@ -30,10 +33,13 @@ export const useViewerToken = (hostId: string) => {
               : 'Something went wrong while creating your user token.',
         });
       }
-    };
-
-    createToken();
+    });
   }, [displayToast, hostId]);
 
-  return { token, name, identity };
+  return {
+    token,
+    name,
+    identity,
+    isTokenPending: isPending || (!token && !error),
+  };
 };
