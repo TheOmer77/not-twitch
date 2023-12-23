@@ -1,9 +1,11 @@
 'use client';
 
+import { LiveKitRoom } from '@livekit/components-react';
 import type { Stream, User } from '@prisma/client';
 
 import { Spinner } from '@/components/ui/Spinner';
 import { useViewerToken } from '@/hooks';
+import { StreamVideo } from './StreamVideo';
 
 export type StreamPlayerProps = {
   user: User;
@@ -25,18 +27,19 @@ export const StreamPlayer = ({
     );
 
   if (!token || !name || !identity)
-    return (
-      <div>
-        Unable to watch this stream.
-        <pre>{JSON.stringify({ token, name, identity }, undefined, 2)}</pre>
-      </div>
-    );
+    return <div>Unable to watch this stream.</div>;
 
   return (
-    <div>
-      This stream player component isn&apos;t finished yet, but if it was, you
-      would have been able to watch this stream.
-      <pre>{JSON.stringify({ token, name, identity }, undefined, 2)}</pre>
-    </div>
+    <>
+      <LiveKitRoom
+        token={token}
+        serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
+        className='grid w-full grid-cols-1 lg:grid-cols-3 lg:gap-y-0 2xl:grid-cols-6'
+      >
+        <div className='hidden-scrollbar col-span-1 space-y-4 pb-10 lg:col-span-2 lg:overflow-y-auto 2xl:col-span-5'>
+          <StreamVideo hostName={user.username} hostId={user.id} />
+        </div>
+      </LiveKitRoom>
+    </>
   );
 };
