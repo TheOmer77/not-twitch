@@ -59,7 +59,7 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
   return (
     <>
       <Button
-        variant={isRegenerate ? 'secondary' : 'primary'}
+        variant={isRegenerate ? 'default' : 'primary'}
         onClick={() => setDialogOpen(true)}
         className={cn(isRegenerate && 'ms-auto')}
       >
@@ -103,9 +103,7 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant='secondary' disabled={isPending}>
-                Cancel
-              </Button>
+              <Button disabled={isPending}>Cancel</Button>
             </DialogClose>
             <Button
               variant='primary'

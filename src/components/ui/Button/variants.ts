@@ -8,13 +8,10 @@ focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50`,
   {
     variants: {
       variant: {
-        outline: `border border-input bg-background hover:bg-accent
-hover:text-accent-foreground`,
+        default: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         flat: 'hover:bg-accent/50 hover:text-accent-foreground',
       },
       size: {
@@ -24,6 +21,6 @@ hover:text-accent-foreground`,
         icon: 'h-10 w-10',
       },
     },
-    defaultVariants: { variant: 'outline', size: 'md' },
+    defaultVariants: { variant: 'default', size: 'md' },
   }
 );

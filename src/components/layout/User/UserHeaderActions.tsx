@@ -85,17 +85,13 @@ export const UserHeaderActions = ({
       {currentUser?.id !== userId && (
         <>
           <Button
-            variant={isFollowing ? 'secondary' : 'primary'}
+            variant={isFollowing ? 'default' : 'primary'}
             onClick={handleFollowClick}
             disabled={isPending}
           >
             {isFollowing ? 'Unfollow' : 'Follow'}
           </Button>
-          <Button
-            variant='secondary'
-            onClick={handleBlockClick}
-            disabled={isPending}
-          >
+          <Button onClick={handleBlockClick} disabled={isPending}>
             {isBlocking ? 'Unblock' : 'Block'}
           </Button>
         </>
