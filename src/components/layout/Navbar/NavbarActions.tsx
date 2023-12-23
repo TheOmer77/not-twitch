@@ -2,13 +2,20 @@ import { currentUser, SignInButton, UserButton } from '@clerk/nextjs';
 
 import { Button } from '@/components/ui/Button';
 import { DashboardButton } from './DashboardButton';
+import { getCurrentUser } from '@/services/auth';
+import type { User } from '@prisma/client';
 
 export const NavbarActions = async () => {
-  const user = await currentUser();
+  let currentUser: User | null;
+  try {
+    currentUser = await getCurrentUser();
+  } catch (error) {
+    currentUser = null;
+  }
 
   return (
     <div className='flex items-center justify-end gap-2'>
-      {user && typeof user.username === 'string' ? (
+      {currentUser && typeof currentUser.username === 'string' ? (
         <>
           <DashboardButton />
           <UserButton afterSignOutUrl='/' />
