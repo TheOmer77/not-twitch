@@ -1,6 +1,6 @@
 'use client';
 
-import type { User } from '@prisma/client';
+import type { Stream, User } from '@prisma/client';
 
 import {
   BrowseSidebarUserItem,
@@ -11,7 +11,7 @@ import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
 export type SidebarUserListProps = {
-  data: User[];
+  data: (User & { stream: Stream | null })[];
   title?: string;
 };
 
@@ -31,12 +31,12 @@ export const BrowseSidebarUsers = ({ data, title }: SidebarUserListProps) => {
             {title}
           </h2>
         )}
-        {data.map(({ id, username, imageUrl }) => (
+        {data.map(({ id, username, imageUrl, stream }) => (
           <BrowseSidebarUserItem
             key={id}
             username={username}
             imageUrl={imageUrl}
-            isLive={false}
+            isLive={stream?.isLive}
           />
         ))}
       </div>
