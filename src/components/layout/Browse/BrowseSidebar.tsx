@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { SidebarCollapseToggle } from '../Sidebar/SidebarCollapseToggle';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { BrowseSidebarUsers } from './BrowseSidebarUsers';
-import { getRecommended } from '@/services/recommended';
+import { getRecommended } from '@/queries/recommended';
 import { getFollowedUsers } from '@/queries/follow';
 import { BrowseSidebarSkeleton } from './BrowseSidebarSkeleton';
 
