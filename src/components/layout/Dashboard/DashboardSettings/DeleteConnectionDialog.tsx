@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from '@/components/ui/Dialog';
 import { Spinner } from '@/components/ui/Spinner';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks';
 import { deleteIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
 

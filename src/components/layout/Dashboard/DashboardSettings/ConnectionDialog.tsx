@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from '@/components/ui/Select';
 import { Spinner } from '@/components/ui/Spinner';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks';
 import { createIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
 

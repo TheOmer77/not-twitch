@@ -3,8 +3,7 @@
 import { useTransition } from 'react';
 
 import { Button } from '@/components/ui/Button';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { useToast } from '@/hooks/useToast';
+import { useCurrentUser, useToast } from '@/hooks';
 import { followUser, unfollowUser } from '@/actions/follow';
 import { blockUser, unblockUser } from '@/actions/block';
 

@@ -5,7 +5,7 @@ import { ToastClose } from './ToastClose';
 import { ToastDescription } from './ToastDescription';
 import { ToastTitle } from './ToastTitle';
 import { ToastViewport } from './ToastViewport';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks';
 
 export const Toaster = () => {
   const { toasts } = useToast();

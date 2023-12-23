@@ -3,7 +3,7 @@
 import { useCallback, useTransition } from 'react';
 
 import { Switch } from '@/components/ui/Switch';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks';
 import { updateStreamSettings } from '@/actions/stream';
 import { SettingsItem, type SettingsItemProps } from './SettingsItem';
 
