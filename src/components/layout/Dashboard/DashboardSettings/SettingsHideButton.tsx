@@ -19,7 +19,7 @@ export const SettingsHideButton = ({
   const Icon = value ? EyeOffIcon : EyeIcon;
 
   return (
-    <Tooltip label='Copy'>
+    <Tooltip label={value ? 'Show' : 'Hide'}>
       <Button
         variant='flat'
         size='icon'
