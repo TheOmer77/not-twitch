@@ -21,6 +21,7 @@ export const StreamFullscreenControl = ({
       <Button
         variant='flat'
         size='icon'
+        className='text-white hover:bg-white/15 hover:text-white'
         onClick={() => onFullscreenChange?.(!isFullscreen)}
       >
         <Icon className='h-4 w-4' />

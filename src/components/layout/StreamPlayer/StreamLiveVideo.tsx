@@ -89,7 +89,7 @@ export const StreamLiveVideo = ({ participant }: StreamLiveVideoProps) => {
       />
       <div
         className='absolute bottom-0 flex h-14 w-full items-center
-justify-between bg-gradient-to-t from-neutral-900 px-2 opacity-0
+justify-between bg-gradient-to-t from-black px-2 opacity-0
 transition-opacity group-hover:opacity-100'
       >
         <StreamVolumeControl
