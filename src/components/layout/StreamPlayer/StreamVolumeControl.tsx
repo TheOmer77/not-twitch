@@ -50,6 +50,7 @@ export const StreamVolumeControl = ({
         </Button>
       </Tooltip>
       <Slider
+        variant='light'
         value={[muted ? 0 : value]}
         onValueChange={handleValueChange}
         max={100}
