@@ -3,19 +3,12 @@
 import Link from 'next/link';
 
 import Logo from '@/components/Logo';
-import { cn } from '@/lib/utils';
-import { useSidebar } from '@/store/useSidebar';
 
 export const NavbarLogo = () => {
-  const sidebarCollapsed = useSidebar(state => state.collapsed);
-
   return (
     <div
-      className={cn(
-        `flex h-full w-20 flex-row items-center justify-center gap-4 bg-card
-lg:w-80 lg:justify-start lg:ps-4`,
-        sidebarCollapsed && 'lg:w-20 lg:justify-center lg:ps-0'
-      )}
+      className='flex h-full w-20 flex-row items-center justify-center gap-4
+bg-card lg:w-80 lg:justify-start lg:ps-4'
     >
       <Link href='/'>
         <Logo

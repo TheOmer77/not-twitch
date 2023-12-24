@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 
-import { SidebarCollapseToggle } from '../Sidebar/SidebarCollapseToggle';
-import { Sidebar } from '../Sidebar/Sidebar';
+import { Sidebar } from '../Sidebar';
 import { BrowseSidebarUsers } from './BrowseSidebarUsers';
 import { getRecommended } from '@/queries/recommended';
 import { getFollowedUsers } from '@/queries/follow';
@@ -14,7 +13,6 @@ export const BrowseSidebar = async () => {
   return (
     <Suspense fallback={<BrowseSidebarSkeleton />}>
       <Sidebar skeleton={<BrowseSidebarSkeleton />}>
-        <SidebarCollapseToggle />
         <BrowseSidebarUsers title='Followed' data={followed} />
         <BrowseSidebarUsers title='Recommended' data={recommended} />
       </Sidebar>

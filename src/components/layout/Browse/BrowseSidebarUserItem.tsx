@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useMediaQuery } from 'usehooks-ts';
 
 import { LiveBadge } from './LiveBadge';
 import { UserAvatar, type UserAvatarProps } from '@/components/layout/User';
 import { Button } from '@/components/ui/Button';
 import { AvatarSkeleton, Skeleton } from '@/components/ui/Skeleton';
-import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
 export type UserItemProps = Pick<
@@ -19,7 +19,7 @@ export const BrowseSidebarUserItem = ({
   isLive,
 }: UserItemProps) => {
   const pathname = usePathname();
-  const sidebarCollapsed = useSidebar(state => state.collapsed);
+  const matchesLg = useMediaQuery('(min-width: 1024px)');
 
   const href = `/${username}`;
   const isActive = pathname === href;
@@ -28,12 +28,8 @@ export const BrowseSidebarUserItem = ({
     <Button
       asChild
       variant='flat'
-      size={sidebarCollapsed ? 'icon' : 'md'}
-      className={cn(
-        'gap-2',
-        isActive && 'bg-accent',
-        !sidebarCollapsed && 'justify-start'
-      )}
+      size={matchesLg ? 'md' : 'icon'}
+      className={cn('gap-2 lg:justify-start', isActive && 'bg-accent')}
     >
       <Link href={href}>
         <UserAvatar
@@ -42,8 +38,8 @@ export const BrowseSidebarUserItem = ({
           isLive={isLive}
           className='ring-offset-card'
         />
-        {!sidebarCollapsed && <span className='grow'>{username}</span>}
-        {!sidebarCollapsed && isLive && <LiveBadge />}
+        <span className='hidden grow lg:inline'>{username}</span>
+        {isLive && <LiveBadge className='hidden lg:inline' />}
       </Link>
     </Button>
   );

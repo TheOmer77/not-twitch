@@ -7,42 +7,33 @@ import {
   BrowseSidebarUserItemSkeleton,
 } from './BrowseSidebarUserItem';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { useSidebar } from '@/store/useSidebar';
-import { cn } from '@/lib/utils';
 
 export type SidebarUserListProps = {
   data: (User & { stream: Pick<Stream, 'isLive'> | null })[];
   title?: string;
 };
 
-export const BrowseSidebarUsers = ({ data, title }: SidebarUserListProps) => {
-  const collapsed = useSidebar(state => state.collapsed);
-
-  return (
-    data.length > 0 && (
-      <div
-        className={cn(
-          'flex w-full flex-col gap-px',
-          collapsed ? 'items-center' : 'items-stretch'
-        )}
-      >
-        {typeof title === 'string' && !collapsed && (
-          <h2 className='mb-2 p-2 text-sm font-semibold tracking-tight text-muted-foreground'>
-            {title}
-          </h2>
-        )}
-        {data.map(({ id, username, imageUrl, stream }) => (
-          <BrowseSidebarUserItem
-            key={id}
-            username={username}
-            imageUrl={imageUrl}
-            isLive={stream?.isLive}
-          />
-        ))}
-      </div>
-    )
+export const BrowseSidebarUsers = ({ data, title }: SidebarUserListProps) =>
+  data.length > 0 && (
+    <div className='flex w-full flex-col items-center gap-px lg:items-stretch'>
+      {typeof title === 'string' && (
+        <h2
+          className='mb-2 hidden p-2 text-sm font-semibold tracking-tight
+text-muted-foreground lg:block'
+        >
+          {title}
+        </h2>
+      )}
+      {data.map(({ id, username, imageUrl, stream }) => (
+        <BrowseSidebarUserItem
+          key={id}
+          username={username}
+          imageUrl={imageUrl}
+          isLive={stream?.isLive}
+        />
+      ))}
+    </div>
   );
-};
 
 export const BrowseSidebarUsersSkeleton = () => (
   <div className='flex w-full flex-col'>

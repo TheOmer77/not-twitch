@@ -5,9 +5,8 @@ import {
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from 'react';
-import { useIsClient, useMediaQuery } from 'usehooks-ts';
+import { useIsClient } from 'usehooks-ts';
 
-import { useSidebar } from '@/store/useSidebar';
 import { cn } from '@/lib/utils';
 
 export type SidebarProps = ComponentPropsWithoutRef<'aside'> & {
@@ -21,12 +20,6 @@ export const Sidebar = ({
   ...props
 }: SidebarProps) => {
   const isClient = useIsClient();
-  const matchesLg = useMediaQuery('(min-width: 1024px)');
-  const { collapsed, setCollapsed } = useSidebar();
-
-  useEffect(() => {
-    setCollapsed(!matchesLg);
-  }, [matchesLg, setCollapsed]);
 
   if (!isClient) return skeleton;
 
@@ -34,9 +27,8 @@ export const Sidebar = ({
     <aside
       {...props}
       className={cn(
-        `fixed start-0 z-20 flex h-full w-80 flex-col items-center gap-1
-bg-card p-2`,
-        collapsed && 'w-20',
+        `fixed start-0 z-20 flex h-full w-20 flex-col items-center gap-1 bg-card
+p-2 lg:w-80`,
         className
       )}
     >
