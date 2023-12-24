@@ -1,12 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Track, type Participant } from 'livekit-client';
-import { useTracks } from '@livekit/components-react';
+import { Track, type Participant, RoomEvent } from 'livekit-client';
+import { useMaybeRoomContext, useTracks } from '@livekit/components-react';
 import { useEventListener } from 'usehooks-ts';
 
 import { StreamFullscreenControl } from './StreamFullscreenControl';
+import { StreamInteractionNeeded } from './StreamInteractionNeeded';
 import { StreamVolumeControl } from './StreamVolumeControl';
+import { cn } from '@/lib/utils';
 
 export type StreamLiveVideoProps = {
   participant: Participant;
@@ -15,7 +17,22 @@ export type StreamLiveVideoProps = {
 export const StreamLiveVideo = ({ participant }: StreamLiveVideoProps) => {
   const [volume, setVolume] = useState(100),
     [muted, setMuted] = useState(true),
-    [isFullscreen, setIsFullscreen] = useState(false);
+    [isFullscreen, setIsFullscreen] = useState(false),
+    [interactionNeeded, setInteractionNeeded] = useState(false);
+
+  const room = useMaybeRoomContext();
+
+  useEffect(() => {
+    if (!room) return;
+
+    /* By default browsers block audio autoplay until the user interacts
+    with the page. In this case display a button to manually play audio. */
+    const listener = () => setInteractionNeeded(!room.canPlaybackAudio);
+    room.on(RoomEvent.AudioPlaybackStatusChanged, listener);
+    return () => {
+      room.off(RoomEvent.AudioPlaybackStatusChanged, listener);
+    };
+  }, [room]);
 
   const wrapperRef = useRef<HTMLDivElement>(null),
     videoRef = useRef<HTMLVideoElement>(null);
@@ -40,7 +57,7 @@ export const StreamLiveVideo = ({ participant }: StreamLiveVideoProps) => {
   }, []);
 
   useEffect(() => {
-    handleMutedChange(true);
+    handleMutedChange(false);
   }, [handleMutedChange]);
 
   useEffect(() => {
@@ -64,7 +81,12 @@ export const StreamLiveVideo = ({ participant }: StreamLiveVideoProps) => {
 
   return (
     <div ref={wrapperRef} className='group relative flex h-full'>
-      <video ref={videoRef} width='100%' />
+      {interactionNeeded && <StreamInteractionNeeded />}
+      <video
+        ref={videoRef}
+        width='100%'
+        className={cn('transition-[filter]', interactionNeeded && 'blur-lg')}
+      />
       <div
         className='absolute bottom-0 flex h-14 w-full items-center
 justify-between bg-gradient-to-t from-neutral-900 px-2 opacity-0
