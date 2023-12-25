@@ -2,15 +2,18 @@
 
 import {
   useCallback,
+  useEffect,
+  useMemo,
   useRef,
   useState,
   useTransition,
   type FormEventHandler,
-  useEffect,
 } from 'react';
 import { useChat } from '@livekit/components-react';
+import { InfoIcon } from 'lucide-react';
 
 import { Input } from '@/components/ui/Input';
+import { Tooltip } from '@/components/ui/Tooltip';
 
 export type StreamChatInputProps = {
   isChatEnabled: boolean;
@@ -35,6 +38,29 @@ export const StreamChatInput = ({
 
   const disabled =
     isSending || isDelayBlocked || (isFollowersOnly && !isFollowing);
+
+  const infoMsg = useMemo(
+      () =>
+        isDelayed && isFollowersOnly
+          ? 'Followers only & slow mode'
+          : isDelayed
+            ? 'Slow mode'
+            : isFollowersOnly
+              ? 'Followers only'
+              : null,
+      [isDelayed, isFollowersOnly]
+    ),
+    infoTooltip = useMemo(
+      () =>
+        isDelayed && isFollowersOnly
+          ? 'Messages can only be sent every 3 seconds, by followers only.'
+          : isDelayed
+            ? 'Messages can only be sent every 3 seconds.'
+            : isFollowersOnly
+              ? 'Only followers can chat.'
+              : null,
+      [isDelayed, isFollowersOnly]
+    );
 
   const handleSubmit = useCallback<FormEventHandler>(
     e => {
@@ -69,6 +95,17 @@ export const StreamChatInput = ({
 
   return (
     <form onSubmit={handleSubmit}>
+      {infoMsg && (
+        <span
+          className='mb-2 flex flex-row items-center gap-2 px-2 text-sm
+text-muted-foreground'
+        >
+          <Tooltip label={infoTooltip}>
+            <InfoIcon className='h-4 w-4 shrink-0' />
+          </Tooltip>
+          {infoMsg}
+        </span>
+      )}
       <Input
         ref={inputRef}
         value={value}
