@@ -71,7 +71,7 @@ export const StreamChat = ({
   );
 
   useEffect(() => {
-    setCollapsed(!matchesLg);
+    if (!matchesLg) setCollapsed(false);
   }, [matchesLg, setCollapsed]);
 
   return (
