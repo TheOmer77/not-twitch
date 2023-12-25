@@ -20,9 +20,17 @@ export const StreamChatMessages = ({
   );
 
   return !isOnline ? (
-    <p className='text-sm text-muted-foreground'>This stream is offline.</p>
+    <p
+      className='flex flex-grow items-center justify-center text-sm
+text-muted-foreground'
+    >
+      This stream is offline.
+    </p>
   ) : !isChatEnabled ? (
-    <p className='text-sm text-muted-foreground'>
+    <p
+      className='flex flex-grow items-center justify-center text-sm
+text-muted-foreground'
+    >
       This stream&apos;s chat is disabled.
     </p>
   ) : (
