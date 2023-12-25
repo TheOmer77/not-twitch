@@ -34,4 +34,6 @@ export const POST = async (req: Request) => {
       break;
     }
   }
+
+  return new Response('', { status: 200 });
 };
