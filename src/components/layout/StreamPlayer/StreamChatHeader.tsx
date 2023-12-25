@@ -1,22 +1,22 @@
-import { ArrowRightToLineIcon, UsersRoundIcon } from 'lucide-react';
+import { UsersRoundIcon } from 'lucide-react';
 
+import { StreamChatCollapseToggle } from './StreamChatCollapseToggle';
 import { Button } from '@/components/ui/Button';
 import { CardTitle } from '@/components/ui/Card';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { Tooltip } from '@/components/ui/Tooltip';
 
-export const StreamChatHeader = () => {
-  return (
-    <div className='relative flex flex-row items-center gap-2'>
-      <Button variant='flat' size='icon'>
-        <ArrowRightToLineIcon className='h-4 w-4' />
-      </Button>
-      <CardTitle className='grow'>Chat</CardTitle>
+export const StreamChatHeader = () => (
+  <div className='relative flex flex-row items-center gap-2'>
+    <StreamChatCollapseToggle />
+    <CardTitle className='grow'>Chat</CardTitle>
+    <Tooltip label='Community'>
       <Button variant='flat' size='icon'>
         <UsersRoundIcon className='h-4 w-4' />
       </Button>
-    </div>
-  );
-};
+    </Tooltip>
+  </div>
+);
 
 export const StreamChatHeaderSkeleton = () => (
   <div className='relative flex flex-row items-center gap-2'>
