@@ -68,7 +68,7 @@ export const StreamChatInput = ({
     e => {
       e.preventDefault();
       e.stopPropagation();
-      if (!send) return;
+      if (!send || value.length < 1) return;
 
       const submitMessage = async () => {
         setJustSent(true);
