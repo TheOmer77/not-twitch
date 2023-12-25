@@ -7,7 +7,7 @@ const DashboardHomePage = async () => {
 
   return (
     <div className='h-full'>
-      <StreamPlayer user={user} stream={stream} />
+      <StreamPlayer user={user} stream={stream} isFollowing={false} />
     </div>
   );
 };
