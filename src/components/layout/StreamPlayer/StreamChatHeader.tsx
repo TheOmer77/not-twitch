@@ -1,22 +1,24 @@
-import { UsersRoundIcon } from 'lucide-react';
+'use client';
 
 import { StreamChatCollapseToggle } from './StreamChatCollapseToggle';
-import { Button } from '@/components/ui/Button';
+import { StreamChatVariantToggle } from './StreamChatVariantToggle';
 import { CardTitle } from '@/components/ui/Card';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { Tooltip } from '@/components/ui/Tooltip';
+import { useChatSidebar } from '@/store/useChatSidebar';
 
-export const StreamChatHeader = () => (
-  <div className='relative flex flex-row items-center gap-2'>
-    <StreamChatCollapseToggle />
-    <CardTitle className='grow'>Chat</CardTitle>
-    <Tooltip label='Community'>
-      <Button variant='flat' size='icon'>
-        <UsersRoundIcon className='h-4 w-4' />
-      </Button>
-    </Tooltip>
-  </div>
-);
+export const StreamChatHeader = () => {
+  const { variant } = useChatSidebar();
+
+  return (
+    <div className='relative flex flex-row items-center gap-2'>
+      <StreamChatCollapseToggle />
+      <CardTitle className='grow'>
+        {variant === 'community' ? 'Community' : 'Chat'}
+      </CardTitle>
+      <StreamChatVariantToggle />
+    </div>
+  );
+};
 
 export const StreamChatHeaderSkeleton = () => (
   <div className='relative flex flex-row items-center gap-2'>
