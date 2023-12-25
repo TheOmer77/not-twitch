@@ -47,6 +47,9 @@ export const StreamChat = ({
 
   const { chatMessages: messages } = useChat();
 
+  const isOnline =
+    !!participant && connectionState === ConnectionState.Connected;
+
   const reversedMessages = useMemo(
     () => [...messages].sort((a, b) => a.timestamp - b.timestamp),
     [messages]
@@ -61,6 +64,8 @@ export const StreamChat = ({
       <StreamChatHeader />
       {variant === 'community' ? (
         <p className='text-sm text-muted-foreground'>Community TBD</p>
+      ) : !isOnline ? (
+        <p className='text-sm text-muted-foreground'>{hostName} is offline.</p>
       ) : !isChatEnabled ? (
         <p className='text-sm text-muted-foreground'>
           This stream&apos;s chat is disabled.
