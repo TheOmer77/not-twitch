@@ -17,7 +17,7 @@ import { ConnectionState } from 'livekit-client';
 import { useMediaQuery } from 'usehooks-ts';
 
 import { StreamChatHeader, StreamChatHeaderSkeleton } from './StreamChatHeader';
-import { Input } from '@/components/ui/Input';
+import { StreamChatInput } from './StreamChatInput';
 import { useChatSidebar } from '@/store/useChatSidebar';
 import { Card } from '@/components/ui/Card';
 
@@ -45,9 +45,7 @@ export const StreamChat = ({
   const connectionState = useConnectionState();
   const participant = useRemoteParticipant(hostId);
 
-  const [value, setValue] = useState('');
-  const [isSending, startTransition] = useTransition();
-  const { chatMessages: messages, send } = useChat();
+  const { chatMessages: messages } = useChat();
 
   const isOnline = participant && connectionState === ConnectionState.Connected;
   const isHidden = !isChatEnabled || !isOnline;
@@ -57,36 +55,26 @@ export const StreamChat = ({
     [messages]
   );
 
-  const handleSubmit = useCallback<FormEventHandler>(
-    e => {
-      e.preventDefault();
-      if (!send) return;
-
-      startTransition(async () => {
-        send(value);
-        setValue('');
-      });
-    },
-    [send, value]
-  );
-
   useEffect(() => {
     if (!matchesLg) setCollapsed(false);
   }, [matchesLg, setCollapsed]);
 
   return (
-    <Card className='flex h-[calc(100vh-6rem)] flex-col gap-2 p-2'>
+    <Card className='flex h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)] flex-col gap-2 p-2'>
       <StreamChatHeader />
-      <div className='grow'>
-        <span className='text-sm text-muted-foreground'>Actual chat TBD</span>
+      <div className='grow overflow-auto break-words'>
+        {reversedMessages.map(({ from, message, timestamp }) => (
+          <p key={`${from?.name}-${timestamp}`}>
+            {from?.name}: {message}
+          </p>
+        ))}
       </div>
-      <form onSubmit={handleSubmit}>
-        <Input
-          value={value}
-          onChange={e => setValue(e.target.value)}
-          placeholder='Send a message...'
-        />
-      </form>
+      <StreamChatInput
+        isHidden={isHidden}
+        isFollowersOnly={isChatFollowersOnly}
+        isDelayed={isChatDelayed}
+        isFollowing={isFollowing}
+      />
     </Card>
   );
 };
