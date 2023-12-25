@@ -18,6 +18,7 @@ import { useMediaQuery } from 'usehooks-ts';
 
 import { StreamChatHeader, StreamChatHeaderSkeleton } from './StreamChatHeader';
 import { StreamChatInput } from './StreamChatInput';
+import { StreamChatMessages } from './StreamChatMessages';
 import { useChatSidebar } from '@/store/useChatSidebar';
 import { Card } from '@/components/ui/Card';
 
@@ -45,15 +46,8 @@ export const StreamChat = ({
   const connectionState = useConnectionState();
   const participant = useRemoteParticipant(hostId);
 
-  const { chatMessages: messages } = useChat();
-
   const isOnline =
     !!participant && connectionState === ConnectionState.Connected;
-
-  const reversedMessages = useMemo(
-    () => [...messages].sort((a, b) => a.timestamp - b.timestamp),
-    [messages]
-  );
 
   useEffect(() => {
     if (!matchesLg) setCollapsed(false);
@@ -64,22 +58,14 @@ export const StreamChat = ({
       <StreamChatHeader />
       {variant === 'community' ? (
         <p className='text-sm text-muted-foreground'>Community TBD</p>
-      ) : !isOnline ? (
-        <p className='text-sm text-muted-foreground'>{hostName} is offline.</p>
-      ) : !isChatEnabled ? (
-        <p className='text-sm text-muted-foreground'>
-          This stream&apos;s chat is disabled.
-        </p>
       ) : (
         <>
-          <div className='grow overflow-auto break-words'>
-            {reversedMessages.map(({ from, message, timestamp }) => (
-              <p key={`${from?.name}-${timestamp}`}>
-                {from?.name}: {message}
-              </p>
-            ))}
-          </div>
+          <StreamChatMessages
+            isChatEnabled={isChatEnabled}
+            isOnline={isOnline}
+          />
           <StreamChatInput
+            isOnline={isOnline}
             isChatEnabled={isChatEnabled}
             isFollowersOnly={isChatFollowersOnly}
             isDelayed={isChatDelayed}

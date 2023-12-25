@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/Input';
 import { Tooltip } from '@/components/ui/Tooltip';
 
 export type StreamChatInputProps = {
+  isOnline: boolean;
   isChatEnabled: boolean;
   isFollowersOnly: boolean;
   isDelayed: boolean;
@@ -24,6 +25,7 @@ export type StreamChatInputProps = {
 
 export const StreamChatInput = ({
   // TODO: Context, no prop drilling
+  isOnline,
   isChatEnabled,
   isFollowersOnly,
   isDelayed,
@@ -91,7 +93,7 @@ export const StreamChatInput = ({
     setJustSent(false);
   }, [isSending, justSent]);
 
-  if (!isChatEnabled) return null;
+  if (!isOnline || !isChatEnabled) return null;
 
   return (
     <form onSubmit={handleSubmit}>
