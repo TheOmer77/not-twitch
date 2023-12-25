@@ -9,6 +9,7 @@ import { useViewerToken } from '@/hooks';
 import { useChatSidebar } from '@/store/useChatSidebar';
 import { cn } from '@/lib/utils';
 import { StreamChat } from './StreamChat';
+import { StreamChatCollapseToggle } from './StreamChatCollapseToggle';
 
 export type StreamPlayerProps = {
   user: User;
@@ -45,9 +46,15 @@ export const StreamPlayer = ({
         )}
       >
         <div
-          className='hidden-scrollbar col-span-1 space-y-4 pb-10 lg:col-span-2
+          className='hidden-scrollbar relative col-span-1 lg:col-span-2
 lg:overflow-y-auto 2xl:col-span-5'
         >
+          {collapsed && (
+            <StreamChatCollapseToggle
+              className='absolute end-2 top-2 z-10 hidden text-white
+hover:bg-white/15 hover:text-white lg:inline-flex'
+            />
+          )}
           <StreamVideo hostName={user.username} hostId={user.id} />
         </div>
         <div className={cn('col-span-1', collapsed && 'hidden')}>
