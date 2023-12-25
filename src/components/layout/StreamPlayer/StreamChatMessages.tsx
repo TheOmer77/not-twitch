@@ -3,6 +3,8 @@
 import { useMemo } from 'react';
 import { useChat } from '@livekit/components-react';
 
+import { StreamChatMessage } from './StreamChatMessage';
+
 export type StreamChatMessagesProps = {
   isChatEnabled: boolean;
   isOnline: boolean;
@@ -35,10 +37,12 @@ text-muted-foreground'
     </p>
   ) : (
     <div className='grow overflow-auto break-words'>
-      {messages.map(({ from, message, timestamp }) => (
-        <p key={`${from?.name}-${timestamp}`}>
-          {from?.name}: {message}
-        </p>
+      <p className='mb-2 text-sm text-muted-foreground'>Welcome to the chat!</p>
+      {messages.map(message => (
+        <StreamChatMessage
+          key={`${message.from?.name}-${message.timestamp}`}
+          data={message}
+        />
       ))}
     </div>
   );
