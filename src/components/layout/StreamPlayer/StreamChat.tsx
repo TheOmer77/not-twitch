@@ -47,9 +47,6 @@ export const StreamChat = ({
 
   const { chatMessages: messages } = useChat();
 
-  const isOnline = participant && connectionState === ConnectionState.Connected;
-  const isHidden = !isChatEnabled || !isOnline;
-
   const reversedMessages = useMemo(
     () => [...messages].sort((a, b) => a.timestamp - b.timestamp),
     [messages]
@@ -64,6 +61,10 @@ export const StreamChat = ({
       <StreamChatHeader />
       {variant === 'community' ? (
         <p className='text-sm text-muted-foreground'>Community TBD</p>
+      ) : !isChatEnabled ? (
+        <p className='text-sm text-muted-foreground'>
+          This stream&apos;s chat is disabled.
+        </p>
       ) : (
         <>
           <div className='grow overflow-auto break-words'>
@@ -74,7 +75,7 @@ export const StreamChat = ({
             ))}
           </div>
           <StreamChatInput
-            isHidden={isHidden}
+            isChatEnabled={isChatEnabled}
             isFollowersOnly={isChatFollowersOnly}
             isDelayed={isChatDelayed}
             isFollowing={isFollowing}
