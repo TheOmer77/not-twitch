@@ -18,6 +18,12 @@ const DashboardChatPage = async () => {
             checked={stream.isChatEnabled}
           />
           <SwitchSettingsItem
+            field='isChatEnabledOffline'
+            label='Enable offline chat'
+            description="Allow users to send messages in your chat, even when you're not live."
+            checked={stream.isChatEnabledOffline}
+          />
+          <SwitchSettingsItem
             field='isChatDelayed'
             label='Slow mode'
             description='Only allow users to send messages in chat every 3 seconds.'

@@ -10,6 +10,7 @@ export const updateStreamSettings = async ({
   name,
   isChatDelayed,
   isChatEnabled,
+  isChatEnabledOffline,
   isChatFollowersOnly,
 }: Partial<Stream>) => {
   const currentUser = await getCurrentUser(),
@@ -19,6 +20,7 @@ export const updateStreamSettings = async ({
   const updatableData = {
     isChatDelayed,
     isChatEnabled,
+    isChatEnabledOffline,
     isChatFollowersOnly,
     name,
   };

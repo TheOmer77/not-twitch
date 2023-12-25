@@ -7,7 +7,7 @@ const DashboardChatLoading = () => (
     <Skeleton className='mb-4 h-10 w-60' />
     <Card>
       <ul className='flex w-full flex-col gap-px'>
-        {[...Array(3).keys()].map(key => (
+        {[...Array(4).keys()].map(key => (
           <SettingsItemSkeleton key={key} withDescription />
         ))}
       </ul>

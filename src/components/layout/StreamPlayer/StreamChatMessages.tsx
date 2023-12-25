@@ -12,12 +12,14 @@ import { cn } from '@/lib/utils';
 
 export type StreamChatMessagesProps = {
   isChatEnabled: boolean;
+  isChatEnabledOffline: boolean;
   isOnline: boolean;
 };
 
 export const StreamChatMessages = ({
   // TODO: Context, no prop drilling
   isChatEnabled,
+  isChatEnabledOffline,
   isOnline,
 }: StreamChatMessagesProps) => {
   const listRef = useRef<HTMLUListElement>(null);
@@ -49,19 +51,19 @@ export const StreamChatMessages = ({
     if (scrolledToBottom) scrollToBottom();
   }, [messages.length, scrolledToBottom]);
 
-  return !isOnline ? (
-    <p
-      className='flex flex-grow items-center justify-center text-sm
-text-muted-foreground'
-    >
-      This stream is offline.
-    </p>
-  ) : !isChatEnabled ? (
+  return !isChatEnabled ? (
     <p
       className='flex flex-grow items-center justify-center text-sm
 text-muted-foreground'
     >
       This stream&apos;s chat is disabled.
+    </p>
+  ) : !isOnline && !isChatEnabledOffline ? (
+    <p
+      className='flex flex-grow items-center justify-center text-sm
+text-muted-foreground'
+    >
+      This stream is offline.
     </p>
   ) : (
     <div className='relative flex grow flex-col overflow-auto'>

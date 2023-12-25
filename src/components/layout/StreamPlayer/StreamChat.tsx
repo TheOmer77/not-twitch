@@ -28,16 +28,19 @@ export type StreamChatProps = {
   hostId: string;
   isFollowing: boolean;
   isChatEnabled: boolean;
+  isChatEnabledOffline: boolean;
   isChatDelayed: boolean;
   isChatFollowersOnly: boolean;
 };
 
 export const StreamChat = ({
+  // TODO: Context, no prop drilling
   viewerName,
   hostName,
   hostId,
   isFollowing,
   isChatEnabled,
+  isChatEnabledOffline,
   isChatDelayed,
   isChatFollowersOnly,
 }: StreamChatProps) => {
@@ -62,11 +65,13 @@ export const StreamChat = ({
         <>
           <StreamChatMessages
             isChatEnabled={isChatEnabled}
+            isChatEnabledOffline={isChatEnabledOffline}
             isOnline={isOnline}
           />
           <StreamChatInput
             isOnline={isOnline}
             isChatEnabled={isChatEnabled}
+            isChatEnabledOffline={isChatEnabledOffline}
             isFollowersOnly={isChatFollowersOnly}
             isDelayed={isChatDelayed}
             isFollowing={isFollowing}

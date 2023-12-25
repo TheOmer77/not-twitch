@@ -64,6 +64,7 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
             hostId={user.id}
             isFollowing={isFollowing}
             isChatEnabled={stream.isChatEnabled}
+            isChatEnabledOffline={stream.isChatEnabledOffline}
             isChatDelayed={stream.isChatDelayed}
             isChatFollowersOnly={stream.isChatFollowersOnly}
           />
