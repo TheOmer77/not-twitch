@@ -3,8 +3,10 @@ import type { ReceivedChatMessage } from '@livekit/components-react';
 export type StreamChatMessageProps = { data: ReceivedChatMessage };
 
 export const StreamChatMessage = ({ data }: StreamChatMessageProps) => (
-  <p className='text-sm'>
-    <span className='font-semibold'>{data.from?.name}: </span>
+  <li className='mb-2 text-sm'>
+    <span className='me-2 font-semibold text-muted-foreground'>
+      {data.from?.name}
+    </span>
     {data.message}
-  </p>
+  </li>
 );
