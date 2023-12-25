@@ -62,19 +62,25 @@ export const StreamChat = ({
   return (
     <Card className='flex h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)] flex-col gap-2 p-2'>
       <StreamChatHeader />
-      <div className='grow overflow-auto break-words'>
-        {reversedMessages.map(({ from, message, timestamp }) => (
-          <p key={`${from?.name}-${timestamp}`}>
-            {from?.name}: {message}
-          </p>
-        ))}
-      </div>
-      <StreamChatInput
-        isHidden={isHidden}
-        isFollowersOnly={isChatFollowersOnly}
-        isDelayed={isChatDelayed}
-        isFollowing={isFollowing}
-      />
+      {variant === 'community' ? (
+        <p className='text-sm text-muted-foreground'>Community TBD</p>
+      ) : (
+        <>
+          <div className='grow overflow-auto break-words'>
+            {reversedMessages.map(({ from, message, timestamp }) => (
+              <p key={`${from?.name}-${timestamp}`}>
+                {from?.name}: {message}
+              </p>
+            ))}
+          </div>
+          <StreamChatInput
+            isHidden={isHidden}
+            isFollowersOnly={isChatFollowersOnly}
+            isDelayed={isChatDelayed}
+            isFollowing={isFollowing}
+          />
+        </>
+      )}
     </Card>
   );
 };
