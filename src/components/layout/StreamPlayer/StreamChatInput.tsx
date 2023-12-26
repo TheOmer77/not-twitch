@@ -14,56 +14,49 @@ import { InfoIcon } from 'lucide-react';
 
 import { Input } from '@/components/ui/Input';
 import { Tooltip } from '@/components/ui/Tooltip';
+import { useStream } from '@/hooks';
 
-export type StreamChatInputProps = {
-  isOnline: boolean;
-  isChatEnabled: boolean;
-  isChatEnabledOffline: boolean;
-  isFollowersOnly: boolean;
-  isDelayed: boolean;
-  isFollowing: boolean;
-};
-
-export const StreamChatInput = ({
-  // TODO: Context, no prop drilling
-  isOnline,
-  isChatEnabled,
-  isChatEnabledOffline,
-  isFollowersOnly,
-  isDelayed,
-  isFollowing,
-}: StreamChatInputProps) => {
+export const StreamChatInput = () => {
   const [value, setValue] = useState(''),
     [isDelayBlocked, setIsDelayBlocked] = useState(false),
     [justSent, setJustSent] = useState(false);
   const [isSending, startTransition] = useTransition();
-  const { send } = useChat();
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const {
+    isOnline,
+    isChatEnabled,
+    isChatEnabledOffline,
+    isChatFollowersOnly,
+    isChatDelayed,
+    isFollowing,
+  } = useStream();
+  const { send } = useChat();
+
   const disabled =
-    isSending || isDelayBlocked || (isFollowersOnly && !isFollowing);
+    isSending || isDelayBlocked || (isChatFollowersOnly && !isFollowing);
 
   const infoMsg = useMemo(
       () =>
-        isDelayed && isFollowersOnly
+        isChatDelayed && isChatFollowersOnly
           ? 'Followers only & slow mode'
-          : isDelayed
+          : isChatDelayed
             ? 'Slow mode'
-            : isFollowersOnly
+            : isChatFollowersOnly
               ? 'Followers only'
               : null,
-      [isDelayed, isFollowersOnly]
+      [isChatDelayed, isChatFollowersOnly]
     ),
     infoTooltip = useMemo(
       () =>
-        isDelayed && isFollowersOnly
+        isChatDelayed && isChatFollowersOnly
           ? 'Messages can only be sent every 3 seconds, by followers only.'
-          : isDelayed
+          : isChatDelayed
             ? 'Messages can only be sent every 3 seconds.'
-            : isFollowersOnly
+            : isChatFollowersOnly
               ? 'Only followers can chat.'
               : null,
-      [isDelayed, isFollowersOnly]
+      [isChatDelayed, isChatFollowersOnly]
     );
 
   const handleSubmit = useCallback<FormEventHandler>(
@@ -78,7 +71,7 @@ export const StreamChatInput = ({
         setValue('');
       };
 
-      if (isDelayed && !isDelayBlocked) {
+      if (isChatDelayed && !isDelayBlocked) {
         setIsDelayBlocked(true);
         setTimeout(() => {
           setIsDelayBlocked(false);
@@ -86,7 +79,7 @@ export const StreamChatInput = ({
         }, 3000);
       } else startTransition(submitMessage);
     },
-    [isDelayBlocked, isDelayed, send, value]
+    [isDelayBlocked, isChatDelayed, send, value]
   );
 
   useEffect(() => {

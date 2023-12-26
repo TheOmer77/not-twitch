@@ -1,3 +1,5 @@
+export * from './StreamProvider';
+
 import type { PropsWithChildren } from 'react';
 
 import { CurrentUserProvider } from './CurrentUserProvider';

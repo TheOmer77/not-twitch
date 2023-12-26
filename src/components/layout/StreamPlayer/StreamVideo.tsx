@@ -6,16 +6,14 @@ import {
   useRemoteParticipant,
   useTracks,
 } from '@livekit/components-react';
+
 import { StreamLiveVideo } from './StreamLiveVideo';
 import { StreamLoadingState } from './StreamLoadingState';
 import { StreamOfflineState } from './StreamOfflineState';
+import { useStream } from '@/hooks';
 
-export type StreamVideoProps = {
-  hostName: string;
-  hostId: string;
-};
-
-export const StreamVideo = ({ hostName, hostId }: StreamVideoProps) => {
+export const StreamVideo = () => {
+  const { hostId, hostName } = useStream();
   const connectionState = useConnectionState(),
     participant = useRemoteParticipant(hostId),
     tracks = useTracks([Track.Source.Camera, Track.Source.Microphone]).filter(
@@ -32,7 +30,7 @@ bg-neutral-950 text-neutral-100 dark:border'
       ) : !participant || tracks.length < 1 ? (
         <StreamLoadingState />
       ) : (
-        <StreamLiveVideo participant={participant} />
+        <StreamLiveVideo />
       )}
     </div>
   );

@@ -1,26 +1,29 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Track, type Participant, RoomEvent } from 'livekit-client';
-import { useMaybeRoomContext, useTracks } from '@livekit/components-react';
+import { Track, RoomEvent, type RemoteParticipant } from 'livekit-client';
+import {
+  useMaybeRoomContext,
+  useRemoteParticipant,
+  useTracks,
+} from '@livekit/components-react';
 import { useEventListener } from 'usehooks-ts';
 
 import { StreamFullscreenControl } from './StreamFullscreenControl';
 import { StreamInteractionNeeded } from './StreamInteractionNeeded';
 import { StreamVolumeControl } from './StreamVolumeControl';
+import { useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
 
-export type StreamLiveVideoProps = {
-  participant: Participant;
-};
-
-export const StreamLiveVideo = ({ participant }: StreamLiveVideoProps) => {
+export const StreamLiveVideo = () => {
   const [volume, setVolume] = useState(100),
     [muted, setMuted] = useState(true),
     [isFullscreen, setIsFullscreen] = useState(false),
     [interactionNeeded, setInteractionNeeded] = useState(false);
 
-  const room = useMaybeRoomContext();
+  const { hostId } = useStream();
+  const participant = useRemoteParticipant(hostId) as RemoteParticipant,
+    room = useMaybeRoomContext();
 
   useEffect(() => {
     if (!room) return;

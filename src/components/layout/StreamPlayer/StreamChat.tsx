@@ -1,56 +1,17 @@
 'use client';
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  useTransition,
-  type FormEventHandler,
-} from 'react';
-import {
-  useChat,
-  useConnectionState,
-  useRemoteParticipant,
-} from '@livekit/components-react';
-import { ConnectionState } from 'livekit-client';
+import { useEffect } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 
-import { StreamChatHeader, StreamChatHeaderSkeleton } from './StreamChatHeader';
+import { StreamChatHeader } from './StreamChatHeader';
 import { StreamChatInput } from './StreamChatInput';
 import { StreamChatMessages } from './StreamChatMessages';
 import { useChatSidebar } from '@/store/useChatSidebar';
 import { Card } from '@/components/ui/Card';
 
-export type StreamChatProps = {
-  viewerName: string;
-  hostName: string;
-  hostId: string;
-  isFollowing: boolean;
-  isChatEnabled: boolean;
-  isChatEnabledOffline: boolean;
-  isChatDelayed: boolean;
-  isChatFollowersOnly: boolean;
-};
-
-export const StreamChat = ({
-  // TODO: Context, no prop drilling
-  viewerName,
-  hostName,
-  hostId,
-  isFollowing,
-  isChatEnabled,
-  isChatEnabledOffline,
-  isChatDelayed,
-  isChatFollowersOnly,
-}: StreamChatProps) => {
+export const StreamChat = () => {
   const matchesLg = useMediaQuery('(min-width: 1024px)');
   const { variant, setCollapsed } = useChatSidebar();
-  const connectionState = useConnectionState();
-  const participant = useRemoteParticipant(hostId);
-
-  const isOnline =
-    !!participant && connectionState === ConnectionState.Connected;
 
   useEffect(() => {
     if (!matchesLg) setCollapsed(false);
@@ -63,19 +24,8 @@ export const StreamChat = ({
         <p className='text-sm text-muted-foreground'>Community TBD</p>
       ) : (
         <>
-          <StreamChatMessages
-            isChatEnabled={isChatEnabled}
-            isChatEnabledOffline={isChatEnabledOffline}
-            isOnline={isOnline}
-          />
-          <StreamChatInput
-            isOnline={isOnline}
-            isChatEnabled={isChatEnabled}
-            isChatEnabledOffline={isChatEnabledOffline}
-            isFollowersOnly={isChatFollowersOnly}
-            isDelayed={isChatDelayed}
-            isFollowing={isFollowing}
-          />
+          <StreamChatMessages />
+          <StreamChatInput />
         </>
       )}
     </Card>

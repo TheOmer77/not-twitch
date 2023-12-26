@@ -8,22 +8,13 @@ import 'scrollyfills';
 
 import { StreamChatMessage } from './StreamChatMessage';
 import { Button } from '@/components/ui/Button';
+import { useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
 
-export type StreamChatMessagesProps = {
-  isChatEnabled: boolean;
-  isChatEnabledOffline: boolean;
-  isOnline: boolean;
-};
-
-export const StreamChatMessages = ({
-  // TODO: Context, no prop drilling
-  isChatEnabled,
-  isChatEnabledOffline,
-  isOnline,
-}: StreamChatMessagesProps) => {
+export const StreamChatMessages = () => {
   const listRef = useRef<HTMLUListElement>(null);
   const [scrolledToBottom, setScrolledToBottom] = useState(true);
+  const { isChatEnabled, isChatEnabledOffline, isOnline } = useStream();
   const { chatMessages } = useChat();
   const messages = useMemo(
     () => [...chatMessages].sort((a, b) => a.timestamp - b.timestamp),
