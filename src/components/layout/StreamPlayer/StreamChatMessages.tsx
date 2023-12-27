@@ -63,7 +63,7 @@ text-muted-foreground'
   ) : (
     <ScrollArea
       viewportRef={scrollAreaRef}
-      className='relative flex grow flex-col'
+      className='relative flex flex-grow flex-col'
     >
       <ul className='flex-grow break-words'>
         <li className='mb-2 text-sm text-muted-foreground'>
@@ -93,7 +93,7 @@ transition-opacity`,
 };
 
 export const StreamChatMessagesSkeleton = () => (
-  <div className='flex h-full items-center justify-center'>
-    <Skeleton className='h-6 w-1/2' />
+  <div className='flex flex-grow flex-col'>
+    <Skeleton className='h-5 w-1/2' />
   </div>
 );

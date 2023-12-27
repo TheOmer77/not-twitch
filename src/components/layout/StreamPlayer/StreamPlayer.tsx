@@ -3,10 +3,9 @@
 import { LiveKitRoom } from '@livekit/components-react';
 import type { Stream, User } from '@prisma/client';
 
-import { StreamChat } from './StreamChat';
+import { StreamChat, StreamChatSkeleton } from './StreamChat';
 import { StreamChatCollapseToggle } from './StreamChatCollapseToggle';
-import { StreamVideo } from './StreamVideo';
-import { Spinner } from '@/components/ui/Spinner';
+import { StreamVideo, StreamVideoSkeleton } from './StreamVideo';
 import { StreamProvider } from '@/components/providers';
 import { useViewerToken } from '@/hooks';
 import { useChatSidebar } from '@/store/useChatSidebar';
@@ -24,15 +23,9 @@ export const StreamPlayer = ({
   isFollowing,
 }: StreamPlayerProps) => {
   const { collapsed } = useChatSidebar();
-
   const { token, name, identity, isTokenPending } = useViewerToken(user.id);
-  if (isTokenPending)
-    return (
-      <div className='flex items-center justify-center p-4'>
-        <Spinner className='h-8 w-8' />
-      </div>
-    );
 
+  if (isTokenPending) return <StreamPlayerSkeleton />;
   if (!token || !name || !identity)
     return <div>Unable to watch this stream.</div>;
 
@@ -73,3 +66,18 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
     </>
   );
 };
+
+export const StreamPlayerSkeleton = () => (
+  <div
+    className='flex h-[calc(100vh-6rem)] w-full flex-col gap-2 md:grid
+    md:grid-cols-[2fr,1fr] xl:grid-cols-[1fr,20rem]'
+  >
+    <div className='hidden-scrollbar relative col-span-1'>
+      <StreamVideoSkeleton />
+      {/* TODO: Header skeleton */}
+    </div>
+    <div className='col-span-1 grow'>
+      <StreamChatSkeleton />
+    </div>
+  </div>
+);

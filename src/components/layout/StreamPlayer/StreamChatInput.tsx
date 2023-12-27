@@ -13,6 +13,7 @@ import { useChat } from '@livekit/components-react';
 import { InfoIcon } from 'lucide-react';
 
 import { Input } from '@/components/ui/Input';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Tooltip } from '@/components/ui/Tooltip';
 import { useStream } from '@/hooks';
 
@@ -113,3 +114,7 @@ text-muted-foreground'
     </form>
   );
 };
+
+export const StreamChatInputSkeleton = () => (
+  <Skeleton className='h-10 w-full' />
+);

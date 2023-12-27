@@ -11,6 +11,7 @@ import { StreamLiveVideo } from './StreamLiveVideo';
 import { StreamLoadingState } from './StreamLoadingState';
 import { StreamOfflineState } from './StreamOfflineState';
 import { useStream } from '@/hooks';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 export const StreamVideo = () => {
   const { hostId, hostName } = useStream();
@@ -23,7 +24,7 @@ export const StreamVideo = () => {
   return (
     <div
       className='group relative aspect-video overflow-hidden rounded-lg
-bg-neutral-950 text-neutral-100 dark:border'
+border bg-neutral-950 text-neutral-100'
     >
       {!participant && connectionState === ConnectionState.Connected ? (
         <StreamOfflineState username={hostName} />
@@ -35,3 +36,7 @@ bg-neutral-950 text-neutral-100 dark:border'
     </div>
   );
 };
+
+export const StreamVideoSkeleton = () => (
+  <Skeleton className='aspect-video rounded-lg' />
+);
