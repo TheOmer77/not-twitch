@@ -4,26 +4,35 @@ import {
   forwardRef,
   type ComponentPropsWithoutRef,
   type ElementRef,
+  type ForwardedRef,
 } from 'react';
 import {
   ScrollArea as ScrollAreaRoot,
   ScrollAreaCorner,
   ScrollAreaViewport,
+  type ScrollAreaViewportElement,
 } from '@radix-ui/react-scroll-area';
 
 import { ScrollBar } from './ScrollBar';
 import { cn } from '@/lib/utils';
 
+export type ScrollAreaProps = ComponentPropsWithoutRef<
+  typeof ScrollAreaRoot
+> & {
+  viewportRef?: ForwardedRef<ScrollAreaViewportElement>;
+};
+
 export const ScrollArea = forwardRef<
   ElementRef<typeof ScrollAreaRoot>,
-  ComponentPropsWithoutRef<typeof ScrollAreaRoot>
->(({ className, asChild, children, ...props }, ref) => (
+  ScrollAreaProps
+>(({ className, asChild, children, viewportRef, ...props }, ref) => (
   <ScrollAreaRoot
     ref={ref}
     className={cn('relative overflow-hidden', className)}
     {...props}
   >
     <ScrollAreaViewport
+      ref={viewportRef}
       asChild={asChild}
       className='h-full w-full rounded-[inherit]'
     >
