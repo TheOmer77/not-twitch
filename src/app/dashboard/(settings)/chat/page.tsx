@@ -22,18 +22,21 @@ const DashboardChatPage = async () => {
             label='Enable offline chat'
             description="Allow users to send messages in your chat, even when you're not live."
             checked={stream.isChatEnabledOffline}
+            disabled={!stream.isChatEnabled}
           />
           <SwitchSettingsItem
             field='isChatDelayed'
             label='Slow mode'
             description='Only allow users to send messages in chat every 3 seconds.'
             checked={stream.isChatDelayed}
+            disabled={!stream.isChatEnabled}
           />
           <SwitchSettingsItem
             field='isChatFollowersOnly'
             label='Follower only chat'
             description="Only allow users who follow you to send messages in your stream's chat."
             checked={stream.isChatFollowersOnly}
+            disabled={!stream.isChatEnabled}
           />
         </ul>
       </Card>

@@ -1,19 +1,25 @@
 'use client';
 
-import { useCallback, useTransition } from 'react';
+import {
+  useCallback,
+  useTransition,
+  type ComponentPropsWithoutRef,
+} from 'react';
 
+import { SettingsItem, type SettingsItemProps } from './SettingsItem';
 import { Switch } from '@/components/ui/Switch';
 import { useToast } from '@/hooks';
 import { updateStreamSettings } from '@/actions/stream';
-import { SettingsItem, type SettingsItemProps } from './SettingsItem';
 
-export type SwitchSettingsItemProps = Omit<SettingsItemProps, 'children'> & {
-  checked?: boolean;
-};
+export type SwitchSettingsItemProps = Omit<SettingsItemProps, 'children'> &
+  ComponentPropsWithoutRef<typeof Switch>;
 
 export const SwitchSettingsItem = ({
   field,
+  label,
+  description,
   checked = false,
+  disabled,
   ...props
 }: SwitchSettingsItemProps) => {
   const { displayToast } = useToast();
@@ -39,13 +45,19 @@ export const SwitchSettingsItem = ({
   );
 
   return (
-    <SettingsItem {...props} field={field} htmlFor={`switch-${field}`}>
+    <SettingsItem
+      field={field}
+      label={label}
+      description={description}
+      htmlFor={`switch-${field}`}
+    >
       <Switch
+        {...props}
         id={`switch-${field}`}
         className='ms-auto'
         checked={checked}
         onCheckedChange={handleCheckedChange}
-        disabled={isPending}
+        disabled={disabled || isPending}
       />
     </SettingsItem>
   );
