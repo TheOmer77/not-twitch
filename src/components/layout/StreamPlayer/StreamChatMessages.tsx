@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState, type ElementRef } from 'react';
 import dynamic from 'next/dynamic';
-import { useChat } from '@livekit/components-react';
 import { useEventListener } from 'usehooks-ts';
 import { ArrowDownIcon } from 'lucide-react';
 
@@ -19,8 +18,8 @@ dynamic(() => import('scrollyfills'), { ssr: false });
 export const StreamChatMessages = () => {
   const scrollAreaRef = useRef<ElementRef<typeof ScrollArea>>(null);
   const [scrolledToBottom, setScrolledToBottom] = useState(true);
-  const { isChatEnabled, isChatEnabledOffline, isOnline } = useStream();
-  const { chatMessages } = useChat();
+  const { chatMessages, isChatEnabled, isChatEnabledOffline, isOnline } =
+    useStream();
   const messages = useMemo(
     () => [...chatMessages].sort((a, b) => a.timestamp - b.timestamp),
     [chatMessages]

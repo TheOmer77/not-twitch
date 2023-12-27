@@ -2,6 +2,7 @@
 
 import type { PropsWithChildren } from 'react';
 import {
+  useChat,
   useConnectionState,
   useRemoteParticipant,
 } from '@livekit/components-react';
@@ -22,10 +23,13 @@ export const StreamProvider = ({
   isChatFollowersOnly,
   isFollowing,
   children,
-}: PropsWithChildren<Omit<StreamContextValue, 'isOnline'>>) => {
+}: PropsWithChildren<
+  Omit<StreamContextValue, 'isOnline' | 'chatMessages'>
+>) => {
   const participant = useRemoteParticipant(hostId),
     connectionState = useConnectionState();
 
+  const { chatMessages } = useChat();
   const isOnline =
     !!participant && connectionState === ConnectionState.Connected;
 
@@ -41,6 +45,7 @@ export const StreamProvider = ({
         isChatFollowersOnly,
         isFollowing,
         isOnline,
+        chatMessages,
       }}
     >
       {children}

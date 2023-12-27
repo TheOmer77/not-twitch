@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import type { ReceivedChatMessage } from '@livekit/components-react';
 
 export type StreamContextValue = {
   hostId: string;
@@ -10,6 +11,7 @@ export type StreamContextValue = {
   isChatFollowersOnly: boolean;
   isFollowing: boolean;
   isOnline: boolean;
+  chatMessages: ReceivedChatMessage[];
 };
 
 const initialState: StreamContextValue = {
@@ -22,6 +24,7 @@ const initialState: StreamContextValue = {
   isChatFollowersOnly: false,
   isFollowing: false,
   isOnline: false,
+  chatMessages: [],
 };
 
 export const StreamContext = createContext<StreamContextValue>(initialState);
