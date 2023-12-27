@@ -18,7 +18,7 @@ export const StreamChat = () => {
   }, [matchesLg, setCollapsed]);
 
   return (
-    <Card className='flex h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)] flex-col gap-2 p-2'>
+    <Card className='flex h-full flex-col gap-2 p-2'>
       <StreamChatHeader />
       {variant === 'community' ? (
         <p className='text-sm text-muted-foreground'>Community TBD</p>
