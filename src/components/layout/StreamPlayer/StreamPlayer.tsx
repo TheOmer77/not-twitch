@@ -3,9 +3,12 @@
 import { LiveKitRoom } from '@livekit/components-react';
 import type { Stream, User } from '@prisma/client';
 
-import { StreamChat, StreamChatSkeleton } from './StreamChat';
-import { StreamChatCollapseToggle } from './StreamChatCollapseToggle';
 import { StreamVideo, StreamVideoSkeleton } from './StreamVideo';
+import {
+  StreamChat,
+  StreamChatSkeleton,
+  StreamChatCollapseToggle,
+} from '@/components/layout/StreamChat';
 import { StreamProvider } from '@/components/providers';
 import { useViewerToken } from '@/hooks';
 import { useChatSidebar } from '@/store/useChatSidebar';
