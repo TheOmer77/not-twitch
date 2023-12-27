@@ -8,6 +8,7 @@ import 'scrollyfills';
 
 import { StreamChatMessage } from './StreamChatMessage';
 import { Button } from '@/components/ui/Button';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
 
@@ -84,3 +85,9 @@ disabled:opacity-0`,
     </div>
   );
 };
+
+export const StreamChatMessagesSkeleton = () => (
+  <div className='flex h-full items-center justify-center'>
+    <Skeleton className='h-6 w-1/2' />
+  </div>
+);
