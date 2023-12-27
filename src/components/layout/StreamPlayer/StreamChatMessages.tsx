@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ElementRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useChat } from '@livekit/components-react';
 import { useEventListener } from 'usehooks-ts';
@@ -11,12 +11,13 @@ import { Button } from '@/components/ui/Button';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/ScrollArea';
 
 //@ts-expect-error This polyfill doesn't really need TS definitions
 dynamic(() => import('scrollyfills'), { ssr: false });
 
 export const StreamChatMessages = () => {
-  const listRef = useRef<HTMLUListElement>(null);
+  const scrollAreaRef = useRef<ElementRef<typeof ScrollArea>>(null);
   const [scrolledToBottom, setScrolledToBottom] = useState(true);
   const { isChatEnabled, isChatEnabledOffline, isOnline } = useStream();
   const { chatMessages } = useChat();
@@ -26,20 +27,20 @@ export const StreamChatMessages = () => {
   );
 
   const scrollToBottom = () => {
-    if (!listRef.current) return;
-    const { scrollHeight } = listRef.current;
-    listRef.current.scrollTop = scrollHeight;
+    if (!scrollAreaRef.current) return;
+    const { scrollHeight } = scrollAreaRef.current;
+    scrollAreaRef.current.scrollTop = scrollHeight;
   };
 
   useEventListener(
     'scrollend',
     () => {
-      if (!listRef.current) return;
-      const { scrollTop, scrollHeight, clientHeight } = listRef.current,
+      if (!scrollAreaRef.current) return;
+      const { scrollTop, scrollHeight, clientHeight } = scrollAreaRef.current,
         atBottom = scrollTop + clientHeight >= scrollHeight;
       if (scrolledToBottom !== atBottom) setScrolledToBottom(atBottom);
     },
-    listRef
+    scrollAreaRef
   );
 
   useEffect(() => {
@@ -61,8 +62,11 @@ text-muted-foreground'
       This stream is offline.
     </p>
   ) : (
-    <div className='relative flex grow flex-col overflow-auto'>
-      <ul ref={listRef} className='flex-grow overflow-auto break-words'>
+    <ScrollArea
+      viewportRef={scrollAreaRef}
+      className='relative flex grow flex-col'
+    >
+      <ul className='flex-grow break-words'>
         <li className='mb-2 text-sm text-muted-foreground'>
           Welcome to the chat!
         </li>
@@ -73,19 +77,19 @@ text-muted-foreground'
           />
         ))}
       </ul>
-      <Button
-        onClick={scrollToBottom}
-        disabled={scrolledToBottom}
+      <div
         className={cn(
-          `absolute bottom-2 self-center transition-[background-color,opacity]
-disabled:opacity-0`,
-          scrolledToBottom && 'pointer-events-none'
+          `absolute bottom-2 flex w-full flex-row justify-center
+transition-opacity`,
+          scrolledToBottom && 'pointer-events-none opacity-0'
         )}
       >
-        <ArrowDownIcon className='me-2 h-4 w-4' />
-        See latest messages
-      </Button>
-    </div>
+        <Button onClick={scrollToBottom}>
+          <ArrowDownIcon className='me-2 h-4 w-4' />
+          See latest messages
+        </Button>
+      </div>
+    </ScrollArea>
   );
 };
 
