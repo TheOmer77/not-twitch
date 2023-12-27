@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 
+import { StreamChatCommunity } from './StreamChatCommunity';
 import { StreamChatHeader } from './StreamChatHeader';
 import { StreamChatInput } from './StreamChatInput';
 import { StreamChatMessages } from './StreamChatMessages';
@@ -21,7 +22,7 @@ export const StreamChat = () => {
     <Card className='flex h-full max-h-[calc(100vh-6rem)] flex-col gap-2 p-2'>
       <StreamChatHeader />
       {variant === 'community' ? (
-        <p className='text-sm text-muted-foreground'>Community TBD</p>
+        <StreamChatCommunity />
       ) : (
         <>
           <StreamChatMessages />
