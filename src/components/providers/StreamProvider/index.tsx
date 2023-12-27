@@ -16,6 +16,7 @@ import {
 export const StreamProvider = ({
   hostId,
   hostName,
+  viewerId,
   viewerName,
   isChatDelayed,
   isChatEnabled,
@@ -24,7 +25,7 @@ export const StreamProvider = ({
   isFollowing,
   children,
 }: PropsWithChildren<
-  Omit<StreamContextValue, 'isOnline' | 'chatMessages'>
+  Omit<StreamContextValue, 'chatMessages' | 'isOnline'>
 >) => {
   const participant = useRemoteParticipant(hostId),
     connectionState = useConnectionState();
@@ -38,6 +39,7 @@ export const StreamProvider = ({
       value={{
         hostId,
         hostName,
+        viewerId,
         viewerName,
         isChatDelayed,
         isChatEnabled,

@@ -4,6 +4,7 @@ import type { ReceivedChatMessage } from '@livekit/components-react';
 export type StreamContextValue = {
   hostId: string;
   hostName: string;
+  viewerId: string;
   viewerName: string;
   isChatDelayed: boolean;
   isChatEnabled: boolean;
@@ -17,6 +18,7 @@ export type StreamContextValue = {
 const initialState: StreamContextValue = {
   hostId: '',
   hostName: '',
+  viewerId: '',
   viewerName: '',
   isChatDelayed: false,
   isChatEnabled: false,
