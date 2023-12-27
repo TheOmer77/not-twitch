@@ -18,7 +18,7 @@ export const StreamChatParticipant = ({
   id,
   name,
 }: StreamChatParticipantProps) => {
-  const [isPending, startTranstion] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const { hostName, viewerName } = useStream();
   const { displayToast } = useToast();
 
@@ -27,7 +27,7 @@ export const StreamChatParticipant = ({
 
   const handleBlock = useCallback(() => {
     if (!name || isSelf || !isHost) return;
-    startTranstion(async () => {
+    startTransition(async () => {
       try {
         await blockUser(id);
         displayToast(`${name} has been blocked.`);
@@ -46,7 +46,7 @@ export const StreamChatParticipant = ({
     <li
       className={cn(
         `group flex h-10 w-full flex-row items-center justify-between
-rounded-md pe-2 ps-4 text-sm transition-colors hover:bg-accent/50`,
+rounded-md pe-2 ps-4 text-sm transition-colors duration-75 hover:bg-accent/50`,
         isPending && 'pointer-events-none'
       )}
     >
@@ -56,7 +56,8 @@ rounded-md pe-2 ps-4 text-sm transition-colors hover:bg-accent/50`,
           <Button
             variant='flat'
             size='icon'
-            className='opacity-0 transition-opacity group-hover:opacity-100'
+            className='opacity-0 transition-[opacity,background-color]
+group-hover:opacity-100'
             onClick={handleBlock}
             disabled={isPending}
           >
