@@ -1,16 +1,19 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useChat } from '@livekit/components-react';
 import { useEventListener } from 'usehooks-ts';
 import { ArrowDownIcon } from 'lucide-react';
-import 'scrollyfills';
 
 import { StreamChatMessage } from './StreamChatMessage';
 import { Button } from '@/components/ui/Button';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
+
+//@ts-expect-error This polyfill doesn't really need TS definitions
+dynamic(() => import('scrollyfills'), { ssr: false });
 
 export const StreamChatMessages = () => {
   const listRef = useRef<HTMLUListElement>(null);
