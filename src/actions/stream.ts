@@ -8,6 +8,7 @@ import { getCurrentUser } from '@/services/auth';
 
 export const updateStreamSettings = async ({
   title,
+  thumbnailUrl,
   isChatDelayed,
   isChatEnabled,
   isChatDisabledOffline,
@@ -18,12 +19,14 @@ export const updateStreamSettings = async ({
   if (!stream) throw new Error("You don't have a stream.");
 
   const updatableData = {
+    title,
+    thumbnailUrl,
     isChatDelayed,
     isChatEnabled,
     isChatDisabledOffline,
     isChatFollowersOnly,
-    title,
   };
+  // TODO: If thumbnailUrl is null or different than old one, delete old one
   const updatedStream = await updateStreamByUserId(
     currentUser.id,
     updatableData

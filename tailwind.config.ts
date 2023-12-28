@@ -1,6 +1,7 @@
+import { withUt } from 'uploadthing/tw';
 import type { Config } from 'tailwindcss';
 
-const config: Config = {
+const config: Config = withUt({
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     container: {
@@ -93,6 +94,6 @@ const config: Config = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-};
+});
 
 export default config;
