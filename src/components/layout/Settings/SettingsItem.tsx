@@ -3,13 +3,7 @@ import type { PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
 
 export type SettingsItemProps = PropsWithChildren<{
-  field?:
-    | 'isChatDelayed'
-    | 'isChatEnabled'
-    | 'isChatDisabledOffline'
-    | 'isChatFollowersOnly'
-    | 'serverUrl'
-    | 'streamKey';
+  field?: string;
   label: string;
   description?: string;
   htmlFor?: string;
