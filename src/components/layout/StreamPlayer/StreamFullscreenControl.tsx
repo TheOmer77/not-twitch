@@ -24,7 +24,7 @@ export const StreamFullscreenControl = ({
         className='text-white hover:bg-white/15 hover:text-white'
         onClick={() => onFullscreenChange?.(!isFullscreen)}
       >
-        <Icon className='h-4 w-4' />
+        <Icon />
       </Button>
     </Tooltip>
   );

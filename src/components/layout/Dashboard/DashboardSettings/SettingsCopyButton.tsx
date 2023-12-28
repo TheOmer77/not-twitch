@@ -30,7 +30,7 @@ export const SettingsCopyButton = ({ value }: SettingsCopyButtonProps) => {
         onClick={handleClick}
         disabled={!value || isCopied}
       >
-        <Icon className='h-4 w-4' />
+        <Icon />
       </Button>
     </Tooltip>
   );

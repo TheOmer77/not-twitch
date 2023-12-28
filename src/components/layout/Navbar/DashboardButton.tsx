@@ -10,7 +10,7 @@ export const DashboardButton = () => (
   <Tooltip label='Dashboard'>
     <Button variant='flat' size='icon' asChild>
       <Link href='/dashboard'>
-        <ClapperboardIcon className='h-4 w-4' />
+        <ClapperboardIcon />
       </Link>
     </Button>
   </Tooltip>

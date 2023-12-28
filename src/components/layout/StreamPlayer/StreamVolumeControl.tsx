@@ -47,7 +47,7 @@ export const StreamVolumeControl = ({
           className='text-white hover:bg-white/15 hover:text-white'
           onClick={() => onMutedChange?.(!muted)}
         >
-          <Icon className='h-4 w-4' />
+          <Icon />
         </Button>
       </Tooltip>
       <Slider

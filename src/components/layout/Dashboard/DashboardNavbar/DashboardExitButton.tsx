@@ -8,7 +8,7 @@ export const DashboardExitButton = () => (
   <Tooltip label='Exit dashboard'>
     <Button variant='flat' size='icon' asChild>
       <Link href={`/`}>
-        <LogOutIcon className='h-4 w-4' />
+        <LogOutIcon />
       </Link>
     </Button>
   </Tooltip>

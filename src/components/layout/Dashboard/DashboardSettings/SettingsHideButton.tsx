@@ -26,7 +26,7 @@ export const SettingsHideButton = ({
         onClick={() => onToggle?.(!value)}
         disabled={disabled}
       >
-        <Icon className='h-4 w-4' />
+        <Icon />
       </Button>
     </Tooltip>
   );

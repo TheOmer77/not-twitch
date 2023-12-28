@@ -126,7 +126,7 @@ transition-[opacity,background-color] duration-75`,
                 value.length > 0 && 'pointer-events-auto opacity-100'
               )}
             >
-              <SendHorizontalIcon className='h-4 w-4' />
+              <SendHorizontalIcon />
             </Button>
           </Tooltip>
         }

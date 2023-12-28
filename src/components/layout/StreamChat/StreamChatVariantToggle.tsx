@@ -26,7 +26,7 @@ export const StreamChatVariantToggle = ({
         }
         className={cn('hidden lg:inline-flex', className)}
       >
-        <Icon className='h-4 w-4' />
+        <Icon />
       </Button>
     </Tooltip>
   );

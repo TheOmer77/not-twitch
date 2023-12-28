@@ -61,7 +61,7 @@ group-hover:opacity-100'
             onClick={handleBlock}
             disabled={isPending}
           >
-            <BanIcon className='h-4 w-4' />
+            <BanIcon />
           </Button>
         </Tooltip>
       )}

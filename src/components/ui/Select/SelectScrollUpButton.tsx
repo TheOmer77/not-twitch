@@ -22,7 +22,7 @@ export const SelectScrollUpButton = forwardRef<
     )}
     {...props}
   >
-    <ChevronUpIcon className='h-4 w-4' />
+    <ChevronUpIcon />
   </ScrollUpButton>
 ));
 SelectScrollUpButton.displayName = ScrollUpButton.displayName;
