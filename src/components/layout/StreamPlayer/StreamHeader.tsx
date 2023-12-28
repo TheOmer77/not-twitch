@@ -11,10 +11,10 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
 
-export type StreamHeaderProps = { name: string; imageUrl: string };
+export type StreamHeaderProps = { imageUrl: string };
 
-export const StreamHeader = ({ name, imageUrl }: StreamHeaderProps) => {
-  const { hostId } = useStream();
+export const StreamHeader = ({ imageUrl }: StreamHeaderProps) => {
+  const { hostId, streamName } = useStream();
   const participants = useParticipants(),
     hostParticipant = useRemoteParticipant(hostId);
 
@@ -28,7 +28,7 @@ export const StreamHeader = ({ name, imageUrl }: StreamHeaderProps) => {
           className='grow break-words text-xl font-bold tracking-tight
 sm:text-2xl'
         >
-          {name}
+          {streamName}
         </h1>
         <span
           className={cn(

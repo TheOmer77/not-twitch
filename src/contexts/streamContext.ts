@@ -6,9 +6,10 @@ export type StreamContextValue = {
   hostName: string;
   viewerId: string;
   viewerName: string;
+  streamName: string;
   isChatDelayed: boolean;
-  isChatEnabled: boolean;
   isChatDisabledOffline: boolean;
+  isChatEnabled: boolean;
   isChatFollowersOnly: boolean;
   isFollowing: boolean;
   isOnline: boolean;
@@ -20,9 +21,10 @@ const initialState: StreamContextValue = {
   hostName: '',
   viewerId: '',
   viewerName: '',
+  streamName: '',
   isChatDelayed: false,
-  isChatEnabled: false,
   isChatDisabledOffline: false,
+  isChatEnabled: false,
   isChatFollowersOnly: false,
   isFollowing: false,
   isOnline: false,
