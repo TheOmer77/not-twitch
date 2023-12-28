@@ -112,7 +112,7 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
               className='relative'
             >
               <span className={cn(isPending && 'invisible')}>Confirm</span>
-              {isPending && <Spinner className='absolute h-5 w-5' />}
+              {isPending && <Spinner className='absolute' />}
             </Button>
           </DialogFooter>
         </DialogContent>

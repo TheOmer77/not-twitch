@@ -5,7 +5,7 @@ export const buttonVariants = cva(
 text-sm font-medium ring-offset-background transition-colors
 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50
-[&>svg]:h-4 [&>svg]:w-4`,
+[&>svg]:h-4 [&>svg]:w-4 [&>svg.spinner]:h-5 [&>svg.spinner]:w-5`,
   {
     variants: {
       variant: {

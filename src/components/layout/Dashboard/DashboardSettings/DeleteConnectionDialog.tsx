@@ -70,7 +70,7 @@ export const DeleteConnectionDialog = () => {
               className='relative'
             >
               <span className={cn(isPending && 'invisible')}>Delete</span>
-              {isPending && <Spinner className='absolute h-5 w-5' />}
+              {isPending && <Spinner className='absolute' />}
             </Button>
           </DialogFooter>
         </DialogContent>
