@@ -6,7 +6,8 @@ import {
 } from '@livekit/components-react';
 import { User2Icon } from 'lucide-react';
 
-import { StreamHeaderUser } from './StreamHeaderUser';
+import { StreamHeaderUser, StreamHeaderUserSkeleton } from './StreamHeaderUser';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { useStream } from '@/hooks';
 
 export type StreamHeaderProps = { name: string; imageUrl: string };
@@ -42,3 +43,10 @@ bg-destructive px-1.5 text-sm font-medium text-destructive-foreground'
     </div>
   );
 };
+
+export const StreamHeaderSkeleton = () => (
+  <div className='relative px-2 py-4'>
+    <Skeleton className='mb-3 mt-1 h-em grow break-words text-xl sm:text-2xl' />
+    <StreamHeaderUserSkeleton />
+  </div>
+);

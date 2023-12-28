@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import { useRemoteParticipant } from '@livekit/components-react';
 import { useAuth } from '@clerk/nextjs';
 
-import { Tooltip } from '@/components/ui/Tooltip';
+import { AvatarSkeleton } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
+import { Skeleton } from '@/components/ui/Skeleton';
+import { Tooltip } from '@/components/ui/Tooltip';
 import { UserAvatar } from '@/components/layout/User';
 import { useStream, useToast } from '@/hooks';
 import { followUser, unfollowUser } from '@/actions/follow';
@@ -80,3 +82,10 @@ export const StreamHeaderUser = ({ imageUrl }: StreamHeaderActionsProps) => {
     </div>
   );
 };
+
+export const StreamHeaderUserSkeleton = () => (
+  <div className='flex h-10 flex-row items-center gap-2'>
+    <AvatarSkeleton />
+    <Skeleton className='h-em w-24 text-sm' />
+  </div>
+);

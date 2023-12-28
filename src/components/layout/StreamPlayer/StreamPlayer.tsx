@@ -3,7 +3,7 @@
 import { LiveKitRoom } from '@livekit/components-react';
 import type { Stream, User } from '@prisma/client';
 
-import { StreamHeader } from './StreamHeader';
+import { StreamHeader, StreamHeaderSkeleton } from './StreamHeader';
 import { StreamVideo, StreamVideoSkeleton } from './StreamVideo';
 import {
   StreamChat,
@@ -80,7 +80,7 @@ export const StreamPlayerSkeleton = () => (
   >
     <div className='hidden-scrollbar relative col-span-1'>
       <StreamVideoSkeleton />
-      {/* TODO: Header skeleton */}
+      <StreamHeaderSkeleton />
     </div>
     <div className='col-span-1 grow'>
       <StreamChatSkeleton />
