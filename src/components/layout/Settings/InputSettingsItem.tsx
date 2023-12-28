@@ -29,7 +29,7 @@ export const InputSettingsItem = ({
       field={field}
       label={label}
       description={description}
-      htmlFor={`switch-${field}`}
+      htmlFor={`input-${field}`}
       orientation='vertical'
     >
       <div className='flex w-full flex-row gap-2'>
@@ -37,7 +37,7 @@ export const InputSettingsItem = ({
           {...props}
           {...(secret ? { type: hidden ? 'password' : 'text' } : {})}
           value={value}
-          id={`switch-${field}`}
+          id={`input-${field}`}
           className='grow'
         />
         {secret && (
