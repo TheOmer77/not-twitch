@@ -6,8 +6,8 @@ import {
 } from '@livekit/components-react';
 import { User2Icon } from 'lucide-react';
 
+import { StreamHeaderUser } from './StreamHeaderUser';
 import { useStream } from '@/hooks';
-import { StreamHeaderActions } from './StreamHeaderActions';
 
 export type StreamHeaderProps = { name: string; imageUrl: string };
 
@@ -38,7 +38,7 @@ bg-destructive px-1.5 text-sm font-medium text-destructive-foreground'
           </span>
         )}
       </div>
-      <StreamHeaderActions imageUrl={imageUrl} />
+      <StreamHeaderUser imageUrl={imageUrl} />
     </div>
   );
 };

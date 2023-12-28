@@ -13,7 +13,7 @@ import { followUser, unfollowUser } from '@/actions/follow';
 
 export type StreamHeaderActionsProps = { imageUrl: string };
 
-export const StreamHeaderActions = ({ imageUrl }: StreamHeaderActionsProps) => {
+export const StreamHeaderUser = ({ imageUrl }: StreamHeaderActionsProps) => {
   const { userId } = useAuth();
   const { isFollowing, hostName, hostId, viewerId } = useStream();
   const hostParticipant = useRemoteParticipant(hostId);
