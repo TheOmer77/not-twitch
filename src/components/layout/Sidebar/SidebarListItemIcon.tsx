@@ -6,7 +6,7 @@ export const SidebarListItemIcon = ({
   className,
   children,
 }: ComponentPropsWithoutRef<'svg'>) => (
-  <Slot className={cn('mb-1 h-6 w-6 shrink-0 lg:mb-0 lg:me-4', className)}>
+  <Slot className={cn('mb-1 shrink-0 lg:mb-0 lg:me-4', className)}>
     {children}
   </Slot>
 );

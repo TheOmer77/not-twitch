@@ -22,7 +22,7 @@ export const SidebarListItem = ({
         variant='flat'
         className={cn(
           `h-16 flex-col justify-center p-0 lg:h-10 lg:flex-row
-lg:justify-start lg:px-4`,
+lg:justify-start lg:px-4 [&>svg]:h-6 [&>svg]:w-6`,
           active && 'bg-accent',
           className
         )}
