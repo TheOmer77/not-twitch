@@ -27,11 +27,11 @@ export type StreamInfoProps = {
 };
 
 export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
-  const { hostId, viewerId, streamName: initialName } = useStream();
+  const { hostId, viewerId, title: initialTitle } = useStream();
   const isHost = viewerId === `host-${hostId}`;
 
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [name, setName] = useState(initialName);
+  const [title, setTitle] = useState(initialTitle);
   const [isPending, startTransition] = useTransition();
 
   const { displayToast } = useToast();
@@ -41,7 +41,7 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
       e.preventDefault();
       startTransition(async () => {
         try {
-          await updateStreamSettings({ name });
+          await updateStreamSettings({ title });
           displayToast('Stream info updated.');
           setDialogOpen(false);
         } catch (err) {
@@ -54,7 +54,7 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
         }
       });
     },
-    [displayToast, name]
+    [displayToast, title]
   );
 
   if (!isHost) return null;
@@ -74,8 +74,8 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
           <form className='flex w-full flex-col gap-px' onSubmit={handleSubmit}>
             <InputSettingsItem
               label='Title'
-              value={name}
-              onChange={e => setName(e.target.value)}
+              value={title}
+              onChange={e => setTitle(e.target.value)}
             />
             <DialogFooter className='mt-4'>
               <DialogClose asChild>

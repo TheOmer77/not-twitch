@@ -47,9 +47,9 @@ export const StreamPlayer = ({
         <StreamProvider
           hostId={user.id}
           hostName={user.username}
+          title={stream.title}
           viewerId={identity}
           viewerName={name}
-          streamName={stream.name}
           isChatDelayed={stream.isChatDelayed}
           isChatDisabledOffline={stream.isChatDisabledOffline}
           isChatEnabled={stream.isChatEnabled}

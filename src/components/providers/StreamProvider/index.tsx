@@ -16,9 +16,9 @@ import {
 export const StreamProvider = ({
   hostId,
   hostName,
+  title,
   viewerId,
   viewerName,
-  streamName,
   isChatDelayed,
   isChatDisabledOffline,
   isChatEnabled,
@@ -40,9 +40,9 @@ export const StreamProvider = ({
       value={{
         hostId,
         hostName,
+        title,
         viewerId,
         viewerName,
-        streamName,
         isChatDelayed,
         isChatDisabledOffline,
         isChatEnabled,

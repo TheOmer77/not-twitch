@@ -7,7 +7,7 @@ import { getStreamByUserId, updateStreamByUserId } from '@/queries/stream';
 import { getCurrentUser } from '@/services/auth';
 
 export const updateStreamSettings = async ({
-  name,
+  title,
   isChatDelayed,
   isChatEnabled,
   isChatDisabledOffline,
@@ -22,7 +22,7 @@ export const updateStreamSettings = async ({
     isChatEnabled,
     isChatDisabledOffline,
     isChatFollowersOnly,
-    name,
+    title,
   };
   const updatedStream = await updateStreamByUserId(
     currentUser.id,

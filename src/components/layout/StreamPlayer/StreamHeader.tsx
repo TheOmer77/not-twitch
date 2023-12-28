@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 export type StreamHeaderProps = { imageUrl: string };
 
 export const StreamHeader = ({ imageUrl }: StreamHeaderProps) => {
-  const { hostId, streamName } = useStream();
+  const { hostId, title } = useStream();
   const participants = useParticipants(),
     hostParticipant = useRemoteParticipant(hostId);
 
@@ -28,7 +28,7 @@ export const StreamHeader = ({ imageUrl }: StreamHeaderProps) => {
           className='grow break-words text-xl font-bold tracking-tight
 sm:text-2xl'
         >
-          {streamName}
+          {title}
         </h1>
         <span
           className={cn(
