@@ -2,10 +2,10 @@
 
 import { useState, type ComponentPropsWithoutRef } from 'react';
 
-import { Input } from '@/components/ui/Input';
 import { SettingsItem, type SettingsItemProps } from './SettingsItem';
 import { SettingsCopyButton } from './SettingsCopyButton';
 import { SettingsHideButton } from './SettingsHideButton';
+import { Input } from '@/components/ui/Input';
 
 export type InputSettingsItemProps = SettingsItemProps &
   ComponentPropsWithoutRef<typeof Input> & {
