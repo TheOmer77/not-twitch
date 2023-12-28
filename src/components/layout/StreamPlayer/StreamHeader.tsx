@@ -9,6 +9,7 @@ import { User2Icon } from 'lucide-react';
 import { StreamHeaderUser, StreamHeaderUserSkeleton } from './StreamHeaderUser';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useStream } from '@/hooks';
+import { cn } from '@/lib/utils';
 
 export type StreamHeaderProps = { name: string; imageUrl: string };
 
@@ -29,15 +30,19 @@ sm:text-2xl'
         >
           {name}
         </h1>
-        {isLive && (
-          <span
-            className='flex h-8 flex-row items-center gap-1 rounded-sm
-bg-destructive px-1.5 text-sm font-medium text-destructive-foreground'
-          >
-            <User2Icon className='h-5 w-5' />
-            {participantCount}
-          </span>
-        )}
+        <span
+          className={cn(
+            `flex h-8 flex-row items-center gap-1 rounded-sm px-1.5 text-sm
+font-medium uppercase`,
+            isLive
+              ? 'bg-destructive text-destructive-foreground'
+              : `bg-neutral-800 text-neutral-200 dark:bg-neutral-200
+dark:text-neutral-800`
+          )}
+        >
+          {isLive && <User2Icon className='h-5 w-5' />}
+          {isLive ? participantCount : 'Offline'}
+        </span>
       </div>
       <StreamHeaderUser imageUrl={imageUrl} />
     </div>
