@@ -120,6 +120,7 @@ text-muted-foreground'
               variant='flat'
               size='icon'
               type='submit'
+              disabled={disabled}
               className={cn(
                 `pointer-events-none absolute end-0 top-0 opacity-0
 transition-[opacity,background-color] duration-75`,
