@@ -1,6 +1,7 @@
 'use client';
 
-import { AvatarSkeleton, Skeleton } from '@/components/ui/Skeleton';
+import { AvatarSkeleton } from '@/components/ui/Avatar';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { SidebarSkeletonBase } from '@/components/layout/Sidebar';
 
 export const DashboardSidebarSkeleton = () => (

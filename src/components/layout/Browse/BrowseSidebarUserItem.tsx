@@ -4,8 +4,9 @@ import { useMediaQuery } from 'usehooks-ts';
 
 import { LiveBadge } from './LiveBadge';
 import { UserAvatar, type UserAvatarProps } from '@/components/layout/User';
+import { AvatarSkeleton } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
-import { AvatarSkeleton, Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { cn } from '@/lib/utils';
 
 export type UserItemProps = Pick<
