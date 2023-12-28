@@ -29,7 +29,7 @@ export const StreamChatInput = () => {
   const {
     isOnline,
     isChatEnabled,
-    isChatEnabledOffline,
+    isChatDisabledOffline,
     isChatFollowersOnly,
     isChatDelayed,
     isFollowing,
@@ -91,7 +91,7 @@ export const StreamChatInput = () => {
     setJustSent(false);
   }, [isSending, justSent]);
 
-  if (!isChatEnabled || (!isOnline && !isChatEnabledOffline)) return null;
+  if (!isChatEnabled || (!isOnline && isChatDisabledOffline)) return null;
 
   return (
     <form onSubmit={handleSubmit}>

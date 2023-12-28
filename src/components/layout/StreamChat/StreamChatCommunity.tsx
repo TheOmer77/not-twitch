@@ -11,7 +11,7 @@ import { ScrollArea } from '@/components/ui/ScrollArea';
 import { useStream } from '@/hooks';
 
 export const StreamChatCommunity = () => {
-  const { isChatEnabled, isChatEnabledOffline, isOnline } = useStream();
+  const { isChatEnabled, isChatDisabledOffline, isOnline } = useStream();
   const participants = useParticipants();
 
   const [value, setValue] = useState('');
@@ -41,7 +41,7 @@ text-muted-foreground'
     >
       This stream&apos;s community is disabled.
     </p>
-  ) : !isOnline && !isChatEnabledOffline ? (
+  ) : !isOnline && isChatDisabledOffline ? (
     <p
       className='flex flex-grow items-center justify-center text-sm
 text-muted-foreground'

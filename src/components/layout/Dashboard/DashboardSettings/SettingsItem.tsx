@@ -6,7 +6,7 @@ export type SettingsItemProps = PropsWithChildren<{
   field?:
     | 'isChatDelayed'
     | 'isChatEnabled'
-    | 'isChatEnabledOffline'
+    | 'isChatDisabledOffline'
     | 'isChatFollowersOnly'
     | 'serverUrl'
     | 'streamKey';

@@ -18,7 +18,7 @@ dynamic(() => import('scrollyfills'), { ssr: false });
 export const StreamChatMessages = () => {
   const scrollAreaRef = useRef<ElementRef<typeof ScrollArea>>(null);
   const [scrolledToBottom, setScrolledToBottom] = useState(true);
-  const { chatMessages, isChatEnabled, isChatEnabledOffline, isOnline } =
+  const { chatMessages, isChatEnabled, isChatDisabledOffline, isOnline } =
     useStream();
   const messages = useMemo(
     () => [...chatMessages].sort((a, b) => a.timestamp - b.timestamp),
@@ -53,7 +53,7 @@ text-muted-foreground'
     >
       This stream&apos;s chat is disabled.
     </p>
-  ) : !isOnline && !isChatEnabledOffline ? (
+  ) : !isOnline && isChatDisabledOffline ? (
     <p
       className='flex flex-grow items-center justify-center text-sm
 text-muted-foreground'

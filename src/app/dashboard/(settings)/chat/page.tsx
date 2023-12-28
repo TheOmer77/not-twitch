@@ -18,10 +18,10 @@ const DashboardChatPage = async () => {
             checked={stream.isChatEnabled}
           />
           <SwitchSettingsItem
-            field='isChatEnabledOffline'
-            label='Enable offline chat'
-            description="Allow users to send messages in your chat, even when you're not live."
-            checked={stream.isChatEnabledOffline}
+            field='isChatDisabledOffline'
+            label='Disable offline chat'
+            description="Only allow users to send messages in chat when you're live."
+            checked={stream.isChatDisabledOffline}
             disabled={!stream.isChatEnabled}
           />
           <SwitchSettingsItem
@@ -34,7 +34,7 @@ const DashboardChatPage = async () => {
           <SwitchSettingsItem
             field='isChatFollowersOnly'
             label='Follower only chat'
-            description="Only allow users who follow you to send messages in your stream's chat."
+            description='Only allow users who follow you to send messages in chat.'
             checked={stream.isChatFollowersOnly}
             disabled={!stream.isChatEnabled}
           />

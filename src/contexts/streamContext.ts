@@ -8,7 +8,7 @@ export type StreamContextValue = {
   viewerName: string;
   isChatDelayed: boolean;
   isChatEnabled: boolean;
-  isChatEnabledOffline: boolean;
+  isChatDisabledOffline: boolean;
   isChatFollowersOnly: boolean;
   isFollowing: boolean;
   isOnline: boolean;
@@ -22,7 +22,7 @@ const initialState: StreamContextValue = {
   viewerName: '',
   isChatDelayed: false,
   isChatEnabled: false,
-  isChatEnabledOffline: false,
+  isChatDisabledOffline: false,
   isChatFollowersOnly: false,
   isFollowing: false,
   isOnline: false,

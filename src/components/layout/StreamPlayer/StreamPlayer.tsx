@@ -50,7 +50,7 @@ export const StreamPlayer = ({
           viewerName={name}
           isChatDelayed={stream.isChatDelayed}
           isChatEnabled={stream.isChatEnabled}
-          isChatEnabledOffline={stream.isChatEnabledOffline}
+          isChatDisabledOffline={stream.isChatDisabledOffline}
           isChatFollowersOnly={stream.isChatFollowersOnly}
           isFollowing={isFollowing}
         >
