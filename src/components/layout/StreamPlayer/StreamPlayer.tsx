@@ -4,6 +4,7 @@ import { LiveKitRoom } from '@livekit/components-react';
 import type { Stream, User } from '@prisma/client';
 
 import { StreamHeader, StreamHeaderSkeleton } from './StreamHeader';
+import { StreamInfoDialog } from './StreamInfoDialog';
 import { StreamVideo, StreamVideoSkeleton } from './StreamVideo';
 import {
   StreamChat,
@@ -48,9 +49,10 @@ export const StreamPlayer = ({
           hostName={user.username}
           viewerId={identity}
           viewerName={name}
+          streamName={stream.name}
           isChatDelayed={stream.isChatDelayed}
-          isChatEnabled={stream.isChatEnabled}
           isChatDisabledOffline={stream.isChatDisabledOffline}
+          isChatEnabled={stream.isChatEnabled}
           isChatFollowersOnly={stream.isChatFollowersOnly}
           isFollowing={isFollowing}
         >
@@ -62,7 +64,8 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
               />
             )}
             <StreamVideo />
-            <StreamHeader name={stream.name} imageUrl={user.imageUrl} />
+            <StreamHeader imageUrl={user.imageUrl} />
+            <StreamInfoDialog initialThumbnailUrl={stream.thumbnailUrl} />
           </div>
           <div className={cn('col-span-1 grow', collapsed && 'hidden')}>
             <StreamChat />
