@@ -24,7 +24,7 @@ export const StreamChatHeaderSkeleton = () => (
   <div className='relative flex flex-row items-center gap-2'>
     <Skeleton className='m-2.5 h-5 w-5 rounded-full' />
     <CardTitle className='grow'>
-      <Skeleton className='h-[1em] w-24' />
+      <Skeleton className='h-em w-24' />
     </CardTitle>
     <Skeleton className='m-2.5 h-5 w-5 rounded-full' />
   </div>

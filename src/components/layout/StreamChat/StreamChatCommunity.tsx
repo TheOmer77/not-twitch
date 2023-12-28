@@ -52,9 +52,8 @@ text-muted-foreground'
     <div className='flex flex-col gap-2'>
       <div className='relative w-full'>
         <SearchIcon
-          className='absolute start-3 text-base text-muted-foreground'
-          width='1em'
-          height='100%'
+          className='absolute start-3 h-full w-em text-base
+text-muted-foreground'
         />
         <Input
           value={value}

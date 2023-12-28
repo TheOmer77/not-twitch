@@ -69,9 +69,8 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ['var(--font-family)', 'sans-serif'],
-      },
+      fontFamily: { sans: ['var(--font-family)', 'sans-serif'] },
+      spacing: { em: '1em' },
       borderRadius: {
         lg: 'var(--border-radius)',
         md: 'calc(var(--border-radius) - 2px)',

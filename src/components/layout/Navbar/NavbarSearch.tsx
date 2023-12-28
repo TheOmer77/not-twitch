@@ -31,9 +31,8 @@ export const NavbarSearch = () => {
   return (
     <form onSubmit={handleSubmit} className='relative w-full md:w-96'>
       <SearchIcon
-        className='absolute start-3 text-base text-muted-foreground'
-        width='1em'
-        height='100%'
+        className='absolute start-3 h-full w-em text-base
+text-muted-foreground'
       />
       <Input
         value={value}
