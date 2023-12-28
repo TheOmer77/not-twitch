@@ -1,7 +1,7 @@
 import { User2Icon } from 'lucide-react';
 
-import { Avatar } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
+import { UserAvatar } from '@/components/layout/User';
 import { useStream } from '@/hooks';
 
 export type StreamHeaderProps = { name: string; imageUrl: string };
@@ -29,7 +29,8 @@ bg-destructive px-1.5 text-sm font-medium text-destructive-foreground'
         </span>
       </div>
       <div className='flex h-10 flex-row items-center gap-2'>
-        <Avatar src={imageUrl} />
+        {/* TODO: Actual isLive value */}
+        <UserAvatar username={hostName} imageUrl={imageUrl} isLive={true} />
         <span className='grow text-sm font-semibold'>{hostName}</span>
         {viewerId !== `host-${hostId}` && (
           <Button variant={isFollowing ? 'default' : 'primary'}>
