@@ -10,12 +10,14 @@ import {
   type FormEventHandler,
 } from 'react';
 import { useChat } from '@livekit/components-react';
-import { InfoIcon } from 'lucide-react';
+import { InfoIcon, SendHorizontalIcon } from 'lucide-react';
 
+import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { Tooltip } from '@/components/ui/Tooltip';
 import { useStream } from '@/hooks';
+import { cn } from '@/lib/utils';
 
 export const StreamChatInput = () => {
   const [value, setValue] = useState(''),
@@ -104,13 +106,31 @@ text-muted-foreground'
           {infoMsg}
         </span>
       )}
-      <Input
-        ref={inputRef}
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        placeholder='Send a message...'
-        disabled={disabled}
-      />
+      <div className='relative w-full'>
+        <Input
+          ref={inputRef}
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          placeholder='Send a message...'
+          disabled={disabled}
+        />
+        {
+          <Tooltip label='Send'>
+            <Button
+              variant='flat'
+              size='icon'
+              type='submit'
+              className={cn(
+                `pointer-events-none absolute end-0 top-0 opacity-0
+transition-[opacity,background-color] duration-75`,
+                value.length > 0 && 'pointer-events-auto opacity-100'
+              )}
+            >
+              <SendHorizontalIcon className='h-4 w-4' />
+            </Button>
+          </Tooltip>
+        }
+      </div>
     </form>
   );
 };
