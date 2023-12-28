@@ -73,6 +73,7 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
           </DialogHeader>
           <form className='flex w-full flex-col gap-px' onSubmit={handleSubmit}>
             <InputSettingsItem
+              field='title'
               label='Title'
               value={title}
               onChange={e => setTitle(e.target.value)}
