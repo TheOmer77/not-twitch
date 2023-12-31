@@ -1,14 +1,17 @@
-import type { PropsWithChildren } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
-export type SettingsItemProps = PropsWithChildren<{
+export type SettingsItemCoreProps = {
   field?: string;
   label: string;
   description?: string;
   htmlFor?: string;
   orientation?: 'horizontal' | 'vertical';
-}>;
+};
+
+export type SettingsItemProps = ComponentPropsWithoutRef<'li'> &
+  SettingsItemCoreProps;
 
 export const SettingsItem = ({
   field,
@@ -16,12 +19,16 @@ export const SettingsItem = ({
   description,
   htmlFor,
   orientation = 'horizontal',
+  className,
   children,
+  ...props
 }: SettingsItemProps) => (
   <li
+    {...props}
     className={cn(
       'flex items-center gap-2 px-4 py-3',
-      orientation === 'vertical' ? 'flex-col items-start' : 'flex-row'
+      orientation === 'vertical' ? 'flex-col items-start' : 'flex-row',
+      className
     )}
   >
     <div className='5 flex flex-col gap-0'>
