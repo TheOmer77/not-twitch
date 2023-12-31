@@ -6,7 +6,8 @@ const uploadThing = createUploadthing();
 
 export const fileRouter = {
   thumbnailUploader: uploadThing({
-    image: { maxFileSize: '4MB', maxFileCount: 1 },
+    'image/png': { maxFileSize: '4MB', maxFileCount: 1 },
+    'image/jpeg': { maxFileSize: '4MB', maxFileCount: 1 },
   })
     .middleware(async () => {
       await getCurrentUser();
