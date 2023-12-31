@@ -1,4 +1,5 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
+import { UTApi } from 'uploadthing/server';
 
 import { getCurrentUser } from '@/services/auth';
 
@@ -17,5 +18,6 @@ export const fileRouter = {
       return { fileUrl: file.url };
     }),
 } satisfies FileRouter;
-
 export type ThumbnailFileRouter = typeof fileRouter;
+
+export const uploadThingApi = new UTApi();
