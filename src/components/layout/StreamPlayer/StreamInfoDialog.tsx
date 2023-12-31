@@ -135,7 +135,7 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
               field='title'
               label='Title'
               value={title}
-              onChange={e => setTitle(e.target.value)}
+              onChange={e => !isPending && setTitle(e.target.value)}
             />
             <SettingsItem
               field='thumbnailUrl'
