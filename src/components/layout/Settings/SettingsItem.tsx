@@ -26,12 +26,12 @@ export const SettingsItem = ({
   <li
     {...props}
     className={cn(
-      'flex items-center gap-2 px-4 py-3',
+      'flex items-center gap-2 py-3',
       orientation === 'vertical' ? 'flex-col items-start' : 'flex-row',
       className
     )}
   >
-    <div className='5 flex flex-col gap-0'>
+    <div className='flex flex-col gap-0'>
       <label htmlFor={htmlFor || field} className='text-base font-medium'>
         {label}
       </label>
