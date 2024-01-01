@@ -67,12 +67,7 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
             <StreamVideo />
             <StreamHeader imageUrl={user.imageUrl} />
             <StreamInfoDialog initialThumbnailUrl={stream.thumbnailUrl} />
-            <UserAbout
-              withHeader
-              username={user.username}
-              bio={user.bio}
-              followerCount={user._count.followedBy}
-            />
+            <UserAbout withHeader user={user} />
           </div>
           <div className={cn('col-span-1 grow', collapsed && 'hidden')}>
             <StreamChat />

@@ -25,7 +25,7 @@ const UserPage = async ({ params: { username } }: UserPageProps) => {
         isFollowing={isFollowing}
         isBlocking={isBlocking}
       />
-      <UserAbout username={viewedUser.username} bio={viewedUser.bio} />
+      <UserAbout user={viewedUser} />
     </div>
   );
 };

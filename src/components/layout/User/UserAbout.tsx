@@ -1,5 +1,7 @@
 'use client';
 
+import type { User } from '@prisma/client';
+
 import { UserProfileDialog } from './UserProfileDialog';
 import {
   Card,
@@ -12,26 +14,20 @@ import { useCurrentUser } from '@/hooks';
 import { cn } from '@/lib/utils';
 
 export type UserAboutProps = {
-  username: string;
-  bio: string | null;
-  followerCount?: number;
+  user: User & { _count: { followedBy: number } };
   withHeader?: boolean;
 };
 
-export const UserAbout = ({
-  username,
-  bio,
-  followerCount,
-  withHeader = false,
-}: UserAboutProps) => {
+export const UserAbout = ({ user, withHeader = false }: UserAboutProps) => {
   const currentUser = useCurrentUser();
-  const isCurrentUser = currentUser?.username === username;
+  const isCurrentUser = currentUser?.username === user.username;
+  const followerCount = user._count?.followedBy;
 
   return (
     <Card className='relative'>
       {withHeader && (
         <CardHeader>
-          <CardTitle>About {username}</CardTitle>
+          <CardTitle>About {user.username}</CardTitle>
           {typeof followerCount === 'number' && (
             <CardDescription>
               {followerCount < 1
@@ -45,16 +41,19 @@ export const UserAbout = ({
       )}
       {isCurrentUser && (
         <UserProfileDialog
-          initialValues={{ bio }}
+          initialValues={{ bio: user.bio }}
           className='absolute end-4 top-4'
         >
           Edit
         </UserProfileDialog>
       )}
       <CardContent
-        className={cn(!bio && 'text-muted-foreground', !withHeader && 'pt-6')}
+        className={cn(
+          !user.bio && 'text-muted-foreground',
+          !withHeader && 'pt-6'
+        )}
       >
-        {bio ||
+        {user.bio ||
           'This user is so mysterious, that even we don’t know who they are.'}
       </CardContent>
     </Card>
