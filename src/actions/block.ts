@@ -1,13 +1,34 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { RoomServiceClient } from 'livekit-server-sdk';
+
+import { getCurrentUser } from '@/queries/auth';
 import { createBlock, deleteBlock } from '@/queries/block';
 
+const roomService = new RoomServiceClient(
+  process.env.LIVEKIT_API_URL as string,
+  process.env.LIVEKIT_API_KEY,
+  process.env.LIVEKIT_API_SECRET
+);
+
 export const blockUser = async (userId: string) => {
-  // TODO: Adapt to disconnect from livestream
-  // TODO: Allow ability to kick the user
-  const newBlock = await createBlock(userId);
-  revalidatePath('/');
+  const currentUser = await getCurrentUser();
+
+  let newBlock;
+  try {
+    newBlock = await createBlock(userId);
+  } catch {
+    // User is a guest, just kick them
+  }
+
+  try {
+    roomService.removeParticipant(currentUser.id, userId);
+  } catch {
+    // User is not in the room
+  }
+
+  revalidatePath('/dashboard/community');
   if (newBlock) revalidatePath(`/${newBlock.blockedUser.username}`);
   return newBlock;
 };
