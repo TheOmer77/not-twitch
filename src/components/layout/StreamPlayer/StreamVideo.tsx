@@ -7,6 +7,7 @@ import {
   useTracks,
 } from '@livekit/components-react';
 
+import { StreamDisconnectedState } from './StreamDisconnectedState';
 import { StreamLiveVideo } from './StreamLiveVideo';
 import { StreamLoadingState } from './StreamLoadingState';
 import { StreamOfflineState } from './StreamOfflineState';
@@ -28,6 +29,8 @@ border bg-neutral-950 text-neutral-100'
     >
       {!participant && connectionState === ConnectionState.Connected ? (
         <StreamOfflineState username={hostName} />
+      ) : connectionState === ConnectionState.Disconnected ? (
+        <StreamDisconnectedState />
       ) : !participant || tracks.length < 1 ? (
         <StreamLoadingState />
       ) : (
