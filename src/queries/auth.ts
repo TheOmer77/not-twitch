@@ -1,7 +1,7 @@
 import { currentUser } from '@clerk/nextjs';
 
+import type { GetUserOptions } from './users';
 import { db } from '@/lib/db';
-import type { GetUserOptions } from '@/queries/users';
 
 export const getCurrentUser = async ({
   includeFollowerCount,
