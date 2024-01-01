@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
+import { UserProfileDialog } from './UserProfileDialog';
 import {
   Card,
   CardContent,
@@ -43,7 +43,14 @@ export const UserAbout = ({
           )}
         </CardHeader>
       )}
-      {isCurrentUser && <Button className='absolute end-4 top-4'>Edit</Button>}
+      {isCurrentUser && (
+        <UserProfileDialog
+          initialValues={{ bio }}
+          className='absolute end-4 top-4'
+        >
+          Edit
+        </UserProfileDialog>
+      )}
       <CardContent
         className={cn(!bio && 'text-muted-foreground', !withHeader && 'pt-6')}
       >
