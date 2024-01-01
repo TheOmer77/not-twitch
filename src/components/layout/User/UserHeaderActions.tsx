@@ -80,22 +80,20 @@ export const UserHeaderActions = ({
     });
   };
 
+  if (!currentUser || currentUser.id === userId) return null;
+
   return (
     <div className='mt-4 flex flex-row gap-2 md:ms-auto md:mt-0'>
-      {currentUser?.id !== userId && (
-        <>
-          <Button
-            variant={isFollowing ? 'default' : 'primary'}
-            onClick={handleFollowClick}
-            disabled={isPending}
-          >
-            {isFollowing ? 'Unfollow' : 'Follow'}
-          </Button>
-          <Button onClick={handleBlockClick} disabled={isPending}>
-            {isBlocking ? 'Unblock' : 'Block'}
-          </Button>
-        </>
-      )}
+      <Button
+        variant={isFollowing ? 'default' : 'primary'}
+        onClick={handleFollowClick}
+        disabled={isPending}
+      >
+        {isFollowing ? 'Unfollow' : 'Follow'}
+      </Button>
+      <Button onClick={handleBlockClick} disabled={isPending}>
+        {isBlocking ? 'Unblock' : 'Block'}
+      </Button>
     </div>
   );
 };
