@@ -33,6 +33,7 @@ export const StreamPlayer = ({
 
   if (isTokenPending) return <StreamPlayerSkeleton />;
   if (!token || !name || !identity)
+    // TODO: Throw error?
     return <div>Unable to watch this stream.</div>;
 
   return (
