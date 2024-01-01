@@ -47,14 +47,19 @@ export const UserAbout = ({ user, withHeader = false }: UserAboutProps) => {
           Edit
         </UserProfileDialog>
       )}
-      <CardContent
-        className={cn(
-          !user.bio && 'text-muted-foreground',
-          !withHeader && 'pt-6'
-        )}
-      >
-        {user.bio ||
-          'This user is so mysterious, that even we don’t know who they are.'}
+      <CardContent className={cn('space-y-2', !withHeader && 'pt-6')}>
+        <p className={cn(!user.bio && 'text-muted-foreground')}>
+          {user.bio ||
+            'This user is so mysterious, that even we don’t know who they are.'}
+        </p>
+        <p className='text-sm text-muted-foreground'>
+          Joined{' '}
+          {new Date(user.createdAt).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          })}
+        </p>
       </CardContent>
     </Card>
   );

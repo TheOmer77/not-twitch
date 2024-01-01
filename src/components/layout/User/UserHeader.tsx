@@ -35,15 +35,6 @@ export const UserHeader = ({
           </span>
         </div>
       </div>
-
-      <p className='text-sm text-muted-foreground'>
-        Joined{' '}
-        {new Date(user.createdAt).toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric',
-        })}
-      </p>
     </div>
     <UserHeaderActions
       userId={user.id}
