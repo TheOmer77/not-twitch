@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { Tooltip } from '@/components/ui/Tooltip';
-import { useStream } from '@/hooks';
+import { useCurrentUser, useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
 
 export const StreamChatInput = () => {
@@ -26,6 +26,7 @@ export const StreamChatInput = () => {
   const [isSending, startTransition] = useTransition();
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const currentUser = useCurrentUser();
   const {
     isOnline,
     isChatEnabled,
@@ -37,7 +38,10 @@ export const StreamChatInput = () => {
   const { send } = useChat();
 
   const disabled =
-    isSending || isDelayBlocked || (isChatFollowersOnly && !isFollowing);
+    isSending ||
+    isDelayBlocked ||
+    !currentUser ||
+    (isChatFollowersOnly && !isFollowing);
 
   const infoMsg = useMemo(
       () =>
@@ -92,6 +96,16 @@ export const StreamChatInput = () => {
   }, [isSending, justSent]);
 
   if (!isChatEnabled || (!isOnline && isChatDisabledOffline)) return null;
+  if (!currentUser)
+    return (
+      <span
+        className='mb-2 flex flex-row items-center gap-2 px-2 text-sm
+text-muted-foreground'
+      >
+        <InfoIcon className='h-4 w-4 shrink-0' />
+        You must log in to chat.
+      </span>
+    );
 
   return (
     <form onSubmit={handleSubmit}>
