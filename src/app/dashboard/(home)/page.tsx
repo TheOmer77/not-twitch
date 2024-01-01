@@ -2,7 +2,10 @@ import { StreamPlayer } from '@/components/layout';
 import { getCurrentUser } from '@/services/auth';
 
 const DashboardHomePage = async () => {
-  const { stream, ...user } = await getCurrentUser({ includeStream: true });
+  const { stream, ...user } = await getCurrentUser({
+    includeStream: true,
+    includeFollowerCount: true,
+  });
   if (!stream) throw new Error("You don't have a stream.");
 
   return (

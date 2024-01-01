@@ -3,6 +3,7 @@
 import { LiveKitRoom } from '@livekit/components-react';
 import type { Stream, User } from '@prisma/client';
 
+import { StreamAboutCard } from './StreamAboutCard';
 import { StreamHeader, StreamHeaderSkeleton } from './StreamHeader';
 import { StreamInfoDialog } from './StreamInfoDialog';
 import { StreamVideo, StreamVideoSkeleton } from './StreamVideo';
@@ -17,7 +18,7 @@ import { useChatSidebar } from '@/store/useChatSidebar';
 import { cn } from '@/lib/utils';
 
 export type StreamPlayerProps = {
-  user: User;
+  user: User & { _count: { followedBy: number } };
   stream: Stream;
   isFollowing: boolean;
 };
@@ -66,6 +67,10 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
             <StreamVideo />
             <StreamHeader imageUrl={user.imageUrl} />
             <StreamInfoDialog initialThumbnailUrl={stream.thumbnailUrl} />
+            <StreamAboutCard
+              bio={user.bio}
+              followerCount={user._count.followedBy}
+            />
           </div>
           <div className={cn('col-span-1 grow', collapsed && 'hidden')}>
             <StreamChat />
