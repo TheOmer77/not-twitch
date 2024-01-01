@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/services/auth';
+import { getCurrentUser } from './auth';
 import { db } from '@/lib/db';
 
 export const getRecommended = async () => {

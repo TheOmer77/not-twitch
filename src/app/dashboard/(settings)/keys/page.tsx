@@ -5,7 +5,7 @@ import {
   SettingsCard,
   SettingsItem,
 } from '@/components/layout';
-import { getCurrentUser } from '@/services/auth';
+import { getCurrentUser } from '@/queries/auth';
 
 const DashboardKeysPage = async () => {
   const { stream } = await getCurrentUser({ includeStream: true });

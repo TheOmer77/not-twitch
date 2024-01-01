@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 import { AccessToken } from 'livekit-server-sdk';
 import type { User } from '@prisma/client';
 
-import { getCurrentUser } from '@/services/auth';
+import { getCurrentUser } from '@/queries/auth';
 import { getUserById } from '@/queries/users';
 import { isBlockedByUser } from '@/queries/block';
 

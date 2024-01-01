@@ -1,5 +1,5 @@
 import { SettingsCard, SwitchSettingsItem } from '@/components/layout';
-import { getCurrentUser } from '@/services/auth';
+import { getCurrentUser } from '@/queries/auth';
 
 const DashboardChatPage = async () => {
   const { stream } = await getCurrentUser({ includeStream: true });

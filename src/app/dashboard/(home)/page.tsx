@@ -1,5 +1,5 @@
 import { StreamPlayer } from '@/components/layout';
-import { getCurrentUser } from '@/services/auth';
+import { getCurrentUser } from '@/queries/auth';
 
 const DashboardHomePage = async () => {
   const { stream, ...user } = await getCurrentUser({

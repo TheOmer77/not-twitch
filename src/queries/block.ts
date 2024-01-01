@@ -1,6 +1,6 @@
-import { getCurrentUser } from '@/services/auth';
-import { db } from '@/lib/db';
+import { getCurrentUser } from './auth';
 import { getUserById } from './users';
+import { db } from '@/lib/db';
 
 export const isBlockingUser = async (userId: string) => {
   try {

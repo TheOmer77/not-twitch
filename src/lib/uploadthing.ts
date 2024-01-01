@@ -1,7 +1,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { UTApi } from 'uploadthing/server';
 
-import { getCurrentUser } from '@/services/auth';
+import { getCurrentUser } from '@/queries/auth';
 
 const uploadThing = createUploadthing();
 

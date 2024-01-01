@@ -1,9 +1,9 @@
-import { currentUser, SignInButton, UserButton } from '@clerk/nextjs';
-
-import { Button } from '@/components/ui/Button';
-import { DashboardButton } from './DashboardButton';
-import { getCurrentUser } from '@/services/auth';
+import { SignInButton, UserButton } from '@clerk/nextjs';
 import type { User } from '@prisma/client';
+
+import { DashboardButton } from './DashboardButton';
+import { Button } from '@/components/ui/Button';
+import { getCurrentUser } from '@/queries/auth';
 
 export const NavbarActions = async () => {
   let currentUser: User | null;

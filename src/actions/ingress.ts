@@ -11,8 +11,8 @@ import {
 } from 'livekit-server-sdk';
 import { TrackSource } from 'livekit-server-sdk/dist/proto/livekit_models';
 
+import { getCurrentUser } from '@/queries/auth';
 import { db } from '@/lib/db';
-import { getCurrentUser } from '@/services/auth';
 
 const roomService = new RoomServiceClient(
   process.env.LIVEKIT_API_URL as string,
