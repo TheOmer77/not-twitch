@@ -22,7 +22,7 @@ export const StreamChat = () => {
   }, [matchesLg, setCollapsed]);
 
   return (
-    <Card className='flex h-full max-h-[calc(100vh-6rem)] flex-col gap-2 p-2'>
+    <Card className='sticky top-20 flex h-full max-h-[calc(100vh-6rem)] flex-col gap-2 p-2'>
       <StreamChatHeader />
       {variant === 'community' ? (
         <StreamChatCommunity />
