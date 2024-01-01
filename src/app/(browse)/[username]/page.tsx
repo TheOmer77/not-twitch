@@ -1,32 +1,27 @@
 import { notFound } from 'next/navigation';
 
 import { isFollowingUser } from '@/queries/follow';
-import { isBlockingUser } from '@/queries/block';
+import { isBlockedByUser } from '@/queries/block';
 import { getUserByUsername } from '@/queries/users';
-import { UserAbout, UserHeader } from '@/components/layout';
+import { StreamPlayer } from '@/components/layout';
 
 type UserPageProps = {
   params: { username: string };
 };
 
 const UserPage = async ({ params: { username } }: UserPageProps) => {
-  const viewedUser = await getUserByUsername(username, {
+  const user = await getUserByUsername(username, {
     includeFollowerCount: true,
+    includeStream: true,
   });
-  if (!viewedUser) notFound();
+  if (!user || !user.stream) notFound();
 
-  const isFollowing = await isFollowingUser(viewedUser.id),
-    isBlocking = await isBlockingUser(viewedUser.id);
+  const isFollowing = await isFollowingUser(user.id),
+    isBlocked = await isBlockedByUser(user.id);
+  if (isBlocked) notFound();
 
   return (
-    <div className='space-y-4'>
-      <UserHeader
-        user={viewedUser}
-        isFollowing={isFollowing}
-        isBlocking={isBlocking}
-      />
-      <UserAbout user={viewedUser} />
-    </div>
+    <StreamPlayer user={user} stream={user.stream} isFollowing={isFollowing} />
   );
 };
 
