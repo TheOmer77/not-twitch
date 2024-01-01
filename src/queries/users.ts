@@ -1,3 +1,5 @@
+import type { User } from '@prisma/client';
+
 import { db } from '@/lib/db';
 
 export type GetUserOptions = {
@@ -32,3 +34,6 @@ export const getUserByUsername = async (
         : {}),
     },
   });
+
+export const updateUserById = async (id: string, data: Partial<User>) =>
+  await db.user.update({ where: { id }, data });
