@@ -9,7 +9,7 @@ export const clerkTheme: Appearance = {
     userButtonPopoverActionButtonText: 'text-card-foreground',
     userButtonPopoverActionButtonIcon: 'text-muted-foreground',
     userButtonPopoverFooter: 'hidden',
-    socialButtonsBlockButton: cn(buttonVariants({ variant: 'outline' })),
+    socialButtonsBlockButton: cn(buttonVariants({ variant: 'default' })),
     socialButtonsBlockButtonText: 'text-foreground',
     formFieldLabel: 'text-muted-foreground',
     formFieldInput: 'bg-background text-inherit',
