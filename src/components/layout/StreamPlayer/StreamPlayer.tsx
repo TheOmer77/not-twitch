@@ -3,7 +3,6 @@
 import { LiveKitRoom } from '@livekit/components-react';
 import type { Stream, User } from '@prisma/client';
 
-import { StreamAboutCard } from './StreamAboutCard';
 import { StreamHeader, StreamHeaderSkeleton } from './StreamHeader';
 import { StreamInfoDialog } from './StreamInfoDialog';
 import { StreamVideo, StreamVideoSkeleton } from './StreamVideo';
@@ -12,6 +11,7 @@ import {
   StreamChatSkeleton,
   StreamChatCollapseToggle,
 } from '@/components/layout/StreamChat';
+import { UserAbout } from '@/components/layout/User';
 import { StreamProvider } from '@/components/providers';
 import { useViewerToken } from '@/hooks';
 import { useChatSidebar } from '@/store/useChatSidebar';
@@ -67,7 +67,9 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
             <StreamVideo />
             <StreamHeader imageUrl={user.imageUrl} />
             <StreamInfoDialog initialThumbnailUrl={stream.thumbnailUrl} />
-            <StreamAboutCard
+            <UserAbout
+              withHeader
+              username={user.username}
               bio={user.bio}
               followerCount={user._count.followedBy}
             />
