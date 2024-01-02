@@ -38,7 +38,7 @@ export const resetIngresses = async (hostId: string) => {
 };
 
 export const createIngress = async (ingressType: IngressInput) => {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser({ throwIfNotFound: true });
 
   await resetIngresses(currentUser.id);
 
@@ -81,7 +81,7 @@ export const createIngress = async (ingressType: IngressInput) => {
 };
 
 export const deleteIngress = async () => {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser({ throwIfNotFound: true });
 
   await resetIngresses(currentUser.id);
 

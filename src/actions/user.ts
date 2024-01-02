@@ -7,7 +7,7 @@ import { updateUserById } from '@/queries/users';
 import { revalidatePath } from 'next/cache';
 
 export const updateCurrentUser = async ({ bio }: Partial<User>) => {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser({ throwIfNotFound: true });
   const updatableData = { bio };
 
   const updatedUser = await updateUserById(currentUser.id, updatableData);

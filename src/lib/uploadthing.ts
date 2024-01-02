@@ -11,7 +11,7 @@ export const fileRouter = {
     'image/jpeg': { maxFileSize: '4MB', maxFileCount: 1 },
   })
     .middleware(async () => {
-      await getCurrentUser();
+      await getCurrentUser({ throwIfNotFound: true });
       return {};
     })
     .onUploadComplete(async ({ file }) => {

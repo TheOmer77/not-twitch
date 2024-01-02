@@ -13,7 +13,7 @@ const roomService = new RoomServiceClient(
 );
 
 export const blockUser = async (userId: string) => {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser({ throwIfNotFound: true });
 
   let newBlock;
   try {

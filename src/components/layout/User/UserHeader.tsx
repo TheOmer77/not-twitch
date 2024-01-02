@@ -1,10 +1,9 @@
-import type { User } from '@prisma/client';
-
 import { UserAvatar } from './UserAvatar';
 import { UserHeaderActions } from './UserHeaderActions';
+import type { UserWithFollowerCount } from '@/queries/users';
 
 export type UserHeaderProps = {
-  user: User & { _count: { followedBy: number } };
+  user: UserWithFollowerCount;
   isFollowing: boolean;
   isBlocking: boolean;
 };

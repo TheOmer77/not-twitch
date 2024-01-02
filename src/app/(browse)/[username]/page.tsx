@@ -10,10 +10,7 @@ type UserPageProps = {
 };
 
 const UserPage = async ({ params: { username } }: UserPageProps) => {
-  const user = await getUserByUsername(username, {
-    includeFollowerCount: true,
-    includeStream: true,
-  });
+  const user = await getUserByUsername(username, { includeStream: true });
   if (!user || !user.stream) notFound();
 
   const isFollowing = await isFollowingUser(user.id),

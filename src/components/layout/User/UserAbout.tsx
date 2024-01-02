@@ -1,7 +1,5 @@
 'use client';
 
-import type { User } from '@prisma/client';
-
 import { UserProfileDialog } from './UserProfileDialog';
 import {
   Card,
@@ -12,9 +10,10 @@ import {
 } from '@/components/ui/Card';
 import { useCurrentUser } from '@/hooks';
 import { cn } from '@/lib/utils';
+import type { UserWithFollowerCount } from '@/queries/users';
 
 export type UserAboutProps = {
-  user: User & { _count: { followedBy: number } };
+  user: UserWithFollowerCount;
   withHeader?: boolean;
 };
 

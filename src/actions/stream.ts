@@ -15,7 +15,7 @@ export const updateStreamSettings = async ({
   isChatDisabledOffline,
   isChatFollowersOnly,
 }: Partial<Stream>) => {
-  const currentUser = await getCurrentUser(),
+  const currentUser = await getCurrentUser({ throwIfNotFound: true }),
     stream = await getStreamByUserId(currentUser.id);
   if (!stream) throw new Error("You don't have a stream.");
 

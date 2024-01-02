@@ -7,7 +7,7 @@ const DashboardHomePage = async () => {
   try {
     const { stream, ...user } = await getCurrentUser({
       includeStream: true,
-      includeFollowerCount: true,
+      throwIfNotFound: true,
     });
     if (!stream) throw new Error("You don't have a stream.");
 

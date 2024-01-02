@@ -4,9 +4,8 @@ import { db } from '@/lib/db';
 
 export const isBlockingUser = async (userId: string) => {
   try {
-    const currentUser = await getCurrentUser(),
-      otherUser = await getUserById(userId);
-    if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
+    const currentUser = await getCurrentUser({ throwIfNotFound: true }),
+      otherUser = await getUserById(userId, { throwIfNotFound: true });
     if (otherUser.id === currentUser.id) return false;
 
     const existingBlock = await db.block.findUnique({
@@ -25,9 +24,8 @@ export const isBlockingUser = async (userId: string) => {
 
 export const isBlockedByUser = async (userId: string) => {
   try {
-    const currentUser = await getCurrentUser(),
-      otherUser = await getUserById(userId);
-    if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
+    const currentUser = await getCurrentUser({ throwIfNotFound: true }),
+      otherUser = await getUserById(userId, { throwIfNotFound: true });
     if (otherUser.id === currentUser.id) return false;
 
     const existingBlock = await db.block.findUnique({
@@ -45,9 +43,8 @@ export const isBlockedByUser = async (userId: string) => {
 };
 
 export const createBlock = async (userId: string) => {
-  const currentUser = await getCurrentUser(),
-    otherUser = await getUserById(userId);
-  if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
+  const currentUser = await getCurrentUser({ throwIfNotFound: true }),
+    otherUser = await getUserById(userId, { throwIfNotFound: true });
   if (otherUser.id === currentUser.id)
     throw new Error('You cannot block yourself.');
 
@@ -64,9 +61,8 @@ export const createBlock = async (userId: string) => {
 };
 
 export const deleteBlock = async (userId: string) => {
-  const currentUser = await getCurrentUser(),
-    otherUser = await getUserById(userId);
-  if (!otherUser) throw new Error(`User with ID '${userId}' not found.`);
+  const currentUser = await getCurrentUser({ throwIfNotFound: true }),
+    otherUser = await getUserById(userId, { throwIfNotFound: true });
   if (otherUser.id === currentUser.id)
     throw new Error('You cannot unblock yourself.');
 

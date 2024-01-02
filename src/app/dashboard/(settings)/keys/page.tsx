@@ -8,7 +8,10 @@ import {
 import { getCurrentUser } from '@/queries/auth';
 
 const DashboardKeysPage = async () => {
-  const { stream } = await getCurrentUser({ includeStream: true });
+  const { stream } = await getCurrentUser({
+    includeStream: true,
+    throwIfNotFound: true,
+  });
   if (!stream) throw new Error("You don't have a stream.");
 
   return (

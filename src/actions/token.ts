@@ -9,17 +9,15 @@ import { getUserById } from '@/queries/users';
 import { isBlockedByUser } from '@/queries/block';
 
 export const createViewerToken = async (hostId: string) => {
-  let currentUser: Partial<User>;
-  try {
-    currentUser = await getCurrentUser();
-  } catch {
+  let currentUser: Partial<User> | null = await getCurrentUser();
+  if (!currentUser) {
     const id = v4();
     const username = `guest#${Math.floor(Math.random() * 1000)}`;
     currentUser = { id, username };
   }
 
-  const host = await getUserById(hostId);
-  if (!host) throw new Error('Host user not found.');
+  const hostUser = await getUserById(hostId);
+  if (!hostUser) throw new Error('Host user not found.');
 
   const isBlocked = await isBlockedByUser(hostId);
   if (isBlocked) throw new Error('You are blocked by this user.');
