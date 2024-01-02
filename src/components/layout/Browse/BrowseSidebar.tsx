@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 
-import { Sidebar } from '../Sidebar';
 import { BrowseSidebarUsers } from './BrowseSidebarUsers';
+import { BrowseSidebarSkeleton } from './BrowseSidebarSkeleton';
+import { Sidebar } from '../Sidebar';
 import { getRecommended } from '@/queries/recommended';
 import { getFollowedUsers } from '@/queries/follow';
-import { BrowseSidebarSkeleton } from './BrowseSidebarSkeleton';
 
 export const BrowseSidebar = async () => {
   const recommended = await getRecommended(),

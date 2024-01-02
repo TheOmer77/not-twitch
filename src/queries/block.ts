@@ -55,7 +55,7 @@ export const createBlock = async (userId: string) => {
 
   const newBlock = await db.block.create({
     data: { blockingUserId: currentUser.id, blockedUserId: otherUser.id },
-    include: { blockingUser: true, blockedUser: true },
+    include: { blockedUser: true },
   });
   return newBlock;
 };

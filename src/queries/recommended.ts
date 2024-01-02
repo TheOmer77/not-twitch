@@ -2,12 +2,7 @@ import { getCurrentUser } from './auth';
 import { db } from '@/lib/db';
 
 export const getRecommended = async () => {
-  let currentUserId;
-  try {
-    currentUserId = (await getCurrentUser()).id;
-  } catch (err) {
-    currentUserId = null;
-  }
+  const currentUserId = (await getCurrentUser())?.id || null;
 
   const users = await db.user.findMany({
     orderBy: { createdAt: 'desc' },
