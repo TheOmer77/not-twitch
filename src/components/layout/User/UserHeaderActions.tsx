@@ -59,6 +59,7 @@ export const UserHeaderActions = ({
           : blockUser(userId));
         // No message, will use the default
         if (!block) throw new Error();
+
         displayToast(
           isBlocking
             ? `You've unblocked ${block.blockedUser.username}.`

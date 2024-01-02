@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import type { ToastActionElement, ToastProps } from '@/components/ui/Toast';
+import type {
+  ToastActionElement,
+  ToastProps,
+} from '@/components/ui/Toast/types';
 
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;
