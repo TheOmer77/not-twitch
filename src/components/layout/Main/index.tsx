@@ -11,7 +11,7 @@ export const Main = ({ full, className, children, ...props }: MainProps) => (
     {...props}
     className={cn(
       'p-4 ps-24 lg:ps-[21rem]',
-      !full && 'mx-auto max-w-6xl',
+      !full && 'mx-auto max-w-screen-2xl',
       className
     )}
   >
