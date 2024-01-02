@@ -1,10 +1,10 @@
 'use server';
 
-import type { User } from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 
 import { getCurrentUser } from '@/queries/auth';
 import { updateUserById } from '@/queries/users';
-import { revalidatePath } from 'next/cache';
+import type { User } from '@/types';
 
 export const updateCurrentUser = async ({ bio }: Partial<User>) => {
   const currentUser = await getCurrentUser({ throwIfNotFound: true });

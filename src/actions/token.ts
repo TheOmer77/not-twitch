@@ -2,11 +2,11 @@
 
 import { v4 } from 'uuid';
 import { AccessToken } from 'livekit-server-sdk';
-import type { User } from '@prisma/client';
 
 import { getCurrentUser } from '@/queries/auth';
 import { getUserById } from '@/queries/users';
 import { isBlockedByUser } from '@/queries/block';
+import type { User } from '@/types';
 
 export const createViewerToken = async (hostId: string) => {
   let currentUser: Partial<User> | null = await getCurrentUser();

@@ -1,6 +1,5 @@
-import type { Stream } from '@prisma/client';
-
 import { db } from '@/lib/db';
+import type { Stream } from '@/types';
 
 export const getStreamByUserId = async (userId: string) =>
   await db.stream.findUnique({ where: { userId } });

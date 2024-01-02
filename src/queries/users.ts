@@ -1,9 +1,5 @@
-import type { Stream, User } from '@prisma/client';
-
 import { db } from '@/lib/db';
-
-// TODO: Move to types dir, along with re-exports from prisma client
-export type UserWithFollowerCount = User & { _count: { followedBy: number } };
+import type { User, UserWithStream } from '@/types';
 
 export type GetUserOptions = {
   includeStream?: boolean;
@@ -12,13 +8,9 @@ export type GetUserOptions = {
 export type GetUserResult<T extends GetUserOptions> =
   T['throwIfNotFound'] extends true
     ? T['includeStream'] extends true
-      ? UserWithFollowerCount & { stream: Stream | null }
-      : UserWithFollowerCount
-    :
-        | (T['includeStream'] extends true
-            ? UserWithFollowerCount & { stream: Stream | null }
-            : UserWithFollowerCount)
-        | null;
+      ? UserWithStream
+      : User
+    : (T['includeStream'] extends true ? UserWithStream : User) | null;
 
 export const getUserById = async <T extends GetUserOptions>(
   id: string,

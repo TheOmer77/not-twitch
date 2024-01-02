@@ -1,11 +1,11 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import type { Stream } from '@prisma/client';
 
 import { getCurrentUser } from '@/queries/auth';
 import { getStreamByUserId, updateStreamByUserId } from '@/queries/stream';
 import { uploadThingApi } from '@/lib/uploadthing';
+import type { Stream } from '@/types';
 
 export const updateStreamSettings = async ({
   title,

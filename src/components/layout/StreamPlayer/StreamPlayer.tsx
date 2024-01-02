@@ -1,7 +1,6 @@
 'use client';
 
 import { LiveKitRoom } from '@livekit/components-react';
-import type { Stream } from '@prisma/client';
 
 import { StreamHeader, StreamHeaderSkeleton } from './StreamHeader';
 import { StreamInfoDialog } from './StreamInfoDialog';
@@ -16,10 +15,10 @@ import { StreamProvider } from '@/components/providers';
 import { useViewerToken } from '@/hooks';
 import { useChatSidebar } from '@/store/useChatSidebar';
 import { cn } from '@/lib/utils';
-import type { UserWithFollowerCount } from '@/queries/users';
+import type { Stream, User } from '@/types';
 
 export type StreamPlayerProps = {
-  user: UserWithFollowerCount;
+  user: User;
   stream: Stream;
   isFollowing: boolean;
 };

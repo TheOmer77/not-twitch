@@ -7,7 +7,6 @@ import {
   type ComponentPropsWithoutRef,
   type FormEventHandler,
 } from 'react';
-import type { User } from '@prisma/client';
 
 import { Button } from '@/components/ui/Button';
 import {
@@ -24,6 +23,7 @@ import { SettingsItem } from '@/components/layout/Settings';
 import { useToast } from '@/hooks';
 import { updateCurrentUser } from '@/actions/user';
 import { cn } from '@/lib/utils';
+import type { User } from '@/types';
 
 export type UserProfileDialogProps = Omit<
   ComponentPropsWithoutRef<typeof Button>,

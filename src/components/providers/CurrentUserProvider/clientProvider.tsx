@@ -1,9 +1,9 @@
 'use client';
 
 import type { PropsWithChildren } from 'react';
-import type { User } from '@prisma/client';
 
 import { CurrentUserContext } from '@/contexts';
+import type { User } from '@/types';
 
 const ClientCurrentUserProvider = ({
   value,

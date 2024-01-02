@@ -1,12 +1,11 @@
 'use client';
 
-import type { Stream, User } from '@prisma/client';
-
 import {
   BrowseSidebarUserItem,
   BrowseSidebarUserItemSkeleton,
 } from './BrowseSidebarUserItem';
 import { Skeleton } from '@/components/ui/Skeleton';
+import type { Stream, User } from '@/types';
 
 export type SidebarUserListProps = {
   data: (User & { stream: Pick<Stream, 'isLive'> | null })[];
