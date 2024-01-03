@@ -6,12 +6,13 @@ import {
   SettingsItem,
 } from '@/components/layout';
 import { getCurrentUser } from '@/queries/auth';
+import { getStreamByUserId } from '@/queries/stream';
 
 const DashboardKeysPage = async () => {
-  const { stream } = await getCurrentUser({
-    includeStream: true,
-    throwIfNotFound: true,
-  });
+  const currentUser = await getCurrentUser({
+      throwIfNotFound: true,
+    }),
+    stream = await getStreamByUserId(currentUser.id);
   if (!stream) throw new Error("You don't have a stream.");
 
   return (

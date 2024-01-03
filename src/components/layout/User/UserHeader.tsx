@@ -1,9 +1,9 @@
 import { UserAvatar } from './UserAvatar';
 import { UserHeaderActions } from './UserHeaderActions';
-import type { User } from '@/types';
+import type { User, UserFollowerCount } from '@/types';
 
 export type UserHeaderProps = {
-  user: User;
+  user: User & UserFollowerCount;
   isFollowing: boolean;
   isBlocking: boolean;
 };

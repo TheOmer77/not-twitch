@@ -4,9 +4,9 @@ import { BrowseThumbnail, BrowseThumbnailSkeleton } from './BrowseThumbnail';
 import { UserAvatar } from '@/components/layout/User';
 import { AvatarSkeleton } from '@/components/ui/Avatar';
 import { Skeleton } from '@/components/ui/Skeleton';
-import type { StreamBase, UserBase } from '@/types';
+import type { StreamBase, User } from '@/types';
 
-export type BrowseResultProps = { data: StreamBase & { user: UserBase } };
+export type BrowseResultProps = { data: StreamBase & { user: User } };
 
 export const BrowseResult = ({ data }: BrowseResultProps) => {
   return (

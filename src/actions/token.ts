@@ -9,10 +9,11 @@ import { isBlockedByUser } from '@/queries/block';
 import type { User } from '@/types';
 
 export const createViewerToken = async (hostId: string) => {
-  let currentUser: Partial<User> | null = await getCurrentUser();
+  let currentUser: Pick<User, 'id' | 'username'> | null =
+    await getCurrentUser();
   if (!currentUser) {
-    const id = v4();
-    const username = `guest#${Math.floor(Math.random() * 1000)}`;
+    const id = v4(),
+      username = `guest#${Math.floor(Math.random() * 1000)}`;
     currentUser = { id, username };
   }
 

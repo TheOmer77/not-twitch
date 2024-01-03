@@ -8,7 +8,7 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import type { Stream, User } from '@/types';
 
 export type SidebarUserListProps = {
-  data: (Omit<User, '_count'> & { stream: Pick<Stream, 'isLive'> | null })[];
+  data: (User & { stream: Pick<Stream, 'isLive'> | null })[];
   title?: string;
 };
 

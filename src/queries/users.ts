@@ -1,16 +1,17 @@
 import { db } from '@/lib/db';
-import type { User, UserWithStream } from '@/types';
+import type { User, UserFollowerCount, UserStream } from '@/types';
 
 export type GetUserOptions = {
   includeStream?: boolean;
   throwIfNotFound?: boolean;
 };
+
+export type GetUserResultStream<T extends GetUserOptions> =
+  T['includeStream'] extends true ? UserStream : unknown;
 export type GetUserResult<T extends GetUserOptions> =
   T['throwIfNotFound'] extends true
-    ? T['includeStream'] extends true
-      ? UserWithStream
-      : User
-    : (T['includeStream'] extends true ? UserWithStream : User) | null;
+    ? User & UserFollowerCount & GetUserResultStream<T>
+    : (User & UserFollowerCount & GetUserResultStream<T>) | null;
 
 export const getUserById = async <T extends GetUserOptions>(
   id: string,
@@ -19,7 +20,18 @@ export const getUserById = async <T extends GetUserOptions>(
   const user = await db.user.findUnique({
     where: { id },
     include: {
-      stream: options?.includeStream,
+      stream: !!options?.includeStream && {
+        select: {
+          id: true,
+          isChatDelayed: true,
+          isChatDisabledOffline: true,
+          isChatEnabled: true,
+          isChatFollowersOnly: true,
+          isLive: true,
+          thumbnailUrl: true,
+          title: true,
+        },
+      },
       _count: { select: { followedBy: true } },
     },
   });
@@ -35,7 +47,18 @@ export const getUserByUsername = async <T extends GetUserOptions>(
   const user = await db.user.findUnique({
     where: { username },
     include: {
-      stream: options?.includeStream,
+      stream: !!options?.includeStream && {
+        select: {
+          id: true,
+          isChatDelayed: true,
+          isChatDisabledOffline: true,
+          isChatEnabled: true,
+          isChatFollowersOnly: true,
+          isLive: true,
+          thumbnailUrl: true,
+          title: true,
+        },
+      },
       _count: { select: { followedBy: true } },
     },
   });

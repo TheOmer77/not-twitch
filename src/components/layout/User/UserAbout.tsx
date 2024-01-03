@@ -10,10 +10,10 @@ import {
 } from '@/components/ui/Card';
 import { useCurrentUser } from '@/hooks';
 import { cn } from '@/lib/utils';
-import type { User } from '@/types';
+import type { User, UserFollowerCount } from '@/types';
 
 export type UserAboutProps = {
-  user: User;
+  user: User & UserFollowerCount;
   withHeader?: boolean;
 };
 

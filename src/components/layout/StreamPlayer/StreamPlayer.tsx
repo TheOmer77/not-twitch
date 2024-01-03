@@ -14,10 +14,10 @@ import { StreamProvider } from '@/components/providers';
 import { useViewerToken } from '@/hooks';
 import { useChatSidebar } from '@/store/useChatSidebar';
 import { cn } from '@/lib/utils';
-import type { Stream, User } from '@/types';
+import type { Stream, User, UserFollowerCount } from '@/types';
 
 export type StreamPlayerProps = {
-  user: User;
+  user: User & UserFollowerCount;
   stream: Stream;
   isFollowing: boolean;
 };

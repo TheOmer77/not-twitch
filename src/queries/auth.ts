@@ -15,7 +15,18 @@ export const getCurrentUser = async <T extends GetUserOptions>(
   const dbUser = await db.user.findUnique({
     where: { externalUserId: clerkUser.id },
     include: {
-      stream: options?.includeStream,
+      stream: !!options?.includeStream && {
+        select: {
+          id: true,
+          isChatDelayed: true,
+          isChatDisabledOffline: true,
+          isChatEnabled: true,
+          isChatFollowersOnly: true,
+          isLive: true,
+          thumbnailUrl: true,
+          title: true,
+        },
+      },
       _count: { select: { followedBy: true } },
     },
   });
