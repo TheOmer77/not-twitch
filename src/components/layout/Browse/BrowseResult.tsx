@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BrowseThumbnail, BrowseThumbnailSkeleton } from './BrowseThumbnail';
 import { UserAvatar } from '@/components/layout/User';
 import { AvatarSkeleton } from '@/components/ui/Avatar';
+import { Button } from '@/components/ui/Button';
 import { Skeleton } from '@/components/ui/Skeleton';
 import type { StreamBase, User } from '@/types';
 
@@ -10,27 +11,33 @@ export type BrowseResultProps = { data: StreamBase & { user: User } };
 
 export const BrowseResult = ({ data }: BrowseResultProps) => {
   return (
-    <Link href={`/${data.user.username}`} className='group relative'>
-      <BrowseThumbnail
-        src={data.thumbnailUrl}
-        fallback={data.user.imageUrl}
-        username={data.user.username}
-        isLive={data.isLive}
-      />
-      <div className='mt-2 flex flex-row gap-2'>
-        <UserAvatar
+    <Button
+      asChild
+      variant='flat'
+      className='group relative flex h-auto flex-col p-2'
+    >
+      <Link href={`/${data.user.username}`}>
+        <BrowseThumbnail
+          src={data.thumbnailUrl}
+          fallback={data.user.imageUrl}
           username={data.user.username}
-          imageUrl={data.user.imageUrl}
           isLive={data.isLive}
         />
-        <div className='flex flex-col overflow-hidden'>
-          <span className='truncate text-base font-medium'>{data.title}</span>
-          <span className='text-sm text-muted-foreground'>
-            {data.user.username}
-          </span>
+        <div className='mt-2 flex w-full flex-row gap-2'>
+          <UserAvatar
+            username={data.user.username}
+            imageUrl={data.user.imageUrl}
+            isLive={data.isLive}
+          />
+          <div className='flex flex-col overflow-hidden'>
+            <span className='truncate text-base font-medium'>{data.title}</span>
+            <span className='text-sm text-muted-foreground'>
+              {data.user.username}
+            </span>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </Button>
   );
 };
 
