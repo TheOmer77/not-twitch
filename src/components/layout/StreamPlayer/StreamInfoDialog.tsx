@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { useStream, useToast, useUploadThing } from '@/hooks';
+import { StreamThumbnailDropzone } from './StreamThumbnailDropzone';
 import { Button } from '@/components/ui/Button';
 import {
   Dialog,
@@ -22,9 +22,9 @@ import {
 import type { DropzoneProps } from '@/components/ui/Dropzone';
 import { Spinner } from '@/components/ui/Spinner';
 import { InputSettingsItem, SettingsItem } from '@/components/layout/Settings';
+import { useStream, useToast, useUploadThing } from '@/hooks';
 import { updateStreamSettings } from '@/actions/stream';
 import { cn } from '@/lib/utils';
-import { StreamThumbnailDropzone } from './StreamThumbnailDropzone';
 
 export type StreamInfoProps = {
   initialThumbnailUrl: string | null;
