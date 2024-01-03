@@ -6,8 +6,14 @@ export const getStreams = async () => {
   const currentUser = await getCurrentUser();
 
   return await db.stream.findMany({
-    include: { user: true },
     orderBy: [{ isLive: 'desc' }, { updatedAt: 'desc' }],
+    select: {
+      id: true,
+      isLive: true,
+      thumbnailUrl: true,
+      title: true,
+      user: true,
+    },
     ...(currentUser
       ? {
           where: {

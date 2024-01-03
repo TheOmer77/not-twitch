@@ -5,9 +5,9 @@ import { LiveBadge } from './LiveBadge';
 import { UserAvatar } from '@/components/layout/User';
 import { AvatarSkeleton } from '@/components/ui/Avatar';
 import { Skeleton } from '@/components/ui/Skeleton';
-import type { Stream, UserBase } from '@/types';
+import type { StreamBase, UserBase } from '@/types';
 
-export type BrowseResultProps = { data: Stream & { user: UserBase } };
+export type BrowseResultProps = { data: StreamBase & { user: UserBase } };
 
 export const BrowseResult = ({ data }: BrowseResultProps) => {
   return (
