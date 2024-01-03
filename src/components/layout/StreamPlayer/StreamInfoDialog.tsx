@@ -123,7 +123,9 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
 
   return (
     <>
-      <Button onClick={() => setDialogOpen(true)}>Edit stream info</Button>
+      <Button className='ms-2' onClick={() => setDialogOpen(true)}>
+        Edit stream info
+      </Button>
 
       <Dialog open={dialogOpen} onOpenChange={handleOpenChange}>
         <DialogContent>

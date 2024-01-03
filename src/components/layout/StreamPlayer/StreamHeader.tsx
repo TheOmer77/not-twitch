@@ -7,6 +7,7 @@ import {
 import { User2Icon } from 'lucide-react';
 
 import { StreamHeaderUser, StreamHeaderUserSkeleton } from './StreamHeaderUser';
+import { StreamInfoDialog } from './StreamInfoDialog';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useStream } from '@/hooks';
 import { cn } from '@/lib/utils';
@@ -14,7 +15,7 @@ import { cn } from '@/lib/utils';
 export type StreamHeaderProps = { imageUrl: string };
 
 export const StreamHeader = ({ imageUrl }: StreamHeaderProps) => {
-  const { hostId, title } = useStream();
+  const { hostId, title, thumbnailUrl } = useStream();
   const participants = useParticipants(),
     hostParticipant = useRemoteParticipant(hostId);
 
@@ -32,17 +33,15 @@ sm:text-2xl'
         </h1>
         <span
           className={cn(
-            `flex h-8 flex-row items-center gap-1 rounded-sm px-1.5 text-sm
-font-medium uppercase`,
-            isLive
-              ? 'bg-destructive text-destructive-foreground'
-              : `bg-neutral-800 text-neutral-200 dark:bg-neutral-200
-dark:text-neutral-800`
+            `flex h-10 select-none flex-row items-center gap-1
+text-sm font-medium uppercase`,
+            isLive ? 'text-destructive' : 'text-muted-foreground'
           )}
         >
           {isLive && <User2Icon className='h-5 w-5' />}
           {isLive ? participantCount : 'Offline'}
         </span>
+        <StreamInfoDialog initialThumbnailUrl={thumbnailUrl} />
       </div>
       <StreamHeaderUser imageUrl={imageUrl} />
     </div>

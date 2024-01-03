@@ -7,6 +7,7 @@ export type StreamContextValue = {
   viewerId: string;
   viewerName: string;
   title: string;
+  thumbnailUrl: string | null;
   isChatDelayed: boolean;
   isChatDisabledOffline: boolean;
   isChatEnabled: boolean;
@@ -22,6 +23,7 @@ const initialState: StreamContextValue = {
   viewerId: '',
   viewerName: '',
   title: '',
+  thumbnailUrl: null,
   isChatDelayed: false,
   isChatDisabledOffline: false,
   isChatEnabled: false,

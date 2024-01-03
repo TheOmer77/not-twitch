@@ -3,7 +3,6 @@
 import { LiveKitRoom } from '@livekit/components-react';
 
 import { StreamHeader, StreamHeaderSkeleton } from './StreamHeader';
-import { StreamInfoDialog } from './StreamInfoDialog';
 import { StreamVideo, StreamVideoSkeleton } from './StreamVideo';
 import {
   StreamChat,
@@ -49,9 +48,10 @@ export const StreamPlayer = ({
         <StreamProvider
           hostId={user.id}
           hostName={user.username}
-          title={stream.title}
           viewerId={identity}
           viewerName={name}
+          title={stream.title}
+          thumbnailUrl={stream.thumbnailUrl}
           isChatDelayed={stream.isChatDelayed}
           isChatDisabledOffline={stream.isChatDisabledOffline}
           isChatEnabled={stream.isChatEnabled}
@@ -67,7 +67,6 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
             )}
             <StreamVideo />
             <StreamHeader imageUrl={user.imageUrl} />
-            <StreamInfoDialog initialThumbnailUrl={stream.thumbnailUrl} />
             <UserAbout withHeader user={user} />
           </div>
           <div className={cn('col-span-1 grow', collapsed && 'hidden')}>
