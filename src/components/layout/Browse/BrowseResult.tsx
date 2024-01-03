@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import { BrowseThumbnail, BrowseThumbnailSkeleton } from './BrowseThumbnail';
-import { LiveBadge } from './LiveBadge';
 import { UserAvatar } from '@/components/layout/User';
 import { AvatarSkeleton } from '@/components/ui/Avatar';
 import { Skeleton } from '@/components/ui/Skeleton';
@@ -16,13 +15,8 @@ export const BrowseResult = ({ data }: BrowseResultProps) => {
         src={data.thumbnailUrl}
         fallback={data.user.imageUrl}
         username={data.user.username}
+        isLive={data.isLive}
       />
-      {data.isLive && (
-        <LiveBadge
-          className='absolute end-2 top-2 transition-transform
-group-hover:-translate-y-1 group-hover:translate-x-1'
-        />
-      )}
       <div className='mt-2 flex flex-row gap-2'>
         <UserAvatar
           username={data.user.username}

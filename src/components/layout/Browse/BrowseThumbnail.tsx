@@ -1,41 +1,50 @@
 import Image from 'next/image';
-import { UserAvatar } from '..';
+
+import { LiveBadge } from './LiveBadge';
+import { UserAvatar } from '@/components/layout/User';
 import { Skeleton } from '@/components/ui/Skeleton';
 
 export type BrowseThumbnailProps = {
   src: string | null;
   fallback: string;
   username: string;
+  isLive: boolean;
 };
 
 export const BrowseThumbnail = ({
   src,
   fallback,
   username,
+  isLive,
 }: BrowseThumbnailProps) => (
-  <div className='group relative aspect-video rounded-md'>
-    {/* TODO: Replace this with a shadow on hover */}
+  // TODO: Replace this ::after with a shadow on hover
+  <div
+    className='relative aspect-video rounded-md after:absolute
+after:start-0 after:top-0 after:-z-10 after:h-full after:w-full
+after:rounded-md after:bg-primary after:opacity-0 after:transition-opacity
+group-hover:after:opacity-100'
+  >
     <div
-      className='absolute inset-0 flex items-center justify-center rounded-md
-bg-primary opacity-0 transition-opacity group-hover:opacity-100'
-    />
-    {src ? (
-      <Image
-        src={src}
-        alt={username}
-        fill
-        className='aspect-video rounded-md object-cover transition-transform
-group-hover:-translate-y-1 group-hover:translate-x-1'
-      />
-    ) : (
-      <div
-        className='flex h-full w-full flex-col items-center justify-center
-gap-4 rounded-md bg-card transition-transform group-hover:-translate-y-1
+      className='h-full w-full transition-transform group-hover:-translate-y-1
 group-hover:translate-x-1'
-      >
-        <UserAvatar size='lg' imageUrl={fallback} username={username} />
-      </div>
-    )}
+    >
+      {isLive && <LiveBadge className='absolute end-2 top-2 z-10' />}
+      {src ? (
+        <Image
+          src={src}
+          alt={username}
+          fill
+          className='rounded-md object-cover'
+        />
+      ) : (
+        <div
+          className='flex h-full w-full flex-col items-center
+justify-center gap-4 rounded-md bg-card'
+        >
+          <UserAvatar size='lg' imageUrl={fallback} username={username} />
+        </div>
+      )}
+    </div>
   </div>
 );
 
