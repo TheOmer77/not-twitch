@@ -16,14 +16,14 @@ import { useChatSidebar } from '@/store/useChatSidebar';
 import { cn } from '@/lib/utils';
 import type {
   StreamBase,
-  StreamStatus,
+  StreamSettings,
   User,
   UserFollowerCount,
 } from '@/types';
 
 export type StreamPlayerProps = {
   user: User & UserFollowerCount;
-  stream: StreamBase & StreamStatus;
+  stream: StreamBase & StreamSettings;
   isFollowing: boolean;
 };
 
