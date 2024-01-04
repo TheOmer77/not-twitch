@@ -1,5 +1,7 @@
 'use client';
 
+import { format } from 'date-fns';
+
 import { UserProfileDialog } from './UserProfileDialog';
 import {
   Card,
@@ -52,12 +54,7 @@ export const UserAbout = ({ user, withHeader = false }: UserAboutProps) => {
             'This user is so mysterious, that even we don’t know who they are.'}
         </p>
         <p className='text-sm text-muted-foreground'>
-          Joined{' '}
-          {new Date(user.createdAt).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-          })}
+          Joined {format(user.createdAt, 'MMM d, y')}
         </p>
       </CardContent>
     </Card>
