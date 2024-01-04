@@ -4,7 +4,6 @@ import type { Stream } from '@/types';
 
 export const getStreams = async () => {
   const currentUser = await getCurrentUser();
-
   return await db.stream.findMany({
     orderBy: [{ isLive: 'desc' }, { updatedAt: 'desc' }],
     select: {
@@ -12,6 +11,7 @@ export const getStreams = async () => {
       isLive: true,
       thumbnailUrl: true,
       title: true,
+      updatedAt: true,
       user: true,
     },
     ...(currentUser
