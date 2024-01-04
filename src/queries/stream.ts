@@ -26,6 +26,38 @@ export const getStreams = async () => {
   });
 };
 
+export const getSearchStreams = async (query: string) => {
+  const currentUser = await getCurrentUser();
+  return await db.stream.findMany({
+    where: {
+      ...(currentUser
+        ? {
+            user: {
+              NOT: { blocking: { some: { blockedUserId: currentUser.id } } },
+            },
+          }
+        : {}),
+      OR: [
+        { title: { contains: query } },
+        { user: { username: { contains: query } } },
+      ],
+    },
+    orderBy: [
+      { _relevance: { fields: ['title'], search: query, sort: 'desc' } },
+      { isLive: 'desc' },
+      { updatedAt: 'desc' },
+    ],
+    select: {
+      id: true,
+      isLive: true,
+      thumbnailUrl: true,
+      title: true,
+      updatedAt: true,
+      user: true,
+    },
+  });
+};
+
 export const getStreamByUserId = async (userId: string) =>
   await db.stream.findUnique({ where: { userId } });
 
