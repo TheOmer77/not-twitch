@@ -34,8 +34,10 @@ export const blockUser = async (userId: string) => {
 };
 
 export const unblockUser = async (userId: string) => {
+  await getCurrentUser({ throwIfNotFound: true });
+
   const deletedBlock = await deleteBlock(userId);
   revalidatePath('/');
-  if (deletedBlock) revalidatePath(`/${deletedBlock.blockedUser.username}`);
+  revalidatePath('/dashboard/community');
   return deletedBlock;
 };

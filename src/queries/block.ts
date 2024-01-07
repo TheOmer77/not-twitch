@@ -2,6 +2,14 @@ import { getCurrentUser } from './auth';
 import { getUserById } from './users';
 import { db } from '@/lib/db';
 
+export const getBlockedUsers = async () => {
+  const currentUser = await getCurrentUser({ throwIfNotFound: true });
+  return await db.block.findMany({
+    where: { blockingUserId: currentUser.id },
+    include: { blockedUser: true },
+  });
+};
+
 export const isBlockingUser = async (userId: string) => {
   try {
     const currentUser = await getCurrentUser({ throwIfNotFound: true }),
