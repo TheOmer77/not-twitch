@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import type { WebhookEvent } from '@clerk/nextjs/server';
 
 import { db } from '@/lib/db';
+import { resetIngresses } from '@/actions/ingress';
 
 export const POST = async (req: Request) => {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
@@ -64,7 +65,11 @@ export const POST = async (req: Request) => {
     }
 
     case 'user.deleted': {
-      await db.user.delete({ where: { externalUserId: payload.data.id } });
+      const deletedUser = await db.user.delete({
+        where: { externalUserId: payload.data.id },
+      });
+      // TODO: Don't import from actions, move this function somewhere else
+      if (deletedUser) await resetIngresses(deletedUser.id);
       break;
     }
   }
