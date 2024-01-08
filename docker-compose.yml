@@ -10,11 +10,6 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    environment:
-      - NEXT_PUBLIC_CLERK_SIGN_IN_URL=/login
-      - NEXT_PUBLIC_CLERK_SIGN_UP_URL=/signup
-      - NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-      - NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
   prisma-studio:
     build:

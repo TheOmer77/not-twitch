@@ -20,7 +20,13 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ClerkProvider appearance={clerkTheme}>
+    <ClerkProvider
+      appearance={clerkTheme}
+      signInUrl='/login'
+      signUpUrl='/signup'
+      afterSignInUrl='/'
+      afterSignUpUrl='/'
+    >
       <Provider>
         <html lang='en' className={manrope.variable}>
           <body>
