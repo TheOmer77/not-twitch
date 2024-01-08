@@ -1,6 +1,11 @@
 'use client';
 
-import { useCallback, useState, useTransition } from 'react';
+import {
+  useCallback,
+  useState,
+  useTransition,
+  type FormEventHandler,
+} from 'react';
 import { IngressInput } from 'livekit-server-sdk';
 import { AlertTriangleIcon } from 'lucide-react';
 
@@ -22,6 +27,7 @@ import {
   SelectValue,
 } from '@/components/ui/Select';
 import { Spinner } from '@/components/ui/Spinner';
+import { SettingsItem } from '@/components/layout/Settings';
 import { useToast } from '@/hooks';
 import { createUserIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
@@ -38,23 +44,27 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
   const [isPending, startTransition] = useTransition();
   const { displayToast } = useToast();
 
-  const handleSubmit = useCallback(() => {
-    startTransition(async () => {
-      try {
-        await createUserIngress(ingressType);
+  const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
+    e => {
+      e.preventDefault();
+      startTransition(async () => {
+        try {
+          await createUserIngress(ingressType);
 
-        displayToast('Ingress created.');
-        setDialogOpen(false);
-      } catch (err) {
-        displayToast("Couldn't generate connection", {
-          description:
-            err instanceof Error
-              ? err.message
-              : 'Something went wrong while trying to create an ingress.',
-        });
-      }
-    });
-  }, [displayToast, ingressType]);
+          displayToast('Ingress created.');
+          setDialogOpen(false);
+        } catch (err) {
+          displayToast("Couldn't generate connection", {
+            description:
+              err instanceof Error
+                ? err.message
+                : 'Something went wrong while trying to create an ingress.',
+          });
+        }
+      });
+    },
+    [displayToast, ingressType]
+  );
 
   return (
     <>
@@ -73,48 +83,56 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
               {isRegenerate ? 'Regenerate connection' : 'Generate connection'}
             </DialogTitle>
           </DialogHeader>
-          <div className='flex flex-col gap-4'>
-            <Select
-              value={`${ingressType}`}
-              onValueChange={value => setIngressType(Number(value))}
-              disabled={isPending}
+          <form onSubmit={handleSubmit}>
+            <SettingsItem
+              field='select-ingressType'
+              label='Connection protocol'
+              orientation='vertical'
             >
-              <SelectTrigger>
-                <SelectValue placeholder='Ingress type' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={`${IngressInput.RTMP_INPUT}`}>
-                  RTMP
-                </SelectItem>
-                <SelectItem value={`${IngressInput.WHIP_INPUT}`}>
-                  WHIP
-                </SelectItem>
-              </SelectContent>
-            </Select>
-            {isRegenerate && (
-              <Alert variant='destructive'>
-                <AlertTriangleIcon />
-                <AlertDescription>
-                  This action will invalidate your current connection, and reset
-                  all active streams using it.
-                </AlertDescription>
-              </Alert>
-            )}
-          </div>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button disabled={isPending}>Cancel</Button>
-            </DialogClose>
-            <Button
-              variant='primary'
-              onClick={handleSubmit}
-              disabled={isPending}
-              className='relative'
-            >
-              <span className={cn(isPending && 'invisible')}>Confirm</span>
-              {isPending && <Spinner className='absolute' />}
-            </Button>
-          </DialogFooter>
+              <Select
+                value={`${ingressType}`}
+                onValueChange={value => setIngressType(Number(value))}
+                disabled={isPending}
+              >
+                <SelectTrigger id='select-ingressType'>
+                  <SelectValue placeholder='Protocol' />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={`${IngressInput.RTMP_INPUT}`}>
+                    RTMP
+                  </SelectItem>
+                  <SelectItem value={`${IngressInput.WHIP_INPUT}`}>
+                    WHIP
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              {isRegenerate && (
+                <Alert variant='destructive'>
+                  <AlertTriangleIcon />
+                  <AlertDescription>
+                    This action will invalidate your current connection, and
+                    reset all active streams using it.
+                  </AlertDescription>
+                </Alert>
+              )}
+            </SettingsItem>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button type='button' disabled={isPending}>
+                  Cancel
+                </Button>
+              </DialogClose>
+              <Button
+                variant='primary'
+                type='submit'
+                disabled={isPending}
+                className='relative'
+              >
+                <span className={cn(isPending && 'invisible')}>Confirm</span>
+                {isPending && <Spinner className='absolute' />}
+              </Button>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
     </>

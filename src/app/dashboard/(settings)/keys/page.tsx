@@ -47,8 +47,8 @@ const DashboardKeysPage = async () => {
           <SettingsCard>
             <SettingsItem
               label='Regenerate connection'
-              description="Change your connection's ingress type and reset
-your stream key, in case something went wrong. Note that this will invalidate
+              description="Change your connection's protocol and reset your
+stream key, in case something went wrong. Note that this will invalidate
 your current connection details."
             >
               <ConnectionDialog isRegenerate />
