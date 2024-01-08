@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 export const CardTitle = forwardRef<
   HTMLHeadingElement,
   ComponentPropsWithoutRef<'h3'>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <h3
     ref={ref}
     className={cn(
@@ -13,6 +13,8 @@ export const CardTitle = forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {children}
+  </h3>
 ));
 CardTitle.displayName = 'CardTitle';

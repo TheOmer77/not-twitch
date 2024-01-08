@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  useEffect,
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-} from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { useIsClient } from 'usehooks-ts';
 
 import { cn } from '@/lib/utils';
