@@ -19,6 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/Dialog';
+import { FormField } from '@/components/ui/Form';
 import {
   Select,
   SelectContent,
@@ -27,7 +28,6 @@ import {
   SelectValue,
 } from '@/components/ui/Select';
 import { Spinner } from '@/components/ui/Spinner';
-import { SettingsItem } from '@/components/layout/Settings';
 import { useToast } from '@/hooks';
 import { createUserIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
@@ -83,12 +83,8 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
               {isRegenerate ? 'Regenerate connection' : 'Generate connection'}
             </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit}>
-            <SettingsItem
-              field='select-ingressType'
-              label='Connection protocol'
-              orientation='vertical'
-            >
+          <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
+            <FormField id='select-ingressType' label='Connection protocol'>
               <Select
                 value={`${ingressType}`}
                 onValueChange={value => setIngressType(Number(value))}
@@ -106,17 +102,17 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
                   </SelectItem>
                 </SelectContent>
               </Select>
-              {isRegenerate && (
-                <Alert variant='destructive'>
-                  <AlertTriangleIcon />
-                  <AlertDescription>
-                    This action will invalidate your current connection, and
-                    reset all active streams using it.
-                  </AlertDescription>
-                </Alert>
-              )}
-            </SettingsItem>
-            <DialogFooter>
+            </FormField>
+            {isRegenerate && (
+              <Alert variant='destructive'>
+                <AlertTriangleIcon />
+                <AlertDescription>
+                  This action will invalidate your current connection, and reset
+                  all active streams using it.
+                </AlertDescription>
+              </Alert>
+            )}
+            <DialogFooter className='mt-2'>
               <DialogClose asChild>
                 <Button type='button' disabled={isPending}>
                   Cancel

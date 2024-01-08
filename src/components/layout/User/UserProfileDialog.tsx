@@ -17,9 +17,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/Dialog';
+import { FormField } from '@/components/ui/Form';
 import { Spinner } from '@/components/ui/Spinner';
 import { Textarea } from '@/components/ui/Textarea';
-import { SettingsItem } from '@/components/layout/Settings';
 import { useToast } from '@/hooks';
 import { updateCurrentUser } from '@/actions/user';
 import { cn } from '@/lib/utils';
@@ -84,7 +84,7 @@ export const UserProfileDialog = ({
             <DialogTitle>Edit profile</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleSubmit}>
-            <SettingsItem field='bio' label='Bio' orientation='vertical'>
+            <FormField id='bio' label='Bio'>
               <Textarea
                 placeholder='Write something about yourself...'
                 value={values.bio || ''}
@@ -93,7 +93,7 @@ export const UserProfileDialog = ({
                 }
                 className='resize-none'
               />
-            </SettingsItem>
+            </FormField>
 
             <DialogFooter className='mt-4'>
               <DialogClose asChild>

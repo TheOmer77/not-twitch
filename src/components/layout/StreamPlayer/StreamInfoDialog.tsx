@@ -20,8 +20,9 @@ import {
   DialogTitle,
 } from '@/components/ui/Dialog';
 import type { DropzoneProps } from '@/components/ui/Dropzone';
+import { FormField } from '@/components/ui/Form';
+import { Input } from '@/components/ui/Input';
 import { Spinner } from '@/components/ui/Spinner';
-import { InputSettingsItem, SettingsItem } from '@/components/layout/Settings';
 import { useStream, useToast, useUploadThing } from '@/hooks';
 import { updateStreamSettings } from '@/actions/stream';
 import { cn } from '@/lib/utils';
@@ -132,18 +133,18 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
           <DialogHeader>
             <DialogTitle>Stream info</DialogTitle>
           </DialogHeader>
-          <form className='flex w-full flex-col gap-px' onSubmit={handleSubmit}>
-            <InputSettingsItem
-              field='title'
-              label='Title'
-              value={title}
-              onChange={e => !isPending && setTitle(e.target.value)}
-            />
-            <SettingsItem
-              field='thumbnailUrl'
+          <form className='flex w-full flex-col gap-2' onSubmit={handleSubmit}>
+            <FormField id='title' label='Title'>
+              <Input
+                value={title}
+                onChange={e => !isPending && setTitle(e.target.value)}
+              />
+            </FormField>
+            <FormField
+              id='thumbnailUrl'
               label='Thumbnail'
               description={`Drop file here, or click to select it (max ${maxFileSizeMb})`}
-              className='items-start'
+              className='relative h-24 [&>p]:mt-0'
             >
               <StreamThumbnailDropzone
                 fileUrl={thumbnailFileUrl}
@@ -155,9 +156,9 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
                   setThumbnailFileUrl(null);
                 }}
               />
-            </SettingsItem>
+            </FormField>
 
-            <DialogFooter className='mt-4'>
+            <DialogFooter className='mt-2'>
               <DialogClose asChild>
                 <Button type='button'>Cancel</Button>
               </DialogClose>
