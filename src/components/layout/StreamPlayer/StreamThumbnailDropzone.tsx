@@ -74,7 +74,7 @@ export const StreamThumbnailDropzone = ({
 
   return fileUrl ? (
     <div
-      className='absolute end-0 top-0 ms-auto aspect-video h-24 overflow-hidden
+      className='absolute end-0 top-2 ms-auto aspect-video h-24 overflow-hidden
 rounded-lg outline outline-1 outline-border'
     >
       <Image
@@ -105,7 +105,7 @@ rounded-lg outline outline-1 outline-border'
     </div>
   ) : (
     <Dropzone
-      className='ms-auto aspect-video h-24 p-0'
+      className='absolute end-0 top-2 ms-auto aspect-video h-24 p-0'
       multiple={false}
       maxSize={maxFileSize}
       accept={generateClientDropzoneAccept(allowedMimetypes)}

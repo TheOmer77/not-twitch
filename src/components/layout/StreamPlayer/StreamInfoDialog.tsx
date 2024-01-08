@@ -144,7 +144,7 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
               id='thumbnailUrl'
               label='Thumbnail'
               description={`Drop file here, or click to select it (max ${maxFileSizeMb})`}
-              className='relative h-24 [&>p]:mt-0'
+              className='relative h-[6.5rem] [&>p]:mt-0'
             >
               <StreamThumbnailDropzone
                 fileUrl={thumbnailFileUrl}
