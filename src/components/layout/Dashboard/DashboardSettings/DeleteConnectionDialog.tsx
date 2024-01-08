@@ -12,10 +12,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/Dialog';
-import { Spinner } from '@/components/ui/Spinner';
+import { SpinnerButton } from '@/components/ui/SpinnerButton';
 import { useToast } from '@/hooks';
 import { deleteUserIngress } from '@/actions/ingress';
-import { cn } from '@/lib/utils';
 
 export const DeleteConnectionDialog = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -63,15 +62,14 @@ export const DeleteConnectionDialog = () => {
             <DialogClose asChild>
               <Button disabled={isPending}>Cancel</Button>
             </DialogClose>
-            <Button
+            <SpinnerButton
               variant='destructive'
               onClick={handleConfirm}
               disabled={isPending}
-              className='relative'
+              showSpinner={isPending}
             >
-              <span className={cn(isPending && 'invisible')}>Delete</span>
-              {isPending && <Spinner className='absolute' />}
-            </Button>
+              Delete
+            </SpinnerButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

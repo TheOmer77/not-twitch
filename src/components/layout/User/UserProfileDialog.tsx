@@ -18,11 +18,10 @@ import {
   DialogTitle,
 } from '@/components/ui/Dialog';
 import { FormField } from '@/components/ui/Form';
-import { Spinner } from '@/components/ui/Spinner';
+import { SpinnerButton } from '@/components/ui/SpinnerButton';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/hooks';
 import { updateCurrentUser } from '@/actions/user';
-import { cn } from '@/lib/utils';
 import type { User } from '@/types';
 
 export type UserProfileDialogProps = Omit<
@@ -99,14 +98,14 @@ export const UserProfileDialog = ({
               <DialogClose asChild>
                 <Button type='button'>Cancel</Button>
               </DialogClose>
-              <Button
+              <SpinnerButton
+                type='submit'
                 variant='primary'
                 disabled={isSaving}
-                className='relative'
+                showSpinner={isSaving}
               >
-                <span className={cn(isSaving && 'invisible')}>Update</span>
-                {isSaving && <Spinner className='absolute' />}
-              </Button>
+                Update
+              </SpinnerButton>
             </DialogFooter>
           </form>
         </DialogContent>

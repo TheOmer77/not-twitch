@@ -2,11 +2,9 @@
 
 import { useCallback, useTransition } from 'react';
 
-import { Button } from '@/components/ui/Button';
-import { Spinner } from '@/components/ui/Spinner';
+import { SpinnerButton } from '@/components/ui/SpinnerButton';
 import { useToast } from '@/hooks';
 import { unblockUser } from '@/actions/block';
-import { cn } from '@/lib/utils';
 
 type CommunityUnblockButtonProps = {
   userId: string;
@@ -35,9 +33,12 @@ export const CommunityUnblockButton = ({
   }, [displayToast, userId]);
 
   return (
-    <Button disabled={isPending} onClick={handleClick} className='relative'>
-      <span className={cn(isPending && 'invisible')}>Unblock</span>
-      {isPending && <Spinner className='absolute' />}
-    </Button>
+    <SpinnerButton
+      onClick={handleClick}
+      disabled={isPending}
+      showSpinner={isPending}
+    >
+      Unblock
+    </SpinnerButton>
   );
 };

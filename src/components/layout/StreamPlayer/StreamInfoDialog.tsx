@@ -22,10 +22,9 @@ import {
 import type { DropzoneProps } from '@/components/ui/Dropzone';
 import { FormField } from '@/components/ui/Form';
 import { Input } from '@/components/ui/Input';
-import { Spinner } from '@/components/ui/Spinner';
 import { useStream, useToast, useUploadThing } from '@/hooks';
 import { updateStreamSettings } from '@/actions/stream';
-import { cn } from '@/lib/utils';
+import { SpinnerButton } from '@/components/ui/SpinnerButton';
 
 export type StreamInfoProps = {
   initialThumbnailUrl: string | null;
@@ -162,14 +161,14 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
               <DialogClose asChild>
                 <Button type='button'>Cancel</Button>
               </DialogClose>
-              <Button
+              <SpinnerButton
+                type='submit'
                 variant='primary'
                 disabled={isPending}
-                className='relative'
+                showSpinner={isPending}
               >
-                <span className={cn(isPending && 'invisible')}>Save</span>
-                {isPending && <Spinner className='absolute' />}
-              </Button>
+                Save
+              </SpinnerButton>
             </DialogFooter>
           </form>
         </DialogContent>

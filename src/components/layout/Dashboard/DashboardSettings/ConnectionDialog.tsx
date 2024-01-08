@@ -27,7 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/Select';
-import { Spinner } from '@/components/ui/Spinner';
+import { SpinnerButton } from '@/components/ui/SpinnerButton';
 import { useToast } from '@/hooks';
 import { createUserIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
@@ -118,15 +118,14 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button
-                variant='primary'
+              <SpinnerButton
                 type='submit'
+                variant='primary'
                 disabled={isPending}
-                className='relative'
+                showSpinner={isPending}
               >
-                <span className={cn(isPending && 'invisible')}>Confirm</span>
-                {isPending && <Spinner className='absolute' />}
-              </Button>
+                Confirm
+              </SpinnerButton>
             </DialogFooter>
           </form>
         </DialogContent>
