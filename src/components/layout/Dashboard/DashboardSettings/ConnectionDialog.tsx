@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/Select';
 import { Spinner } from '@/components/ui/Spinner';
 import { useToast } from '@/hooks';
-import { createIngress } from '@/actions/ingress';
+import { createUserIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
 
 export type ConnectionDialogProps = {
@@ -41,7 +41,7 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
   const handleSubmit = useCallback(() => {
     startTransition(async () => {
       try {
-        await createIngress(ingressType);
+        await createUserIngress(ingressType);
 
         displayToast('Ingress created.');
         setDialogOpen(false);

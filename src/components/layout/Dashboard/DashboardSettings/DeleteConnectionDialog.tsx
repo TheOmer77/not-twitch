@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/Dialog';
 import { Spinner } from '@/components/ui/Spinner';
 import { useToast } from '@/hooks';
-import { deleteIngress } from '@/actions/ingress';
+import { deleteUserIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
 
 export const DeleteConnectionDialog = () => {
@@ -25,7 +25,7 @@ export const DeleteConnectionDialog = () => {
   const handleConfirm = useCallback(() => {
     startTransition(async () => {
       try {
-        await deleteIngress();
+        await deleteUserIngress();
 
         displayToast('Ingress deleted.');
         setDialogOpen(false);

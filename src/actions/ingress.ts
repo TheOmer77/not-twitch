@@ -3,41 +3,17 @@
 import { revalidatePath } from 'next/cache';
 import {
   IngressAudioEncodingPreset,
-  IngressClient,
   IngressInput,
   IngressVideoEncodingPreset,
-  RoomServiceClient,
   type CreateIngressOptions,
 } from 'livekit-server-sdk';
 import { TrackSource } from 'livekit-server-sdk/dist/proto/livekit_models';
 
 import { getCurrentUser } from '@/queries/auth';
 import { db } from '@/lib/db';
+import { createIngress, resetIngresses } from '@/lib/ingress';
 
-const roomService = new RoomServiceClient(
-  process.env.LIVEKIT_API_URL as string,
-  process.env.LIVEKIT_API_KEY,
-  process.env.LIVEKIT_API_SECRET
-);
-const ingressClient = new IngressClient(process.env.LIVEKIT_API_URL as string);
-
-export const resetIngresses = async (hostId: string) => {
-  const ingresses = await ingressClient.listIngress({ roomName: hostId }),
-    rooms = await roomService.listRooms([hostId]);
-
-  await Promise.allSettled(
-    rooms.map(async room => await roomService.deleteRoom(room.name))
-  );
-  await Promise.allSettled(
-    ingresses.map(
-      async ingress =>
-        ingress.ingressId &&
-        (await ingressClient.deleteIngress(ingress.ingressId))
-    )
-  );
-};
-
-export const createIngress = async (ingressType: IngressInput) => {
+export const createUserIngress = async (ingressType: IngressInput) => {
   const currentUser = await getCurrentUser({ throwIfNotFound: true });
 
   await resetIngresses(currentUser.id);
@@ -60,13 +36,7 @@ export const createIngress = async (ingressType: IngressInput) => {
           },
         }),
   };
-  const ingress = await ingressClient.createIngress(
-    ingressType,
-    ingressOptions
-  );
-  if (!ingress || !ingress.url || !ingress.streamKey)
-    throw new Error('Failed to create ingress.');
-
+  const ingress = await createIngress(ingressType, ingressOptions);
   await db.stream.update({
     where: { userId: currentUser.id },
     data: {
@@ -80,11 +50,10 @@ export const createIngress = async (ingressType: IngressInput) => {
   return ingress;
 };
 
-export const deleteIngress = async () => {
+export const deleteUserIngress = async () => {
   const currentUser = await getCurrentUser({ throwIfNotFound: true });
 
   await resetIngresses(currentUser.id);
-
   await db.stream.update({
     where: { userId: currentUser.id },
     data: { ingressId: null, serverUrl: null, streamKey: null },
