@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npm -s run prisma:generate",
-    "prisma:generate": "prisma generate",
-    "prisma:push": "prisma db push",
-    "prisma:reset": "prisma migrate reset && npm -s run prisma:push",
-    "prisma:studio": "prisma studio"
+    "postinstall": "npm -s run db:generate",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:reset": "prisma migrate reset && npm -s run db:push",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.0.7",
