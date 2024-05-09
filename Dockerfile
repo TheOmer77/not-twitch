@@ -5,4 +5,4 @@ COPY package*.json .
 COPY prisma prisma
 RUN corepack enable pnpm && pnpm install
 
-CMD ["pnpm", "run", "dev"]
+CMD ["pnpm", "run", "/dev|db:studio/"]

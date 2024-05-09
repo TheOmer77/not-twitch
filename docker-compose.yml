@@ -7,17 +7,7 @@ services:
       context: .
     ports:
       - 3000:3000
-    volumes:
-      - .:/app
-      - /app/node_modules
-
-  prisma-studio:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    ports:
       - 5555:5555
-    command: npm run db:studio
     volumes:
       - .:/app
       - /app/node_modules
