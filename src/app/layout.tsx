@@ -24,8 +24,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       appearance={clerkTheme}
       signInUrl='/login'
       signUpUrl='/signup'
-      afterSignInUrl='/'
-      afterSignUpUrl='/'
+      signInFallbackRedirectUrl='/'
+      signUpFallbackRedirectUrl='/'
     >
       <Provider>
         <html lang='en' className={manrope.variable}>
