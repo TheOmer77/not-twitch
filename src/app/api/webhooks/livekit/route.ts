@@ -16,7 +16,7 @@ export const POST = async (req: Request) => {
   if (!auth)
     return new Response('Authorization header is missing!', { status: 400 });
 
-  const event = receiver.receive(body, auth);
+  const event = await receiver.receive(body, auth);
   switch (event.event) {
     case 'ingress_started': {
       await db.stream.update({
