@@ -3,6 +3,6 @@ FROM node:20.10.0-alpine3.19
 WORKDIR /app
 COPY package*.json .
 COPY prisma prisma
-RUN npm i
+RUN corepack enable pnpm && pnpm install
 
-CMD ["npm", "run", "dev"]
+CMD ["pnpm", "run", "dev"]
