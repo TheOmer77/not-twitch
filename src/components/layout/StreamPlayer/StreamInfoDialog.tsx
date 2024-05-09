@@ -63,7 +63,7 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
   );
 
   const handleDropzoneAccept = useCallback<
-    NonNullable<DropzoneProps['onDropAccepted']>
+    NonNullable<DropzoneProps['onDrop']>
   >(([file]) => {
     setThumbnailFile(file);
     setThumbnailFileUrl(URL.createObjectURL(file));
@@ -149,7 +149,7 @@ export const StreamInfoDialog = ({ initialThumbnailUrl }: StreamInfoProps) => {
                 fileUrl={thumbnailFileUrl}
                 uploadProgress={uploadProgress}
                 disabled={isPending}
-                onDropAccepted={handleDropzoneAccept}
+                onDrop={handleDropzoneAccept}
                 onFileRemoved={() => {
                   setThumbnailFile(null);
                   setThumbnailFileUrl(null);

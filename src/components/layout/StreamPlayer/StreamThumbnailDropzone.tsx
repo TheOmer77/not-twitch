@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 export type StreamThumbnailDropzoneProps = {
   fileUrl: string | null;
   uploadProgress?: number;
-  onDropAccepted: DropzoneProps['onDropAccepted'];
+  onDrop: DropzoneProps['onDrop'];
   onFileRemoved: () => void;
   disabled?: boolean;
 };
@@ -21,7 +21,7 @@ export const StreamThumbnailDropzone = ({
   fileUrl,
   disabled,
   uploadProgress = 0,
-  onDropAccepted,
+  onDrop,
   onFileRemoved,
 }: StreamThumbnailDropzoneProps) => {
   const { permittedFileInfo } = useUploadThing('thumbnailUploader');
@@ -48,28 +48,22 @@ export const StreamThumbnailDropzone = ({
     return [mimetypes, extensions];
   }, [permittedFileInfo?.config]);
 
-  const handleDropzoneReject = useCallback<
-    NonNullable<DropzoneProps['onDropRejected']>
-  >(
-    ([fileRej]) => {
-      const errCode = fileRej.errors[0].code;
+  const handleDrop = useCallback<NonNullable<DropzoneProps['onDrop']>>(
+    acceptedFiles => {
+      if (acceptedFiles.length > 0) return onDrop?.(acceptedFiles);
+
       const uppercaseExtenstions = allowedFileExtenstions.map(ext =>
         ext.toUpperCase()
       );
-      displayToast("Couldn't upload file", {
-        description:
-          errCode === 'FILE_INVALID_TYPE'
-            ? `Only ${uppercaseExtenstions
-                .slice(0, -1)
-                .join(', ')} and ${uppercaseExtenstions.at(
-                -1
-              )} files are supported.`
-            : errCode === 'FILE_TOO_LARGE'
-              ? `File is larger than the max file size of ${maxFileSizeMb}.`
-              : fileRej.errors[0].message,
+      displayToast("Couldn't upload this file", {
+        description: `Only ${uppercaseExtenstions
+          .slice(0, -1)
+          .join(', ')} and ${uppercaseExtenstions.at(
+          -1
+        )} files under ${maxFileSizeMb} are supported.`,
       });
     },
-    [allowedFileExtenstions, displayToast, maxFileSizeMb]
+    [allowedFileExtenstions, displayToast, maxFileSizeMb, onDrop]
   );
 
   return fileUrl ? (
@@ -109,8 +103,7 @@ rounded-lg outline outline-1 outline-border'
       multiple={false}
       maxSize={maxFileSize}
       accept={generateClientDropzoneAccept(allowedMimetypes)}
-      onDropAccepted={onDropAccepted}
-      onDropRejected={handleDropzoneReject}
+      onDrop={handleDrop}
     />
   );
 };

@@ -14,25 +14,11 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(
   (
     {
       accept,
-      autoFocus,
       disabled,
-      getFilesFromEvent,
       maxFiles,
       maxSize,
       minSize,
-      noClick,
-      noDrag,
-      noDragEventsBubbling,
-      noKeyboard,
       onDrop,
-      onDropAccepted,
-      onDropRejected,
-      onError,
-      onFileDialogCancel,
-      onFileDialogOpen,
-      preventDropOnDocument,
-      useFsAccessApi,
-      validator,
       className,
       ...props
     },
@@ -40,25 +26,11 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(
   ) => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
       accept,
-      autoFocus,
       disabled,
-      getFilesFromEvent,
       maxFiles,
       maxSize,
       minSize,
-      noClick,
-      noDrag,
-      noDragEventsBubbling,
-      noKeyboard,
       onDrop,
-      onDropAccepted,
-      onDropRejected,
-      onError,
-      onFileDialogCancel,
-      onFileDialogOpen,
-      preventDropOnDocument,
-      useFsAccessApi,
-      validator,
     });
 
     return (
