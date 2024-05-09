@@ -18,11 +18,11 @@ export const useViewerToken = (hostId: string) => {
         const viewerToken = await createViewerToken(hostId);
         setToken(viewerToken);
 
-        const { name, jti } = jwtDecode(viewerToken) as JwtPayload & {
+        const { name, sub } = jwtDecode(viewerToken) as JwtPayload & {
           name?: string;
         };
 
-        if (jti) setIdentity(jti);
+        if (sub) setIdentity(sub);
         if (name) setName(name);
       } catch (err) {
         setError(true);
