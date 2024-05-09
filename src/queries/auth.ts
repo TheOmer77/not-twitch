@@ -1,4 +1,4 @@
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 
 import type { GetUserOptions, GetUserResult } from './users';
 import { db } from '@/lib/db';
