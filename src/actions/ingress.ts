@@ -3,11 +3,13 @@
 import { revalidatePath } from 'next/cache';
 import {
   IngressAudioEncodingPreset,
+  IngressAudioOptions,
   IngressInput,
   IngressVideoEncodingPreset,
+  IngressVideoOptions,
+  TrackSource,
   type CreateIngressOptions,
 } from 'livekit-server-sdk';
-import { TrackSource } from 'livekit-server-sdk/dist/proto/livekit_models';
 
 import { getCurrentUser } from '@/queries/auth';
 import { db } from '@/lib/db';
@@ -26,14 +28,20 @@ export const createUserIngress = async (ingressType: IngressInput) => {
     ...(ingressType === IngressInput.WHIP_INPUT
       ? { bypassTranscoding: true }
       : {
-          video: {
+          video: new IngressVideoOptions({
             source: TrackSource.CAMERA,
-            preset: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS,
-          },
-          audio: {
+            encodingOptions: {
+              case: 'preset',
+              value: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS,
+            },
+          }),
+          audio: new IngressAudioOptions({
             source: TrackSource.MICROPHONE,
-            preset: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS,
-          },
+            encodingOptions: {
+              case: 'preset',
+              value: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS,
+            },
+          }),
         }),
   };
   const ingress = await createIngress(ingressType, ingressOptions);
