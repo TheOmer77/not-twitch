@@ -4,7 +4,7 @@ import type { Appearance } from '@clerk/types';
 
 export const clerkTheme: Appearance = {
   elements: {
-    card: 'bg-popover text-popover-foreground shadow-md',
+    cardBox: 'bg-transparent text-popover-foreground border-none shadow-none',
     userPreviewSecondaryIdentifier: 'text-muted-foreground',
     userButtonPopoverActionButtonText: 'text-card-foreground',
     userButtonPopoverActionButtonIcon: 'text-muted-foreground',
@@ -14,6 +14,7 @@ export const clerkTheme: Appearance = {
     formFieldLabel: 'text-muted-foreground',
     formFieldInput: 'bg-background text-inherit',
     formButtonPrimary: cn(buttonVariants({ variant: 'primary' })),
+    footer: 'bg-none',
     footerActionText: 'text-foreground',
     footerActionLink: 'text-primary font-medium hover:text-primary',
   },
@@ -25,11 +26,12 @@ export const clerkTheme: Appearance = {
       ...obj,
       [curr]: {
         elements: {
-          rootBox: 'w-full',
-          card: 'bg-transparent shadow-none py-0 [&>:last-child]:hidden m-0 p-0 w-full',
+          rootBox: 'bg-transparent shadow-none',
+          card: 'bg-transparent shadow-none py-0 w-full',
           headerTitle:
             'text-2xl text-center font-bold tracking-tight text-foreground',
           headerSubtitle: 'hidden',
+          footer: '[&>:last-child]:hidden',
         },
       },
     }),
