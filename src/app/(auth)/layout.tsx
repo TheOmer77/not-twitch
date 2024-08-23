@@ -1,5 +1,6 @@
-import { type PropsWithChildren } from 'react';
-import Logo from '@/components/Logo';
+import type { PropsWithChildren } from 'react';
+
+import { Logo } from '@/components/layout/Logo';
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
   return (

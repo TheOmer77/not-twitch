@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/layout/Logo';
 
 export const NavbarLogo = () => {
   return (

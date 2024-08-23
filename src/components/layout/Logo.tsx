@@ -1,6 +1,6 @@
 import { forwardRef, type ComponentPropsWithoutRef } from 'react';
 
-const Logo = forwardRef<SVGSVGElement, ComponentPropsWithoutRef<'svg'>>(
+export const Logo = forwardRef<SVGSVGElement, ComponentPropsWithoutRef<'svg'>>(
   (props, ref) => (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -16,5 +16,3 @@ const Logo = forwardRef<SVGSVGElement, ComponentPropsWithoutRef<'svg'>>(
   )
 );
 Logo.displayName = 'Logo';
-
-export default Logo;
