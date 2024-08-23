@@ -65,10 +65,7 @@ export const StreamPlayer = ({
         >
           <div className='hidden-scrollbar relative col-span-1'>
             {collapsed && (
-              <StreamChatCollapseToggle
-                className='absolute end-2 top-2 z-10 hidden text-white
-hover:bg-white/15 hover:text-white lg:inline-flex'
-              />
+              <StreamChatCollapseToggle className='absolute end-2 top-2 z-10 hidden text-white hover:bg-white/15 hover:text-white lg:inline-flex' />
             )}
             <StreamVideo />
             <StreamHeader imageUrl={user.imageUrl} />
@@ -84,10 +81,7 @@ hover:bg-white/15 hover:text-white lg:inline-flex'
 };
 
 export const StreamPlayerSkeleton = () => (
-  <div
-    className='flex h-[calc(100vh-6rem)] w-full flex-col gap-2 md:grid
-    md:grid-cols-[2fr,1fr] xl:grid-cols-[1fr,20rem]'
-  >
+  <div className='flex h-[calc(100vh-6rem)] w-full flex-col gap-2 md:grid md:grid-cols-[2fr,1fr] xl:grid-cols-[1fr,20rem]'>
     <div className='hidden-scrollbar relative col-span-1'>
       <StreamVideoSkeleton />
       <StreamHeaderSkeleton />

@@ -1,4 +1,5 @@
-import { type PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+
 import { BrowseSidebar, Navbar } from '@/components/layout';
 
 const BrowseLayout = ({ children }: PropsWithChildren) => (
