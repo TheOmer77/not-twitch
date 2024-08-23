@@ -1,0 +1,50 @@
+services:
+  app:
+    image: not-twitch-app
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: dev
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY:?error}
+      - CLERK_PUBLISHABLE_KEY=${CLERK_PUBLISHABLE_KEY:?error}
+      - NEXT_PUBLIC_APP_URL=${APP_URL:-http://localhost:3000}
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${CLERK_PUBLISHABLE_KEY:?error}
+      - DB_URL=${DB_URL:?error}
+
+  db-studio:
+    image: not-twitch-app
+    command: pnpm db:studio
+    ports:
+      - 5555:5555
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - DB_URL=${DB_URL:?error}
+
+  ngrok:
+    image: ngrok/ngrok
+    command: http --domain=${NGROK_DOMAIN} app:3000
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+#   If using a local DB, uncomment this
+#
+#   db:
+#     image: postgres:16.4-alpine3.19
+#     ports:
+#       - '5432:5432'
+#     volumes:
+#       - db-data:/var/lib/postgresql/data
+#     environment:
+#       - POSTGRES_USER=${DB_USER:-postgres}
+#       - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+#       - POSTGRES_DB=${DB_NAME:-postgres}
+# volumes:
+#   db-data:
