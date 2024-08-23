@@ -9,6 +9,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from '@/components/ui/DropdownMenu';
+import { cn } from '@/lib/utils';
 
 export const UserMenuContent = () => {
   const { user } = useUser();
@@ -17,10 +18,14 @@ export const UserMenuContent = () => {
 
   return (
     <DropdownMenuContent align='end'>
-      <DropdownMenuLabel className='pb-0'>{user?.fullName}</DropdownMenuLabel>
-      <DropdownMenuLabel className='pt-0 text-xs font-normal text-muted-foreground'>
-        {user?.primaryEmailAddress?.emailAddress}
+      <DropdownMenuLabel className={cn(user?.fullName && 'pb-0')}>
+        {user?.fullName || `@${user?.username}`}
       </DropdownMenuLabel>
+      {user?.fullName && (
+        <DropdownMenuLabel className='pt-0 text-xs font-normal text-muted-foreground'>
+          {`@${user.username}`}
+        </DropdownMenuLabel>
+      )}
       <DropdownMenuSeparator />
       <DropdownMenuItem onClick={() => openUserProfile()}>
         Profile
