@@ -1,9 +1,9 @@
-export * from './StreamProvider';
-
 import type { PropsWithChildren } from 'react';
 
-import { CurrentUserProvider } from './CurrentUserProvider';
+import { ClerkProvider } from './ClerkProvider';
 
 export const Provider = ({ children }: PropsWithChildren) => (
-  <CurrentUserProvider>{children}</CurrentUserProvider>
+  <ClerkProvider>{children}</ClerkProvider>
 );
+
+export * from './StreamProvider';
