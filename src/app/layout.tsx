@@ -5,7 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Provider } from '@/components/providers';
 import { Toaster } from '@/components/ui/Toast';
 import { clerkTheme } from '@/constants/clerkTheme';
-import './styles/index.css';
+import '@/styles/index.css';
 
 const manrope = Manrope({
   subsets: ['latin'],
