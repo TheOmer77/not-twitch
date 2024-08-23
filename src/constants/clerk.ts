@@ -1,8 +1,12 @@
-import { buttonVariants } from '@/components/ui/Button';
-import { cn } from '@/lib/utils';
 import type { Appearance } from '@clerk/types';
 
-export const clerkTheme: Appearance = {
+import { buttonVariants } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
+
+export const SIGN_IN_URL = '/signin',
+  SIGN_UP_URL = '/signup';
+
+export const clerkTheme = {
   elements: {
     cardBox: 'bg-transparent text-popover-foreground border-none shadow-none',
     userPreviewSecondaryIdentifier: 'text-muted-foreground',
@@ -37,4 +41,4 @@ export const clerkTheme: Appearance = {
     }),
     {}
   ),
-};
+} satisfies Appearance;

@@ -12,6 +12,7 @@ import { Tooltip } from '@/components/ui/Tooltip';
 import { UserAvatar } from '@/components/layout/User';
 import { useStream, useToast } from '@/hooks';
 import { followUser, unfollowUser } from '@/actions/follow';
+import { SIGN_IN_URL } from '@/constants/clerk';
 
 export type StreamHeaderActionsProps = { imageUrl: string };
 
@@ -64,7 +65,7 @@ export const StreamHeaderUser = ({ imageUrl }: StreamHeaderActionsProps) => {
       <span className='grow text-sm font-semibold'>{hostName}</span>
       {!userId ? (
         <Tooltip label={`To follow ${hostName}, you must log in first.`}>
-          <Button variant='primary' onClick={() => router.push('/login')}>
+          <Button variant='primary' onClick={() => router.push(SIGN_IN_URL)}>
             Follow
           </Button>
         </Tooltip>
