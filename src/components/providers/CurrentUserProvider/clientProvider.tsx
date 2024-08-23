@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren } from 'react';
 
-import { CurrentUserContext } from '@/contexts';
+import { CurrentUserContext } from '@/contexts/currentUserContext';
 import type { User } from '@/types';
 
 const ClientCurrentUserProvider = ({
