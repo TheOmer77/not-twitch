@@ -4,6 +4,13 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = withUt({
   content: ['./src/**/*.{ts,tsx}'],
+  darkMode: [
+    'variant',
+    [
+      "@media not print { @media (prefers-color-scheme: dark) { &:not(:is([data-theme='light'] *)) } }",
+      "@media not print { &:is([data-theme='dark'] *) }",
+    ],
+  ],
   theme: {
     container: { center: true, padding: '2rem', screens: { '2xl': '1400px' } },
     colors: {
