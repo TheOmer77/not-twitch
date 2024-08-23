@@ -38,7 +38,6 @@
     "livekit-server-sdk": "^2.6.1",
     "lucide-react": "^0.399.0",
     "next": "14.2.4",
-    "query-string": "^9.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "scrollyfills": "^1.0.2",

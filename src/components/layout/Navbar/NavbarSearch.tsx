@@ -2,7 +2,6 @@
 
 import { useCallback, useState, type FormEventHandler } from 'react';
 import { useRouter } from 'next/navigation';
-import queryString from 'query-string';
 import { SearchIcon } from 'lucide-react';
 
 import { Input } from '@/components/ui/Input';
@@ -16,14 +15,9 @@ export const NavbarSearch = () => {
       e.preventDefault();
       if (!value) return;
 
-      const url = queryString.stringifyUrl(
-        {
-          url: '/search',
-          query: { query: value },
-        },
-        { skipEmptyString: true }
-      );
-      router.push(url);
+      const searchParams = new URLSearchParams();
+      searchParams.set('query', value);
+      router.push(`/search?${searchParams.toString()}`);
     },
     [router, value]
   );
