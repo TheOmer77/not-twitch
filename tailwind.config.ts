@@ -1,16 +1,11 @@
 import { withUt } from 'uploadthing/tw';
+import tailwindAnimate from 'tailwindcss-animate';
 import type { Config } from 'tailwindcss';
 
 const config: Config = withUt({
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
+    container: { center: true, padding: '2rem', screens: { '2xl': '1400px' } },
     colors: {
       inherit: 'inherit',
       white: '#fff',
@@ -93,7 +88,7 @@ const config: Config = withUt({
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindAnimate],
 });
 
 export default config;
