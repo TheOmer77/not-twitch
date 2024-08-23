@@ -1,6 +1,7 @@
 'use client';
 
 import { format } from 'date-fns';
+import { useUser } from '@clerk/nextjs';
 
 import { UserProfileDialog } from './UserProfileDialog';
 import {
@@ -10,7 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card';
-import { useCurrentUser } from '@/hooks';
 import { cn } from '@/lib/utils';
 import type { User, UserFollowerCount } from '@/types';
 
@@ -20,7 +20,7 @@ export type UserAboutProps = {
 };
 
 export const UserAbout = ({ user, withHeader = false }: UserAboutProps) => {
-  const currentUser = useCurrentUser();
+  const { user: currentUser } = useUser();
   const isCurrentUser = currentUser?.username === user.username;
   const followerCount = user._count?.followedBy;
 

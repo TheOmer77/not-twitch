@@ -1,9 +1,10 @@
 'use client';
 
 import { useTransition } from 'react';
+import { useUser } from '@clerk/nextjs';
 
 import { Button } from '@/components/ui/Button';
-import { useCurrentUser, useToast } from '@/hooks';
+import { useToast } from '@/hooks';
 import { followUser, unfollowUser } from '@/actions/follow';
 import { blockUser, unblockUser } from '@/actions/block';
 
@@ -18,7 +19,7 @@ export const UserHeaderActions = ({
   isFollowing,
   isBlocking,
 }: UserHeaderActionsProps) => {
-  const currentUser = useCurrentUser();
+  const { user } = useUser();
   const { displayToast } = useToast();
   const [isPending, startTransition] = useTransition();
 
@@ -83,7 +84,7 @@ export const UserHeaderActions = ({
     });
   };
 
-  if (!currentUser || currentUser.id === userId) return null;
+  if (!user || user.id === userId) return null;
 
   return (
     <div className='mt-4 flex flex-row gap-2 md:ms-auto md:mt-0'>
