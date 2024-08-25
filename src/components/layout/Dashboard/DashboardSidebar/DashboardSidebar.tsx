@@ -5,9 +5,13 @@ import { DashboardSidebarItems } from './DashboardSidebarItems';
 import { Sidebar } from '@/components/layout/Sidebar';
 
 export const DashboardSidebar = async () => {
+  const skeleton = <DashboardSidebarSkeleton className='hidden md:flex' />;
   return (
-    <Suspense fallback={<DashboardSidebarSkeleton />}>
-      <Sidebar skeleton={<DashboardSidebarSkeleton />}>
+    <Suspense fallback={skeleton}>
+      <Sidebar
+        className='bottom-0 h-16 w-full md:bottom-auto md:h-full md:w-20 md:flex-col'
+        skeleton={skeleton}
+      >
         <DashboardSidebarItems />
       </Sidebar>
     </Suspense>

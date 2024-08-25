@@ -1,11 +1,15 @@
 'use client';
 
+import type { ComponentPropsWithoutRef } from 'react';
+
 import { AvatarSkeleton } from '@/components/ui/Avatar';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { SidebarSkeletonBase } from '@/components/layout/Sidebar';
 
-export const DashboardSidebarSkeleton = () => (
-  <SidebarSkeletonBase>
+export const DashboardSidebarSkeleton = (
+  props: ComponentPropsWithoutRef<typeof SidebarSkeletonBase>
+) => (
+  <SidebarSkeletonBase {...props}>
     <ul className='flex w-full grow flex-col gap-px lg:w-full'>
       {[...Array(4).keys()].map(key => (
         <li

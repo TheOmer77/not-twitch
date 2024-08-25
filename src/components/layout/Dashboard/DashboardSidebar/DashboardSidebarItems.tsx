@@ -29,7 +29,7 @@ export const DashboardSidebarItems = () => {
   const pathname = usePathname();
 
   return (
-    <ul className='flex w-full grow flex-col gap-px lg:w-full [&>li>*]:w-full'>
+    <ul className='grid w-full grow grid-cols-4 flex-row gap-px md:flex md:flex-col lg:w-full [&>li>*]:w-full'>
       {sidebarItems.map(({ label, href, icon }) => (
         <SidebarListItem key={href} href={href} active={pathname === href}>
           <SidebarListItemIcon>{icon}</SidebarListItemIcon>

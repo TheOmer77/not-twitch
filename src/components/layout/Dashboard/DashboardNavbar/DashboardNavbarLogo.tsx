@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 
 export const DashboardNavbarLogo = () => {
   return (
-    <div className='flex h-full flex-row items-center gap-4'>
+    <div className='flex h-full flex-row items-center md:gap-4'>
       <div
         className={cn(
-          `flex h-full w-20 shrink-0 flex-row items-center justify-center gap-4 bg-card lg:w-80 lg:justify-start lg:ps-4`
+          `flex h-full w-20 shrink-0 flex-row items-center justify-center gap-4 md:bg-card lg:w-80 lg:justify-start lg:ps-4`
         )}
       >
         <Link href='/'>
