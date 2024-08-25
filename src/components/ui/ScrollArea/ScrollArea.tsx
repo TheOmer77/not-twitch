@@ -4,13 +4,12 @@ import {
   forwardRef,
   type ComponentPropsWithoutRef,
   type ElementRef,
-  type ForwardedRef,
+  type RefObject,
 } from 'react';
 import {
   ScrollArea as ScrollAreaRoot,
   ScrollAreaCorner,
   ScrollAreaViewport,
-  type ScrollAreaViewportElement,
 } from '@radix-ui/react-scroll-area';
 
 import { ScrollBar } from './ScrollBar';
@@ -19,7 +18,7 @@ import { cn } from '@/lib/utils';
 export type ScrollAreaProps = ComponentPropsWithoutRef<
   typeof ScrollAreaRoot
 > & {
-  viewportRef?: ForwardedRef<ScrollAreaViewportElement>;
+  viewportRef?: RefObject<HTMLDivElement>;
 };
 
 export const ScrollArea = forwardRef<
