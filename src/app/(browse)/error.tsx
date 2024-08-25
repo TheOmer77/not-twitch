@@ -1,9 +1,7 @@
 'use client';
 
-import { Main } from '@/components/layout';
+import { Main } from '@/components/layout/Main';
 import { FrownIcon } from 'lucide-react';
-
-import React from 'react';
 
 const ErrorPage = ({ error }: { error: Error }) => (
   <Main className='flex h-[calc(100vh-4rem)] flex-col items-center justify-center gap-4'>
