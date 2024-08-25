@@ -10,9 +10,11 @@ export const BrowseSidebar = async () => {
   const recommended = await getRecommended(),
     followed = await getFollowedUsers();
 
+  const skeleton = <BrowseSidebarSkeleton className='hidden md:flex' />;
+
   return (
-    <Suspense fallback={<BrowseSidebarSkeleton />}>
-      <Sidebar skeleton={<BrowseSidebarSkeleton />}>
+    <Suspense fallback={skeleton}>
+      <Sidebar className='hidden md:flex' skeleton={skeleton}>
         <BrowseSidebarUsers title='Followed' data={followed} />
         <BrowseSidebarUsers title='Recommended' data={recommended} />
       </Sidebar>
