@@ -12,8 +12,8 @@ const AuthLayout = ({ children }: PropsWithChildren) => (
       </ClerkLoading>
       <ClerkLoaded>{children}</ClerkLoaded>
     </div>
-    <div className='bg-primary dark:from-primary/30 dark:to-primary/0 dark:bg-primary-foreground relative -order-1 grid size-full place-items-center lg:order-1'>
-      <Logo className='fill-primary-foreground dark:fill-primary relative size-48' />
+    <div className='relative -order-1 grid size-full place-items-center bg-primary lg:order-1 dark:bg-primary-foreground dark:from-primary/30 dark:to-primary/0'>
+      <Logo className='relative size-48 fill-primary-foreground dark:fill-primary' />
     </div>
   </div>
 );

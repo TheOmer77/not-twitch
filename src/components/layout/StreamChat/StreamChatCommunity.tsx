@@ -35,26 +35,17 @@ export const StreamChatCommunity = () => {
   );
 
   return !isChatEnabled ? (
-    <p
-      className='flex flex-grow items-center justify-center text-sm
-text-muted-foreground'
-    >
+    <p className='flex flex-grow items-center justify-center text-sm text-muted-foreground'>
       This stream&apos;s community is disabled.
     </p>
   ) : !isOnline && isChatDisabledOffline ? (
-    <p
-      className='flex flex-grow items-center justify-center text-sm
-text-muted-foreground'
-    >
+    <p className='flex flex-grow items-center justify-center text-sm text-muted-foreground'>
       This stream is offline.
     </p>
   ) : (
     <div className='flex flex-col gap-2'>
       <div className='relative w-full'>
-        <SearchIcon
-          className='absolute start-3 h-full w-em text-base
-text-muted-foreground'
-        />
+        <SearchIcon className='absolute start-3 h-full w-em text-base text-muted-foreground' />
         <Input
           value={value}
           onChange={e => setValue(e.target.value)}
@@ -66,8 +57,7 @@ text-muted-foreground'
         <ul className='flex flex-col gap-px'>
           <li
             key='no-results'
-            className='mt-4 hidden w-full text-center text-sm
-text-muted-foreground last:list-item'
+            className='mt-4 hidden w-full text-center text-sm text-muted-foreground last:list-item'
           >
             No results.
           </li>

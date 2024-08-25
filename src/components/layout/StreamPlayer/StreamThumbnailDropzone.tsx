@@ -67,10 +67,7 @@ export const StreamThumbnailDropzone = ({
   );
 
   return fileUrl ? (
-    <div
-      className='absolute end-0 top-2 ms-auto aspect-video h-24 overflow-hidden
-rounded-lg outline outline-1 outline-border'
-    >
+    <div className='absolute end-0 top-2 ms-auto aspect-video h-24 overflow-hidden rounded-lg outline outline-1 outline-border'>
       <Image
         src={fileUrl}
         alt='Stream thumbnail'

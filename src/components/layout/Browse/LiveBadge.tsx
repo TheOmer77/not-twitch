@@ -9,8 +9,7 @@ export const LiveBadge = ({
   <span
     {...props}
     className={cn(
-      `rounded-sm bg-destructive px-1.5 py-1 text-xs font-medium uppercase
-text-destructive-foreground`,
+      `rounded-sm bg-destructive px-1.5 py-1 text-xs font-medium uppercase text-destructive-foreground`,
       className
     )}
   >

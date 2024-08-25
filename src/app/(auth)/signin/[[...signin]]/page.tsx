@@ -73,7 +73,7 @@ const SignInPage = () => (
                 <ClerkInput required asChild>
                   <Input />
                 </ClerkInput>
-                <ClerkFieldError className='text-destructive block text-sm' />
+                <ClerkFieldError className='block text-sm text-destructive' />
               </ClerkField>
               <SignInAction submit asChild>
                 <Button
@@ -113,7 +113,7 @@ const SignInPage = () => (
                   <ClerkInput type='password' asChild>
                     <Input />
                   </ClerkInput>
-                  <ClerkFieldError className='text-destructive block text-sm' />
+                  <ClerkFieldError className='block text-sm text-destructive' />
                 </ClerkField>
                 <SignInAction submit asChild>
                   <Button

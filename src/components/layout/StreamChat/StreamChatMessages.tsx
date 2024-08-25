@@ -47,17 +47,11 @@ export const StreamChatMessages = () => {
   }, [messages.length, scrolledToBottom]);
 
   return !isChatEnabled ? (
-    <p
-      className='flex flex-grow items-center justify-center text-sm
-text-muted-foreground'
-    >
+    <p className='flex flex-grow items-center justify-center text-sm text-muted-foreground'>
       This stream&apos;s chat is disabled.
     </p>
   ) : !isOnline && isChatDisabledOffline ? (
-    <p
-      className='flex flex-grow items-center justify-center text-sm
-text-muted-foreground'
-    >
+    <p className='flex flex-grow items-center justify-center text-sm text-muted-foreground'>
       This stream is offline.
     </p>
   ) : (
@@ -78,8 +72,7 @@ text-muted-foreground'
       </ul>
       <div
         className={cn(
-          `absolute bottom-2 flex w-full flex-row justify-center
-transition-opacity`,
+          `absolute bottom-2 flex w-full flex-row justify-center transition-opacity`,
           scrolledToBottom && 'pointer-events-none opacity-0'
         )}
       >

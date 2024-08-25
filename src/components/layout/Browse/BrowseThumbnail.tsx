@@ -27,10 +27,7 @@ export const BrowseThumbnail = ({
         className='rounded-md object-cover'
       />
     ) : (
-      <div
-        className='flex h-full w-full flex-col items-center
-justify-center gap-4 rounded-md bg-card'
-      >
+      <div className='flex h-full w-full flex-col items-center justify-center gap-4 rounded-md bg-card'>
         <UserAvatar size='lg' imageUrl={fallback} username={username} />
       </div>
     )}

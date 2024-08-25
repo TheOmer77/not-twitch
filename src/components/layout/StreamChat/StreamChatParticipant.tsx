@@ -45,8 +45,7 @@ export const StreamChatParticipant = ({
   return (
     <li
       className={cn(
-        `group flex h-10 w-full flex-row items-center justify-between
-rounded-md pe-2 ps-4 text-sm transition-colors duration-75 hover:bg-accent/50`,
+        `group flex h-10 w-full flex-row items-center justify-between rounded-md pe-2 ps-4 text-sm transition-colors duration-75 hover:bg-accent/50`,
         isPending && 'pointer-events-none'
       )}
     >
@@ -56,8 +55,7 @@ rounded-md pe-2 ps-4 text-sm transition-colors duration-75 hover:bg-accent/50`,
           <Button
             variant='flat'
             size='icon'
-            className='opacity-0 transition-[opacity,background-color]
-group-hover:opacity-100'
+            className='opacity-0 transition-[opacity,background-color] group-hover:opacity-100'
             onClick={handleBlock}
             disabled={isPending}
           >

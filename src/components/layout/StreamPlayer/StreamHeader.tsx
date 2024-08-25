@@ -25,16 +25,12 @@ export const StreamHeader = ({ imageUrl }: StreamHeaderProps) => {
   return (
     <div className='relative px-2 py-4'>
       <div className='mb-2 flex flex-row items-start gap-2'>
-        <h1
-          className='grow break-words text-xl font-bold tracking-tight
-sm:text-2xl'
-        >
+        <h1 className='grow break-words text-xl font-bold tracking-tight sm:text-2xl'>
           {title}
         </h1>
         <span
           className={cn(
-            `flex h-10 select-none flex-row items-center gap-1
-text-sm font-medium uppercase`,
+            `flex h-10 select-none flex-row items-center gap-1 text-sm font-medium uppercase`,
             isLive ? 'text-destructive' : 'text-muted-foreground'
           )}
         >

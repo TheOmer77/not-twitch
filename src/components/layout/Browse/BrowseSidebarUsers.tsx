@@ -16,10 +16,7 @@ export const BrowseSidebarUsers = ({ data, title }: SidebarUserListProps) =>
   data.length > 0 && (
     <div className='flex w-full flex-col items-center gap-px lg:items-stretch'>
       {typeof title === 'string' && (
-        <h2
-          className='mb-2 hidden p-2 text-sm font-semibold tracking-tight
-text-muted-foreground lg:block'
-        >
+        <h2 className='mb-2 hidden p-2 text-sm font-semibold tracking-tight text-muted-foreground lg:block'>
           {title}
         </h2>
       )}
