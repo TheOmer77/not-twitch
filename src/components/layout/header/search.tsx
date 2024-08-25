@@ -6,7 +6,7 @@ import { SearchIcon } from 'lucide-react';
 
 import { Input } from '@/components/ui/Input';
 
-export const NavbarSearch = () => {
+export const HeaderSearch = () => {
   const router = useRouter();
   const [value, setValue] = useState('');
 

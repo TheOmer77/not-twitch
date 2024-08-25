@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/DropdownMenu';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export const UserMenuContent = () => {
   const { user } = useUser();
@@ -27,8 +28,12 @@ export const UserMenuContent = () => {
         </DropdownMenuLabel>
       )}
       <DropdownMenuSeparator />
+
       <DropdownMenuItem onClick={() => openUserProfile()}>
         Profile
+      </DropdownMenuItem>
+      <DropdownMenuItem asChild>
+        <Link href='/dashboard'>Dashboard</Link>
       </DropdownMenuItem>
       <DropdownMenuItem onClick={() => signOut(() => router.push('/'))}>
         Sign Out

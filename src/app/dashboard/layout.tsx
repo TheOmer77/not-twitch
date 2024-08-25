@@ -1,10 +1,10 @@
 import type { PropsWithChildren } from 'react';
 
-import { DashboardNavbar, DashboardSidebar } from '@/components/layout';
+import { DashboardSidebar, Header } from '@/components/layout';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => (
   <>
-    <DashboardNavbar />
+    <Header />
     <DashboardSidebar />
     {children}
   </>

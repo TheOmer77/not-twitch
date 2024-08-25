@@ -16,7 +16,7 @@ export const UserMenuTrigger = () => {
       <Button
         variant='flat'
         size='icon'
-        className='rounded-full p-2'
+        className='justify-self-end rounded-full p-2'
         disabled={!isLoaded}
       >
         {!isLoaded || !user?.id ? (

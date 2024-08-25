@@ -1,10 +1,10 @@
 import type { PropsWithChildren } from 'react';
 
-import { BrowseSidebar, Navbar } from '@/components/layout';
+import { BrowseSidebar, Header } from '@/components/layout';
 
 const BrowseLayout = ({ children }: PropsWithChildren) => (
   <>
-    <Navbar />
+    <Header />
     <BrowseSidebar />
     {children}
   </>
