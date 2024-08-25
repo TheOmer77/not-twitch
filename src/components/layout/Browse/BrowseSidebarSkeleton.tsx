@@ -1,6 +1,8 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import { BrowseSidebarUsersSkeleton } from './BrowseSidebarUsers';
+
 import { SidebarSkeletonBase } from '@/components/layout/Sidebar';
+
+import { BrowseSidebarUsersSkeleton } from './BrowseSidebarUsers';
 
 export const BrowseSidebarSkeleton = (
   props: ComponentPropsWithoutRef<typeof SidebarSkeletonBase>
