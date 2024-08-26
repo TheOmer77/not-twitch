@@ -26,8 +26,8 @@ export const SettingsItem = ({
   <li
     {...props}
     className={cn(
-      'flex items-center gap-2 py-3',
-      orientation === 'vertical' ? 'flex-col items-start' : 'flex-row',
+      'grid grid-cols-[auto_theme(spacing.16)] items-center gap-2 py-3',
+      orientation === 'vertical' && 'flex flex-col items-start',
       className
     )}
   >
