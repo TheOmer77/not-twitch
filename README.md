@@ -15,7 +15,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - Install all dependencies:
 
   ```bash
-  npm i
+  pnpm i
   ```
 
 - To run all services:
@@ -25,9 +25,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   ```
 
   The app will be available at [localhost:3000](http://localhost:3000), and also at the specified `NGROK_DOMAIN`.
-
   To run just the app and no other services, only at [localhost:3000](http://localhost:3000):
 
   ```bash
-  npm run dev
+  pnpm dev
   ```
