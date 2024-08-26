@@ -46,7 +46,7 @@ export const DeleteConnectionDialog = () => {
         onClick={() => setDialogOpen(true)}
         className='ms-auto'
       >
-        Delete connection
+        Delete
       </Button>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

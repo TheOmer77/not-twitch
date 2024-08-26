@@ -32,11 +32,9 @@ import { useToast } from '@/hooks';
 import { createUserIngress } from '@/actions/ingress';
 import { cn } from '@/lib/utils';
 
-export type ConnectionDialogProps = {
-  isRegenerate?: boolean;
-};
+export type ConnectionDialogProps = { isReset?: boolean };
 
-export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
+export const ConnectionDialog = ({ isReset }: ConnectionDialogProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [ingressType, setIngressType] = useState<number>(
     IngressInput.RTMP_INPUT
@@ -69,18 +67,18 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
   return (
     <>
       <Button
-        variant={isRegenerate ? 'default' : 'primary'}
+        variant={isReset ? 'default' : 'primary'}
         onClick={() => setDialogOpen(true)}
-        className={cn(isRegenerate && 'ms-auto')}
+        className={cn(isReset && 'ms-auto')}
       >
-        {isRegenerate ? 'Regenerate connection' : 'Generate connection'}
+        {isReset ? 'Reset' : 'Generate'}
       </Button>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              {isRegenerate ? 'Regenerate connection' : 'Generate connection'}
+              {isReset ? 'Reset connection' : 'Generate connection'}
             </DialogTitle>
           </DialogHeader>
           <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
@@ -103,7 +101,7 @@ export const ConnectionDialog = ({ isRegenerate }: ConnectionDialogProps) => {
                 </SelectContent>
               </Select>
             </FormField>
-            {isRegenerate && (
+            {isReset && (
               <Alert variant='destructive'>
                 <AlertTriangleIcon />
                 <AlertDescription>

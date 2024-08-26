@@ -46,16 +46,14 @@ const DashboardKeysPage = async () => {
           </h2>
           <SettingsCard>
             <SettingsItem
-              label='Regenerate connection'
-              description="Change your connection's protocol and reset your
-stream key, in case something went wrong. Note that this will invalidate
-your current connection details."
+              label='Reset connection'
+              description="Change your connection's protocol and reset your stream key."
             >
-              <ConnectionDialog isRegenerate />
+              <ConnectionDialog isReset />
             </SettingsItem>
             <SettingsItem
               label='Delete connection'
-              description="Delete your current connection. You won't be able to stream again until you generate a new one."
+              description='Delete your current connection, invalidating your stream key.'
             >
               <DeleteConnectionDialog />
             </SettingsItem>
