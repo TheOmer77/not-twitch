@@ -16,7 +16,7 @@ export const SettingsHideButton = ({
   onToggle,
   disabled,
 }: SettingsHideButtonProps) => {
-  const Icon = value ? EyeOffIcon : EyeIcon;
+  const Icon = value ? EyeIcon : EyeOffIcon;
 
   return (
     <Tooltip label={value ? 'Show' : 'Hide'}>
