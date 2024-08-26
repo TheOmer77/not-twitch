@@ -4,10 +4,12 @@ import { HeaderUserMenu } from './user-menu';
 
 export const Header = () => (
   <>
-    <header className='fixed top-0 z-20 grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center justify-between gap-4 bg-background pe-2 md:pe-4'>
+    <header className='fixed top-0 z-20 grid h-16 w-full grid-cols-[auto_1fr_auto] bg-background md:grid-cols-[theme(spacing.20)_1fr] md:bg-transparent lg:grid-cols-[theme(spacing.80)_1fr]'>
       <HeaderLogo />
       <HeaderSearch />
-      <HeaderUserMenu />
+      <div className='grid w-full place-items-end items-center bg-background px-4'>
+        <HeaderUserMenu />
+      </div>
     </header>
     <div className='h-16 w-full' />
   </>

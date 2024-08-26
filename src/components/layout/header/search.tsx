@@ -23,8 +23,11 @@ export const HeaderSearch = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit} className='relative w-full md:w-96'>
-      <SearchIcon className='absolute start-3 h-full w-em text-base text-muted-foreground' />
+    <form
+      onSubmit={handleSubmit}
+      className='relative left-1/2 top-0 grid h-full w-full -translate-x-1/2 place-items-center sm:absolute sm:w-96'
+    >
+      <SearchIcon className='absolute inset-y-0 start-3 h-full w-em text-base text-muted-foreground' />
       <Input
         value={value}
         onChange={e => setValue(e.target.value)}

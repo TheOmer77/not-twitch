@@ -9,7 +9,7 @@ export const DashboardSidebar = async () => {
   return (
     <Suspense fallback={skeleton}>
       <Sidebar
-        className='bottom-0 h-16 w-full md:bottom-auto md:h-full md:w-20 md:flex-col'
+        className='h-16 w-full pt-1 md:h-full md:w-20 md:flex-col'
         skeleton={skeleton}
       >
         <DashboardSidebarItems />

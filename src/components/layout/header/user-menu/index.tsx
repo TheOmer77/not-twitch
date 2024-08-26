@@ -14,9 +14,7 @@ export const HeaderUserMenu = () => {
   if (isLoaded && !user)
     return (
       <SignInButton>
-        <Button variant='primary' className='justify-self-end'>
-          Sign in
-        </Button>
+        <Button variant='primary'>Sign in</Button>
       </SignInButton>
     );
 
