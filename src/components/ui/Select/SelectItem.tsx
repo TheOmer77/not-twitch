@@ -24,7 +24,7 @@ export const SelectItem = forwardRef<
   >
     <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
       <ItemIndicator>
-        <CheckIcon />
+        <CheckIcon className='size-4' />
       </ItemIndicator>
     </span>
 
