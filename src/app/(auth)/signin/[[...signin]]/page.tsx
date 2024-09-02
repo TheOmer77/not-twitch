@@ -41,7 +41,7 @@ const SignInPage = () => (
             <AuthHeader>
               <AuthTitle>Welcome back!</AuthTitle>
               <AuthDescription>
-                Sign in to continue to NotTwitch.
+                Sign in to continue to Stream Thing.
               </AuthDescription>
             </AuthHeader>
             <AuthContent>

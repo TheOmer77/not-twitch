@@ -13,7 +13,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'NotTwitch',
+  title: 'Stream Thing',
   description: 'This is definitely not Twitch.',
 };
 

@@ -1,6 +1,6 @@
 services:
   app:
-    image: not-twitch-app
+    image: stream-thing-app
     build:
       dockerfile: Dockerfile
       context: .
@@ -19,7 +19,7 @@ services:
       - DB_URL=${DB_URL:?error}
 
   db-studio:
-    image: not-twitch-app
+    image: stream-thing-app
     command: pnpm db:studio
     ports:
       - 5555:5555
