@@ -1,8 +1,17 @@
-# This is definitely not Twitch
+# Stream Thing
 
-If you somehow found this project - good for you, I guess. It's not finished though.
+This is a platform that allows you to livestream video, and watch streams by other users. It's similar to Twitch, though I guess it's not as good.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). I also use Docker Compose here to run it as well as some other stuff, like a Postgres DB and an Ngrok service.
+Technologies used in this project include:
+
+- [React](https://react.dev/) and [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/)
+- [Clerk](https://clerk.com/) for auth
+- [LiveKit](https://livekit.io/) for live video streaming
+- [UploadThing](https://uploadthing.com/) for uploading stream thumbnails
+- [Postgres](https://www.postgresql.org/) DB
+- [Prisma ORM](https://www.prisma.io/)
+- [Docker](https://www.docker.com/) compose in local development (runs the app itself, an Ngrok service, and Prisma studio)
 
 ## Prerequisites
 
