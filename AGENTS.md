@@ -40,7 +40,6 @@ A branch name must be in the format `<type>/<description>` where `<type>` is the
 ### Pull requests
 
 - Never make a PR with unless the developer asked for it.
-
 - PR title must be in a format similar to Conventional Commits - follow the same instructions as above.
 - PR body must include a short description of the change, or the problem and how it was fixed. You can add a short list of the changes made.
 - UI changes need before/after images, motion or timing needs a short video. Attach them directly in the PR, don't commit them to the repo or upload them elsewhere.
