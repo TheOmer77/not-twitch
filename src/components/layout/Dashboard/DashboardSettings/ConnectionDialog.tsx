@@ -25,6 +25,7 @@ import { FormField } from '@/components/ui/form';
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -91,12 +92,14 @@ export const ConnectionDialog = ({ isReset }: ConnectionDialogProps) => {
                   <SelectValue placeholder='Protocol' />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value={`${IngressInput.RTMP_INPUT}`}>
-                    RTMP
-                  </SelectItem>
-                  <SelectItem value={`${IngressInput.WHIP_INPUT}`}>
-                    WHIP
-                  </SelectItem>
+                  <SelectGroup>
+                    <SelectItem value={`${IngressInput.RTMP_INPUT}`}>
+                      RTMP
+                    </SelectItem>
+                    <SelectItem value={`${IngressInput.WHIP_INPUT}`}>
+                      WHIP
+                    </SelectItem>
+                  </SelectGroup>
                 </SelectContent>
               </Select>
             </FormField>
