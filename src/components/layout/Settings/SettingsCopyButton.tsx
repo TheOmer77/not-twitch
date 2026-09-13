@@ -4,7 +4,11 @@ import { type ComponentPropsWithoutRef, useCallback, useState } from 'react';
 import { CheckIcon, CopyIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export type SettingsCopyButtonProps = {
   value?: ComponentPropsWithoutRef<'input'>['value'];
@@ -23,15 +27,18 @@ export const SettingsCopyButton = ({ value }: SettingsCopyButtonProps) => {
   }, [value]);
 
   return (
-    <Tooltip label='Copy'>
-      <Button
-        variant='flat'
-        size='icon'
-        onClick={handleClick}
-        disabled={!value || isCopied}
-      >
-        <Icon />
-      </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant='flat'
+          size='icon'
+          onClick={handleClick}
+          disabled={!value || isCopied}
+        >
+          <Icon />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Copy</TooltipContent>
     </Tooltip>
   );
 };

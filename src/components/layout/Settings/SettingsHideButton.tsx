@@ -3,7 +3,11 @@
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export type SettingsHideButtonProps = {
   value?: boolean;
@@ -19,15 +23,18 @@ export const SettingsHideButton = ({
   const Icon = value ? EyeIcon : EyeOffIcon;
 
   return (
-    <Tooltip label={value ? 'Show' : 'Hide'}>
-      <Button
-        variant='flat'
-        size='icon'
-        onClick={() => onToggle?.(!value)}
-        disabled={disabled}
-      >
-        <Icon />
-      </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant='flat'
+          size='icon'
+          onClick={() => onToggle?.(!value)}
+          disabled={disabled}
+        >
+          <Icon />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{value ? 'Show' : 'Hide'}</TooltipContent>
     </Tooltip>
   );
 };

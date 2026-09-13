@@ -6,7 +6,11 @@ import { BanIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { useStream } from '@/hooks';
 import { blockUser } from '@/actions/block';
 
@@ -51,16 +55,19 @@ export const StreamChatParticipant = ({
     >
       <span className={cn(isPending && 'opacity-50')}>{name || id}</span>
       {isHost && !isSelf && (
-        <Tooltip label='Block'>
-          <Button
-            variant='flat'
-            size='icon'
-            className='opacity-0 transition-[opacity,background-color] group-hover:opacity-100'
-            onClick={handleBlock}
-            disabled={isPending}
-          >
-            <BanIcon />
-          </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant='flat'
+              size='icon'
+              className='opacity-0 transition-[opacity,background-color] group-hover:opacity-100'
+              onClick={handleBlock}
+              disabled={isPending}
+            >
+              <BanIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Block</TooltipContent>
         </Tooltip>
       )}
     </li>

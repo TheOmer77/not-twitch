@@ -5,7 +5,11 @@ import { cn } from 'cn';
 import { ArrowLeftFromLineIcon, ArrowRightFromLineIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { useChatSidebar } from '@/store/useChatSidebar';
 
 export const StreamChatCollapseToggle = ({
@@ -16,16 +20,21 @@ export const StreamChatCollapseToggle = ({
   const Icon = collapsed ? ArrowLeftFromLineIcon : ArrowRightFromLineIcon;
 
   return (
-    <Tooltip label={collapsed ? 'Expand chat' : 'Collapse chat'} side='left'>
-      <Button
-        {...props}
-        variant='flat'
-        size='icon'
-        onClick={() => setCollapsed(!collapsed)}
-        className={cn('hidden lg:inline-flex', className)}
-      >
-        <Icon />
-      </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          {...props}
+          variant='flat'
+          size='icon'
+          onClick={() => setCollapsed(!collapsed)}
+          className={cn('hidden lg:inline-flex', className)}
+        >
+          <Icon />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side='left'>
+        {collapsed ? 'Expand chat' : 'Collapse chat'}
+      </TooltipContent>
     </Tooltip>
   );
 };

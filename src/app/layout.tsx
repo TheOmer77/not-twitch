@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 
 import { Toaster } from '@/components/ui/toast';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { Provider } from '@/components/providers';
 
 import '@/styles/index.css';
@@ -22,8 +23,10 @@ const RootLayout = ({ children }: PropsWithChildren) => (
   <html lang='en' className={manrope.variable}>
     <body>
       <Provider>
-        {children}
-        <Toaster />
+        <TooltipProvider>
+          {children}
+          <Toaster />
+        </TooltipProvider>
       </Provider>
     </body>
   </html>

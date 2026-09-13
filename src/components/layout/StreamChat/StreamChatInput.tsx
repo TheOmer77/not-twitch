@@ -17,7 +17,11 @@ import { InfoIcon, SendHorizontalIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { useStream } from '@/hooks';
 
 export const StreamChatInput = () => {
@@ -111,8 +115,11 @@ export const StreamChatInput = () => {
     <form onSubmit={handleSubmit}>
       {infoMsg && (
         <span className='mb-2 flex flex-row items-center gap-2 px-2 text-sm text-muted-foreground'>
-          <Tooltip label={infoTooltip}>
-            <InfoIcon className='h-4 w-4 shrink-0' />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <InfoIcon className='h-4 w-4 shrink-0' />
+            </TooltipTrigger>
+            <TooltipContent>{infoTooltip}</TooltipContent>
           </Tooltip>
           {infoMsg}
         </span>
@@ -126,19 +133,22 @@ export const StreamChatInput = () => {
           disabled={disabled}
         />
         {
-          <Tooltip label='Send'>
-            <Button
-              variant='flat'
-              size='icon'
-              type='submit'
-              disabled={disabled}
-              className={cn(
-                `pointer-events-none absolute end-0 top-0 opacity-0 transition-[opacity,background-color] duration-75`,
-                value.length > 0 && 'pointer-events-auto opacity-100'
-              )}
-            >
-              <SendHorizontalIcon />
-            </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant='flat'
+                size='icon'
+                type='submit'
+                disabled={disabled}
+                className={cn(
+                  `pointer-events-none absolute end-0 top-0 opacity-0 transition-[opacity,background-color] duration-75`,
+                  value.length > 0 && 'pointer-events-auto opacity-100'
+                )}
+              >
+                <SendHorizontalIcon />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Send</TooltipContent>
           </Tooltip>
         }
       </div>
