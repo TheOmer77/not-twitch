@@ -1,6 +1,6 @@
 'use client';
 
-import type { CSSProperties, ReactElement, ReactNode } from 'react';
+import type { CSSProperties } from 'react';
 import { useTheme } from 'next-themes';
 import {
   CircleCheckIcon,
@@ -10,16 +10,6 @@ import {
   TriangleAlertIcon,
 } from 'lucide-react';
 import { Toaster as Sonner, type ToasterProps } from 'sonner';
-
-export type ToastProps = {
-  action?: ReactNode;
-  description?: ReactNode;
-  onOpenChange?: (open: boolean) => void;
-  open?: boolean;
-  variant?: 'default' | 'destructive';
-};
-
-export type ToastActionElement = ReactElement;
 
 export const Toaster = ({
   position = 'bottom-right',
