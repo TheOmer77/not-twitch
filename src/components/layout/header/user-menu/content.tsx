@@ -7,6 +7,7 @@ import { cn } from 'cn';
 
 import {
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -29,15 +30,17 @@ export const UserMenuContent = () => {
       )}
       <DropdownMenuSeparator />
 
-      <DropdownMenuItem onClick={() => openUserProfile()}>
-        Profile
-      </DropdownMenuItem>
-      <DropdownMenuItem asChild>
-        <Link href='/dashboard'>Dashboard</Link>
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={() => signOut(() => router.push('/'))}>
-        Sign Out
-      </DropdownMenuItem>
+      <DropdownMenuGroup>
+        <DropdownMenuItem onClick={() => openUserProfile()}>
+          Profile
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href='/dashboard'>Dashboard</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => signOut(() => router.push('/'))}>
+          Sign Out
+        </DropdownMenuItem>
+      </DropdownMenuGroup>
     </DropdownMenuContent>
   );
 };
