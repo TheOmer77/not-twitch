@@ -26,25 +26,29 @@ export const StreamChatMessages = () => {
   );
 
   const scrollToBottom = () => {
-    if (!scrollAreaRef.current) return;
-    const { scrollHeight } = scrollAreaRef.current;
-    scrollAreaRef.current.scrollTop = scrollHeight;
+    const viewport = scrollAreaRef.current?.querySelector<HTMLDivElement>(
+      '[data-slot="scroll-area-viewport"]'
+    );
+    if (!viewport) return;
+    viewport.scrollTop = viewport.scrollHeight;
   };
 
   useEffect(() => {
-    const scrollArea = scrollAreaRef.current;
-    if (!scrollArea) return;
+    const viewport = scrollAreaRef.current?.querySelector<HTMLDivElement>(
+      '[data-slot="scroll-area-viewport"]'
+    );
+    if (!viewport) return;
 
     const handleScrollEnd = () => {
-      const { scrollTop, scrollHeight, clientHeight } = scrollArea,
+      const { scrollTop, scrollHeight, clientHeight } = viewport,
         atBottom = scrollTop + clientHeight >= scrollHeight;
       setScrolledToBottom(current =>
         current === atBottom ? current : atBottom
       );
     };
 
-    scrollArea.addEventListener('scrollend', handleScrollEnd);
-    return () => scrollArea.removeEventListener('scrollend', handleScrollEnd);
+    viewport.addEventListener('scrollend', handleScrollEnd);
+    return () => viewport.removeEventListener('scrollend', handleScrollEnd);
   }, []);
 
   useEffect(() => {
@@ -61,7 +65,7 @@ export const StreamChatMessages = () => {
     </p>
   ) : (
     <ScrollArea
-      viewportRef={scrollAreaRef}
+      ref={scrollAreaRef}
       className='relative flex min-h-0 flex-grow flex-col overflow-hidden'
     >
       <ul className='flex-grow break-words'>
