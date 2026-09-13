@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 import { cn } from 'cn';
 import { Slot } from 'radix-ui';
 
-export type CardProps = ComponentProps<'div'> & {
+type CardProps = ComponentProps<'div'> & {
   asChild?: boolean;
   size?: 'default' | 'sm';
 };
