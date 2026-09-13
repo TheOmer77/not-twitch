@@ -1,6 +1,6 @@
 'use client';
 
-import { type ElementRef, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { cn } from 'cn';
 import { ArrowDownIcon } from 'lucide-react';
@@ -16,7 +16,7 @@ import { StreamChatMessage } from './StreamChatMessage';
 dynamic(() => import('scrollyfills'), { ssr: false });
 
 export const StreamChatMessages = () => {
-  const scrollAreaRef = useRef<ElementRef<typeof ScrollArea>>(null);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [scrolledToBottom, setScrolledToBottom] = useState(true);
   const { chatMessages, isChatEnabled, isChatDisabledOffline, isOnline } =
     useStream();
@@ -26,29 +26,25 @@ export const StreamChatMessages = () => {
   );
 
   const scrollToBottom = () => {
-    const viewport = scrollAreaRef.current?.querySelector<HTMLDivElement>(
-      '[data-slot="scroll-area-viewport"]'
-    );
-    if (!viewport) return;
-    viewport.scrollTop = viewport.scrollHeight;
+    if (!scrollAreaRef.current) return;
+    const { scrollHeight } = scrollAreaRef.current;
+    scrollAreaRef.current.scrollTop = scrollHeight;
   };
 
   useEffect(() => {
-    const viewport = scrollAreaRef.current?.querySelector<HTMLDivElement>(
-      '[data-slot="scroll-area-viewport"]'
-    );
-    if (!viewport) return;
+    const scrollArea = scrollAreaRef.current;
+    if (!scrollArea) return;
 
     const handleScrollEnd = () => {
-      const { scrollTop, scrollHeight, clientHeight } = viewport,
+      const { scrollTop, scrollHeight, clientHeight } = scrollArea,
         atBottom = scrollTop + clientHeight >= scrollHeight;
       setScrolledToBottom(current =>
         current === atBottom ? current : atBottom
       );
     };
 
-    viewport.addEventListener('scrollend', handleScrollEnd);
-    return () => viewport.removeEventListener('scrollend', handleScrollEnd);
+    scrollArea.addEventListener('scrollend', handleScrollEnd);
+    return () => scrollArea.removeEventListener('scrollend', handleScrollEnd);
   }, []);
 
   useEffect(() => {
@@ -65,7 +61,7 @@ export const StreamChatMessages = () => {
     </p>
   ) : (
     <ScrollArea
-      ref={scrollAreaRef}
+      viewportRef={scrollAreaRef}
       className='relative flex min-h-0 flex-grow flex-col overflow-hidden'
     >
       <ul className='flex-grow break-words'>
