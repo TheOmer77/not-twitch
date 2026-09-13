@@ -2,7 +2,7 @@
 
 import { useUser } from '@clerk/nextjs';
 
-import { Avatar } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Spinner } from '@/components/ui/spinner';
@@ -22,12 +22,13 @@ export const UserMenuTrigger = () => {
         {!isLoaded || !user?.id ? (
           <Spinner className='size-7 text-inherit' />
         ) : (
-          <Avatar
-            className='size-9'
-            src={user?.imageUrl}
-            alt={user?.primaryEmailAddress?.emailAddress || 'User'}
-            fallback={user?.username || ''}
-          />
+          <Avatar className='size-9'>
+            <AvatarImage
+              src={user.imageUrl}
+              alt={user.primaryEmailAddress?.emailAddress || 'User'}
+            />
+            <AvatarFallback>{user.username || ''}</AvatarFallback>
+          </Avatar>
         )}
       </Button>
     </DropdownMenuTrigger>

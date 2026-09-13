@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { formatDistanceToNowStrict } from 'date-fns';
 
-import { AvatarSkeleton } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { UserAvatar } from '@/components/layout/User';
@@ -55,7 +54,7 @@ export const SearchResultSkeleton = () => (
       <Skeleton className='my-1 h-em w-full text-base font-semibold sm:my-1.25 sm:w-1/2 sm:text-lg' />
       <Skeleton className='my-0.5 h-em w-20 text-xs sm:my-0.75 sm:text-sm' />
       <div className='mt-2 flex flex-row items-center gap-2'>
-        <AvatarSkeleton />
+        <Skeleton className='size-8 rounded-full' />
         <Skeleton className='my-0.5 h-em w-20 text-xs sm:my-1.5 sm:text-sm' />
       </div>
     </div>

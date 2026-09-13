@@ -6,7 +6,6 @@ import { useAuth } from '@clerk/nextjs';
 import { useRemoteParticipant } from '@livekit/components-react';
 import { toast } from 'sonner';
 
-import { AvatarSkeleton } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
@@ -95,7 +94,7 @@ export const StreamHeaderUser = ({ imageUrl }: StreamHeaderActionsProps) => {
 
 export const StreamHeaderUserSkeleton = () => (
   <div className='flex h-10 flex-row items-center gap-2'>
-    <AvatarSkeleton />
+    <Skeleton className='size-8 rounded-full' />
     <Skeleton className='h-em w-24 text-sm' />
   </div>
 );
