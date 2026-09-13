@@ -77,7 +77,7 @@ export const SelectContent = ({
           position === 'popper' && ''
         )}
       >
-        <SelectGroup>{children}</SelectGroup>
+        {children}
       </SelectPrimitive.Viewport>
       <SelectScrollDownButton />
     </SelectPrimitive.Content>
