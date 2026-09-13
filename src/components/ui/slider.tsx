@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from 'cn';
 import { Slider as SliderPrimitive } from 'radix-ui';
 
-export const sliderTrackVariants = cva(
+const sliderTrackVariants = cva(
   'relative grow overflow-hidden rounded-full data-horizontal:h-2 data-horizontal:w-full data-vertical:h-full data-vertical:w-2',
   {
     variants: { variant: { default: 'bg-input/90', light: 'bg-white/25' } },
@@ -13,7 +13,7 @@ export const sliderTrackVariants = cva(
   }
 );
 
-export const sliderRangeVariants = cva(
+const sliderRangeVariants = cva(
   'absolute select-none data-horizontal:h-full data-vertical:w-full',
   {
     variants: { variant: { default: 'bg-primary', light: 'bg-white' } },
@@ -21,7 +21,7 @@ export const sliderRangeVariants = cva(
   }
 );
 
-export const sliderThumbVariants = cva(
+const sliderThumbVariants = cva(
   'block size-4 shrink-0 rounded-full shadow-md ring-1 ring-black/10 transition-[color,box-shadow,background-color] select-none hover:ring-4 hover:ring-ring/30 focus-visible:ring-4 focus-visible:ring-ring/30 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50',
   {
     variants: { variant: { default: 'bg-white', light: 'bg-white' } },
@@ -29,7 +29,7 @@ export const sliderThumbVariants = cva(
   }
 );
 
-export type SliderProps = ComponentProps<typeof SliderPrimitive.Root> &
+type SliderProps = ComponentProps<typeof SliderPrimitive.Root> &
   VariantProps<typeof sliderThumbVariants>;
 
 export const Slider = ({
