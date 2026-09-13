@@ -1,6 +1,6 @@
 'use client';
 
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 import { cn } from 'cn';
 import { Tooltip as TooltipPrimitive } from 'radix-ui';
 
@@ -15,7 +15,7 @@ export const TooltipProvider = ({
   />
 );
 
-export const TooltipRoot = (
+export const Tooltip = (
   props: ComponentProps<typeof TooltipPrimitive.Root>
 ) => <TooltipPrimitive.Root data-slot='tooltip' {...props} />;
 
@@ -39,21 +39,4 @@ export const TooltipContent = ({
       {...props}
     />
   </TooltipPrimitive.Portal>
-);
-
-export type TooltipProps = Omit<
-  ComponentProps<typeof TooltipPrimitive.Content>,
-  'children'
-> & {
-  children: ReactNode;
-  label: ReactNode;
-};
-
-export const Tooltip = ({ label, children, ...contentProps }: TooltipProps) => (
-  <TooltipProvider>
-    <TooltipRoot>
-      <TooltipTrigger asChild>{children}</TooltipTrigger>
-      <TooltipContent {...contentProps}>{label}</TooltipContent>
-    </TooltipRoot>
-  </TooltipProvider>
 );
