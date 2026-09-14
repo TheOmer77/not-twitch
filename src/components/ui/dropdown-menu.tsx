@@ -23,7 +23,6 @@ export const DropdownMenuTrigger = (
 
 export const DropdownMenuContent = ({
   className,
-  children,
   align = 'start',
   sideOffset = 4,
   ...props
@@ -38,11 +37,7 @@ export const DropdownMenuContent = ({
         className
       )}
       {...props}
-    >
-      <DropdownMenuPrimitive.Group data-slot='dropdown-menu-group'>
-        {children}
-      </DropdownMenuPrimitive.Group>
-    </DropdownMenuPrimitive.Content>
+    />
   </DropdownMenuPrimitive.Portal>
 );
 

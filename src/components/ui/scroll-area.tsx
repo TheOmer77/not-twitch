@@ -1,31 +1,20 @@
 'use client';
 
-import type { ComponentProps, RefObject } from 'react';
+import type { ComponentProps } from 'react';
 import { cn } from 'cn';
 import { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
-
-export type ScrollAreaProps = ComponentProps<
-  typeof ScrollAreaPrimitive.Root
-> & {
-  asChild?: boolean;
-  viewportRef?: RefObject<HTMLDivElement | null>;
-};
 
 export const ScrollArea = ({
   className,
   children,
-  asChild,
-  viewportRef,
   ...props
-}: ScrollAreaProps) => (
+}: ComponentProps<typeof ScrollAreaPrimitive.Root>) => (
   <ScrollAreaPrimitive.Root
     data-slot='scroll-area'
     className={cn('relative', className)}
     {...props}
   >
     <ScrollAreaPrimitive.Viewport
-      ref={viewportRef}
-      asChild={asChild}
       data-slot='scroll-area-viewport'
       className='size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1'
     >

@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { cn } from 'cn';
 import { useMediaQuery } from 'usehooks-ts';
 
-import { AvatarSkeleton } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { UserAvatar, type UserAvatarProps } from '@/components/layout/User';
@@ -51,7 +50,7 @@ export const BrowseSidebarUserItem = ({
 
 export const BrowseSidebarUserItemSkeleton = () => (
   <li className='inline-flex h-9 flex-row items-center justify-start gap-2 px-3'>
-    <AvatarSkeleton />
+    <Skeleton className='size-8 rounded-full' />
     <Skeleton className='hidden h-5 grow lg:block' />
   </li>
 );

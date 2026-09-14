@@ -7,7 +7,11 @@ import { generateClientDropzoneAccept } from 'uploadthing/client';
 
 import { Button } from '@/components/ui/button';
 import { Dropzone, type DropzoneProps } from '@/components/ui/dropzone';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { useUploadThing } from '@/hooks';
 
 export type StreamThumbnailDropzoneProps = {
@@ -84,15 +88,18 @@ export const StreamThumbnailDropzone = ({
         style={{ width: `${uploadProgress}%` }}
       />
       {!disabled && (
-        <Tooltip label='Remove thumbnail'>
-          <Button
-            size='icon'
-            type='button'
-            className='absolute inset-e-2 top-2'
-            onClick={onFileRemoved}
-          >
-            <TrashIcon />
-          </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size='icon'
+              type='button'
+              className='absolute inset-e-2 top-2'
+              onClick={onFileRemoved}
+            >
+              <TrashIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Remove thumbnail</TooltipContent>
         </Tooltip>
       )}
     </div>

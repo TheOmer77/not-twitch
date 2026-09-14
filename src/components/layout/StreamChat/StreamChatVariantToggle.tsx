@@ -5,7 +5,11 @@ import { cn } from 'cn';
 import { MessageCircleIcon, UsersRoundIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { useChatSidebar } from '@/store/useChatSidebar';
 
 export const StreamChatVariantToggle = ({
@@ -16,18 +20,23 @@ export const StreamChatVariantToggle = ({
   const Icon = variant === 'community' ? MessageCircleIcon : UsersRoundIcon;
 
   return (
-    <Tooltip label={variant === 'community' ? 'Back to chat' : 'Community'}>
-      <Button
-        {...props}
-        variant='flat'
-        size='icon'
-        onClick={() =>
-          setVariant(variant === 'community' ? 'chat' : 'community')
-        }
-        className={cn('hidden lg:inline-flex', className)}
-      >
-        <Icon />
-      </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          {...props}
+          variant='flat'
+          size='icon'
+          onClick={() =>
+            setVariant(variant === 'community' ? 'chat' : 'community')
+          }
+          className={cn('hidden lg:inline-flex', className)}
+        >
+          <Icon />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        {variant === 'community' ? 'Back to chat' : 'Community'}
+      </TooltipContent>
     </Tooltip>
   );
 };

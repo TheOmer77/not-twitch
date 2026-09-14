@@ -10,7 +10,11 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export type StreamVolumeControlProps = {
   value?: number;
@@ -40,15 +44,20 @@ export const StreamVolumeControl = ({
 
   return (
     <div className='flex items-center gap-2'>
-      <Tooltip label={muted || value < 1 ? 'Unmute' : 'Mute'}>
-        <Button
-          variant='flat'
-          size='icon'
-          className='text-white hover:bg-white/15 hover:text-white'
-          onClick={() => onMutedChange?.(!muted)}
-        >
-          <Icon />
-        </Button>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant='flat'
+            size='icon'
+            className='text-white hover:bg-white/15 hover:text-white'
+            onClick={() => onMutedChange?.(!muted)}
+          >
+            <Icon />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          {muted || value < 1 ? 'Unmute' : 'Mute'}
+        </TooltipContent>
       </Tooltip>
       <Slider
         variant='light'

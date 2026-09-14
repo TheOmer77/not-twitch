@@ -1,10 +1,11 @@
+import type { ComponentProps } from 'react';
 import { cn } from 'cn';
 
-import { Avatar, type AvatarProps } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export type UserAvatarProps = Omit<
-  AvatarProps,
-  'src' | 'alt' | 'fallback' | 'children'
+  ComponentProps<typeof Avatar>,
+  'children'
 > & {
   username: string;
   imageUrl?: string;
@@ -20,12 +21,12 @@ export const UserAvatar = ({
 }: UserAvatarProps) => (
   <Avatar
     {...props}
-    src={imageUrl}
-    alt={username}
-    fallback={username[0]}
     className={cn(
       isLive && 'ring-2 ring-destructive ring-offset-2 ring-offset-background',
       className
     )}
-  />
+  >
+    <AvatarImage src={imageUrl} alt={username} />
+    <AvatarFallback>{username[0]}</AvatarFallback>
+  </Avatar>
 );

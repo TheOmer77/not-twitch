@@ -4,7 +4,7 @@ import { Slot } from 'radix-ui';
 
 import { Label } from '@/components/ui/label';
 
-export type FormDescriptionProps = ComponentProps<'p'> & { error?: boolean };
+type FormDescriptionProps = ComponentProps<'p'> & { error?: boolean };
 
 export const FormDescription = ({
   error,
@@ -22,7 +22,7 @@ export const FormDescription = ({
   />
 );
 
-export type FormLabelProps = ComponentProps<typeof Label> & {
+type FormLabelProps = ComponentProps<typeof Label> & {
   error?: boolean;
 };
 
@@ -34,7 +34,7 @@ export const FormLabel = ({ error, className, ...props }: FormLabelProps) => (
   />
 );
 
-export type FormFieldProps = ComponentProps<'div'> & {
+type FormFieldProps = ComponentProps<'div'> & {
   id: string;
   label: string;
   description?: string;

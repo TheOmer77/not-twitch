@@ -6,10 +6,13 @@ import { useAuth } from '@clerk/nextjs';
 import { useRemoteParticipant } from '@livekit/components-react';
 import { toast } from 'sonner';
 
-import { AvatarSkeleton } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { UserAvatar } from '@/components/layout/User';
 import { useStream } from '@/hooks';
 import { followUser, unfollowUser } from '@/actions/follow';
@@ -64,10 +67,15 @@ export const StreamHeaderUser = ({ imageUrl }: StreamHeaderActionsProps) => {
       <UserAvatar username={hostName} imageUrl={imageUrl} isLive={isLive} />
       <span className='grow text-sm font-semibold'>{hostName}</span>
       {!userId ? (
-        <Tooltip label={`To follow ${hostName}, you must log in first.`}>
-          <Button variant='primary' onClick={() => router.push(SIGN_IN_URL)}>
-            Follow
-          </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant='primary' onClick={() => router.push(SIGN_IN_URL)}>
+              Follow
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            To follow {hostName}, you must log in first.
+          </TooltipContent>
         </Tooltip>
       ) : (
         !isHost && (
@@ -86,7 +94,7 @@ export const StreamHeaderUser = ({ imageUrl }: StreamHeaderActionsProps) => {
 
 export const StreamHeaderUserSkeleton = () => (
   <div className='flex h-10 flex-row items-center gap-2'>
-    <AvatarSkeleton />
+    <Skeleton className='size-8 rounded-full' />
     <Skeleton className='h-em w-24 text-sm' />
   </div>
 );

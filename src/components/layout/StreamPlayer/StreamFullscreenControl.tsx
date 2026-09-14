@@ -3,7 +3,11 @@
 import { MaximizeIcon, MinimizeIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export type StreamFullscreenControlProps = {
   isFullscreen?: boolean;
@@ -17,15 +21,20 @@ export const StreamFullscreenControl = ({
   const Icon = isFullscreen ? MinimizeIcon : MaximizeIcon;
 
   return (
-    <Tooltip label={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}>
-      <Button
-        variant='flat'
-        size='icon'
-        className='text-white hover:bg-white/15 hover:text-white'
-        onClick={() => onFullscreenChange?.(!isFullscreen)}
-      >
-        <Icon />
-      </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant='flat'
+          size='icon'
+          className='text-white hover:bg-white/15 hover:text-white'
+          onClick={() => onFullscreenChange?.(!isFullscreen)}
+        >
+          <Icon />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        {isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+      </TooltipContent>
     </Tooltip>
   );
 };

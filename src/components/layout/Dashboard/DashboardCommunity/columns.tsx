@@ -4,7 +4,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import { ArrowUpDownIcon } from 'lucide-react';
 
-import { Avatar } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import type { User } from '@/types';
 
@@ -34,7 +34,13 @@ export const columns: ColumnDef<typeof communityTableFeatures, TableUser>[] = [
     ),
     cell: ({ row }) => (
       <div className='flex flex-row items-center gap-2'>
-        <Avatar src={row.original.imageUrl} alt={row.original.username} />
+        <Avatar>
+          <AvatarImage
+            src={row.original.imageUrl}
+            alt={row.original.username}
+          />
+          <AvatarFallback>{row.original.username[0]}</AvatarFallback>
+        </Avatar>
         {row.original.username}
       </div>
     ),
