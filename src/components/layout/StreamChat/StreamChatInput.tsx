@@ -44,30 +44,20 @@ export const StreamChatInput = () => {
     !user ||
     (isChatFollowersOnly && !isFollowing);
 
-  const infoMsg = useMemo(() => {
-      switch (true) {
-        case isChatDelayed && isChatDelayed:
-          return 'Followers only & slow mode';
-        case isChatDelayed:
-          return 'Slow mode';
-        case isChatFollowersOnly:
-          return 'Followers only';
-        default:
-          return null;
-      }
-    }, [isChatDelayed, isChatFollowersOnly]),
-    infoTooltip = useMemo(() => {
-      switch (true) {
-        case isChatDelayed && isChatDelayed:
-          return 'Messages can only be sent every 3 seconds, by followers only.';
-        case isChatDelayed:
-          return 'Messages can only be sent every 3 seconds.';
-        case isChatFollowersOnly:
-          return 'Only followers can chat.';
-        default:
-          return null;
-      }
-    }, [isChatDelayed, isChatFollowersOnly]);
+  const [infoMsg, infoTooltip] = useMemo<
+    [infoMsg: string | null, infoTooltip: string | null]
+  >(() => {
+    if (isChatFollowersOnly && isChatDelayed)
+      return [
+        'Followers only & slow mode',
+        'Messages can only be sent every 3 seconds, by followers only.',
+      ];
+    else if (isChatDelayed)
+      return ['Slow mode', 'Messages can only be sent every 3 seconds.'];
+    else if (isChatFollowersOnly)
+      return ['Followers only', 'Only followers can chat.'];
+    return [null, null];
+  }, [isChatDelayed, isChatFollowersOnly]);
 
   const handleSubmit = useCallback<FormEventHandler>(
     e => {
