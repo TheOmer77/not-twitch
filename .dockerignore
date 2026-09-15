@@ -1,5 +1,5 @@
 .dockerignore
-docker-compose.yaml
+compose.yaml
 Dockerfile
 node_modules
 .next

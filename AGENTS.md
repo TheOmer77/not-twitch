@@ -1,6 +1,6 @@
 ## Working with Docker
 
-This project includes a Docker-based setup with a Dockerfile for the app `Dockerfile`, and a Docker Compose file for development `docker-compose.yaml`.
+This project includes a Docker-based setup with a Dockerfile for the app `Dockerfile`, and a Docker Compose file for development `compose.yaml`.
 
 - Always use Docker Compose to run the app, **NEVER** run the dev server (`pnpm dev`) without Docker.
 - Once the containers are running, you can access the app at [localhost:3000](http://localhost:3000) and the database studio at [localhost:5555](http://localhost:5555).
